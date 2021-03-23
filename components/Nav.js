@@ -1,12 +1,12 @@
-// import navStyles from '../styles/Nav.module.js';
+import navStyles from '../styles/Nav.module.scss';
 import Link from 'next/link';
 
 import React from 'react'
 
 const Nav = () => {
     return (
-        <nav>
-            <ul>
+        <nav className={navStyles.nav_container}>
+            <ul className={navStyles.nav_container_main}>
                 <li><Link href='/'>Home</Link></li>
                 <li>
                     <ul>

@@ -1,7 +1,15 @@
 const Event = ({ event }) => {
     return (
         <div>
-            <h1>{event.title}</h1>
+            <ul key={event.id}>
+                <p>Title: {event.title}</p>
+                <p>Description: {event.text}</p>
+                <p>Seats: {event.seats}</p>
+                <p>Date: {event.date}</p>
+                <p>Start: {event.startDate}</p>
+                <p>End: {event.endDate}</p>
+                <p>Location: {event.location}</p>
+            </ul>
         </div>
     )
 }
