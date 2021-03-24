@@ -1,40 +1,35 @@
 import SignupList from '../../../components/Signups/SignupList.js';
 import eventStyles from '../../../styles/EventList.module.scss';
 
+const {
+    REACT_APP_API_URL: apiUrl,
+  } = process.env;
+
 const Event = ({ event, signups }) => {
     const SigninUser = async signin => {
         signin.preventDefault();
 
-        const data = {
-            username: signin.target.username.value,
-            password: signin.target.password.value,
-        };
-
         const options = {
             method: 'POST',
-            body: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
         }
+        try {
+            const res = await fetch(`https://nordredo-backend.herokuapp.com/event/sign-in/1`, options)
+            console.log(res);
+            const result = await res.json()
+            console.log(result);
+        } catch (e) {
+            console.error(e);
+        }
 
-        const res = await fetch(`${apiUrl}event/sign-in/${event.id}`, options)
-
-        console.log(res);
-        const result = await res.json()
-        console.log(result);
     }
     const SignoutUser = async signout => {
         signin.preventDefault();
 
-        const data = {
-            username: signout.target.username.value,
-            password: signout.target.password.value,
-        };
-
         const options = {
             method: 'POST',
-            body: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
