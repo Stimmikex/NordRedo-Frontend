@@ -1,14 +1,24 @@
+import eventStyles from '../../../styles/EventList.module.scss';
+
 const Event = ({ event }) => {
     return (
         <div>
             <ul key={event.id}>
-                <p>Title: {event.title}</p>
-                <p>Description: {event.text}</p>
-                <p>Seats: {event.seats}</p>
-                <p>Date: {event.date}</p>
-                <p>Start: {event.startDate}</p>
-                <p>End: {event.endDate}</p>
-                <p>Location: {event.location}</p>
+                <div>
+                    <h1>Title: {event.title}</h1>
+                    <p>Description: {event.text}</p>
+                </div>
+                <div>
+                    <p>Seats: {event.seats}</p>
+                </div>
+                <div>
+                    <p>Date: {event.date}</p>
+                    <p>Start: {event.startDate}</p>
+                    <p>End: {event.endDate}</p>
+                </div>
+                <div>
+                    <p>Location: {event.location}</p>
+                </div>
             </ul>
         </div>
     )
