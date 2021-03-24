@@ -1,4 +1,4 @@
-import RegisterForm from '../../components/RegisterForm.js'
+import RegisterForm from '../../components/Users/RegisterForm.js'
 
 export default function Login() {
     return (

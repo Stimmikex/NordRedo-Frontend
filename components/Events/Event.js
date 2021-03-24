@@ -1,5 +1,5 @@
 import Link from 'next/Link';
-import eventStyles from '../styles/EventList.module.scss';
+import eventStyles from '../../styles/EventList.module.scss';
 
 const Event = ({ event }) => {
     return (

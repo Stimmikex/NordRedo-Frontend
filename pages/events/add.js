@@ -1,4 +1,4 @@
-import EventAddForm from '../../components/EventAddForm.js'
+import EventAddForm from '../../components/Events/EventAddForm.js'
 
 export default function Login() {
     return (
