@@ -5,9 +5,10 @@ const {
     REACT_APP_API_URL: apiUrl,
   } = process.env;
 
-const Event = ({ event, signups }) => {
+const Event = ({ event, signups, signCount }) => {
     const SigninUser = async signin => {
         signin.preventDefault();
+
 
         const options = {
             method: 'POST',
@@ -41,6 +42,7 @@ const Event = ({ event, signups }) => {
         const result = await res.json()
         console.log(result);
     }
+    console.log(signCount);
     return (
         <div className={eventStyles.event_container}>
             <div>
@@ -48,7 +50,7 @@ const Event = ({ event, signups }) => {
                 <p>Description: {event.text}</p>
             </div>
             <div>
-                <p>Seats: {event.seats}</p>
+                <p>Seats: {signCount.count +"/"+event.seats}</p>
             </div>
             <div>
                 <p>Date: {event.date}</p>
@@ -67,7 +69,7 @@ const Event = ({ event, signups }) => {
                 </form>
             </div>
             <h1>Signup List: </h1>
-            <SignupList signups={signups}></SignupList>
+            <SignupList signups={signups} signed={event.seats}></SignupList>
         </div>
     )
 }
@@ -77,10 +79,13 @@ export async function getStaticProps({ params }) {
     const event = await res.json();
     const resSign = await fetch(`https://nordredo-backend.herokuapp.com/event/registered/${params.eventId}`);
     const signups = await resSign.json();
+    const resCount = await fetch(`https://nordredo-backend.herokuapp.com/event/count/${params.eventId}`);
+    const signCount= await resCount.json();
     return {
         props: {
             event,
             signups,
+            signCount,
         },
     }
 }
