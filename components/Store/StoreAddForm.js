@@ -31,6 +31,24 @@ const StoreAddForm = () => {
         const result = await res.json()
         console.log(result);
     }
+    const handleChange = event => {
+        setSelectedImage(event.target.files[0]);
+      }
+    
+      const handleImageUpload = () => {
+        if (!selectedImage) { return; }
+        const formData = new FormData();
+        formData.append('image', selectedImage);
+    
+        uploadImage(formData)
+          .then(uploadedImage => {
+            console.log(uploadedImage);
+          })
+          .catch(_ => {
+            console.log('Oooops, something went wrong!')
+          })
+      }
+    
     return (
         <div className={addForm.add_container}>
             <h1>Add Item to store</h1>
@@ -52,6 +70,12 @@ const StoreAddForm = () => {
                 />
                 <hr></hr>
                 <label>Upload image </label>
+                <input
+                    onChange={handleChange}
+                    accept=".jpg, .png, .jpeg"
+                    className="fileInput mb-2"
+                    type="file">
+                </input>
                 <hr></hr>
             </div>
             <button type='submit'>Add Item</button>
