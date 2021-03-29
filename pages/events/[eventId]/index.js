@@ -1,5 +1,5 @@
 import SignupList from '../../../components/Signups/SignupList.js';
-import eventStyles from '../../../styles/EventList.module.scss';
+import eventStyles from '../../../styles/Event.module.scss';
 
 const {
     REACT_APP_API_URL: apiUrl,
@@ -16,7 +16,7 @@ const Event = ({ event, signups }) => {
             },
         }
         try {
-            const res = await fetch(`https://nordredo-backend.herokuapp.com/event/sign-in/1`, options)
+            const res = await fetch(`https://nordredo-backend.herokuapp.com/event/sign-in/${event.id}`, options)
             console.log(res);
             const result = await res.json()
             console.log(result);
@@ -26,7 +26,7 @@ const Event = ({ event, signups }) => {
 
     }
     const SignoutUser = async signout => {
-        signin.preventDefault();
+        signout.preventDefault();
 
         const options = {
             method: 'POST',
@@ -35,32 +35,30 @@ const Event = ({ event, signups }) => {
             },
         }
 
-        const res = await fetch(`${apiUrl}event/sign-out/${event.id}`, options)
+        const res = await fetch(`https://nordredo-backend.herokuapp.com/event/sign-out/${event.id}`, options)
 
         console.log(res);
         const result = await res.json()
         console.log(result);
     }
     return (
-        <div>
-            <ul>
-                <div>
-                    <h1>Title: {event.title}</h1>
-                    <p>Description: {event.text}</p>
-                </div>
-                <div>
-                    <p>Seats: {event.seats}</p>
-                </div>
-                <div>
-                    <p>Date: {event.date}</p>
-                    <p>Start: {event.startDate}</p>
-                    <p>End: {event.endDate}</p>
-                </div>
-                <div>
-                    <p>Location: {event.location}</p>
-                </div>
-            </ul>
+        <div className={eventStyles.event_container}>
             <div>
+                <h1>Title: {event.title}</h1>
+                <p>Description: {event.text}</p>
+            </div>
+            <div>
+                <p>Seats: {event.seats}</p>
+            </div>
+            <div>
+                <p>Date: {event.date}</p>
+                <p>Start: {event.startDate}</p>
+                <p>End: {event.endDate}</p>
+            </div>
+            <div>
+                <p>Location: {event.location}</p>
+            </div>
+            <div className={eventStyles.event_container_sign}>
                 <form onSubmit={SigninUser}>
                     <button type='submit'>Signup</button>
                 </form>

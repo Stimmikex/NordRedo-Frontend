@@ -1,0 +1,15 @@
+.add_container {
+    margin: 1em;
+    form {
+        label {
+            display: inline-block;
+            width: 20%;
+        }
+        input, textarea, select {
+            width: 78%;
+        }
+        button {
+            width: 100%;
+        }
+    }
+}

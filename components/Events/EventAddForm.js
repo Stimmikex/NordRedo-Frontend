@@ -1,4 +1,5 @@
 import React from 'react'
+import addForm from '../../styles/AddForm.module.scss';
 
 const {
     REACT_APP_API_URL: apiUrl,
@@ -9,26 +10,33 @@ const EventAddForm = () => {
         event.preventDefault();
 
         const data = {
-            username: event.target.username.value,
-            password: event.target.password.value,
+            title: event.target.title.value,
+            seats: event.target.seats.value,
+            location: event.target.location.value,
+            startDate: event.target.startDate.value,
+            endDate: event.target.endDate.value,
         };
 
         const options = {
-            method: 'POST',
             body: JSON.stringify(data),
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Type': 'application/json',
             },
+            method: 'POST'
         }
 
-        const res = await fetch(`${apiUrl}event/add`, options)
+        console.log(data);
+
+        const res = await fetch(`https://nordredo-backend.herokuapp.com/event/add`, options)
 
         console.log(res);
         const result = await res.json()
         console.log(result);
     }
     return (
-        <form onSubmit={EventAdd}>
+        <div className={addForm.add_container}>
+            <h1>Add Event</h1>
+            <form onSubmit={EventAdd}>
             <div>
                 <label>Title: </label>
                 <input type='text'
@@ -71,6 +79,7 @@ const EventAddForm = () => {
             </div>
             <button type='submit'>Add Event</button>
         </form>
+        </div>
     )
 }
 

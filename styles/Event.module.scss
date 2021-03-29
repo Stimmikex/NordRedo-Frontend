@@ -1,0 +1,10 @@
+.event_container {
+    margin: 1em;
+    &_sign {
+        form {
+            button {
+                width: 100%;
+            }
+        }
+    }
+}

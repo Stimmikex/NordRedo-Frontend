@@ -1,0 +1,11 @@
+.form_container {
+    text-align: center;
+    form {
+        width: 50%;
+        margin: 0 auto;
+        input, button {
+            height: 2em;
+            width: 100%;
+        }
+    }
+}

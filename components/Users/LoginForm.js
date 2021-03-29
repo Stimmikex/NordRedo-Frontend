@@ -1,4 +1,5 @@
 import React from 'react'
+import form from '../../styles/Form.module.scss';
 
 const {
     REACT_APP_API_URL: apiUrl,
@@ -17,18 +18,20 @@ const LoginForm = () => {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Type': 'application/json',
             },
         }
 
-        const res = await fetch(`${apiUrl}users/login`, options)
+        const res = await fetch(`https://nordredo-backend.herokuapp.com/users/login`, options)
 
         console.log(res);
         const result = await res.json()
         console.log(result);
     }
     return (
-        <form onSubmit={LoginUser}>
+        <div className={form.form_container}>
+            <h1>Login</h1>
+            <form onSubmit={LoginUser}>
             <div>
                 <input type='text'
                     name='username'
@@ -45,6 +48,7 @@ const LoginForm = () => {
             </div>
             <button type='submit'>Login</button>
         </form>
+        </div>
     )
 }
 

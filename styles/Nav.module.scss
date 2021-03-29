@@ -1,13 +1,89 @@
 .nav_container {
+    height: auto;
+    flex-direction: column;
     display: flex;
-    background-color:rgb(74, 190, 123);
-    ul {
-        list-style: none;
+    @media screen and (min-width: 600px) {
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        height: 10em;
     }
-    &_main {
-        padding: 1em;
+    &_bar {
+        display: flex;
+        @media screen and (min-width: 600px) {
+            display: none;
+        }
+        &_split {
+            display: flex;
+            padding: 0em 1em;
+            width: 100%;
+            justify-content: space-between;
+            background-color: brown;
+            i {
+                align-self: center;
+            }
+            img {
+                width: 20%;
+            }
+        }
+    }
+    background-color:rgb(74, 190, 123);
+    &_home {
         display: flex;
         width: 100%;
-        justify-content: space-between;
+        @media screen and (min-width: 600px) {
+            width: 25%;
+            flex-direction: column;
+        }
+        background-color: aqua;
+        p {
+            margin: 1em;
+        }
+    }
+    &_item {
+        display: flex;
+        width: 100%;
+        @media screen and (min-width: 600px) {
+            width: 25%;
+        }
+        &_event {
+            width: 50%;
+            background-color: aquamarine;
+            p {
+                margin: 1em;
+            }
+        }
+        &_store {
+            width: 50%;
+            background-color: chartreuse;
+            p {
+                margin: 1em;
+            }
+        }
+    }
+    &_about {
+        display: flex;
+        width: 100%;
+        @media screen and (min-width: 600px) {
+            width: 25%;
+            flex-direction: column;
+        }
+        background-color: rgb(79, 134, 134);
+        p {
+            margin: 1em;
+        }
+    }
+    &_login {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        @media screen and (min-width: 600px) {
+            width: 25%;
+            flex-direction: column;
+        }
+        background-color: darkolivegreen;
+        p {
+            margin: 1em;
+        }
     }
 }
