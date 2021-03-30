@@ -8,9 +8,6 @@ const EventList = ({ events, get }) => {
         if(get === "Active") {
             const eventDate = Date.parse(event.date);
             curr = Date.parse(curr);
-            console.log(eventDate)
-            console.log(curr)
-            console.log(eventDate - curr)
             if(eventDate - curr > 0) {
                 return <Event event={event} key={event.id}></Event>
             }

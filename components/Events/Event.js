@@ -23,15 +23,19 @@ const Event = ({ event }) => {
                         </div>
                         <div className={eventStyles.eventContainer_info_text}>
                             <h2>{event.title}</h2>
-                            <p>Description: {truncate(event.text, 40)}...</p>
-                            <p>Seats: {event.seats}</p>
+                            <p>{truncate(event.text, 20)}...</p>
+                            {event.signup ?
+                                <p>Seats: {event.seats}</p>
+                                :
+                                <p>All are invited</p>
+                            } 
                         </div>
                         <div className={eventStyles.eventContainer_info_location}>
                             <div className={eventStyles.eventContainer_info_location_mapouter}>
-                            <div class="gmap_canvas">
-                                <iframe src={`https://maps.google.com/maps?q=${event.location}&t=&z=13&ie=UTF8&iwloc=&output=embed`} frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                                <div class="gmap_canvas">
+                                    <iframe src={`https://maps.google.com/maps?q=${event.location}&t=&z=13&ie=UTF8&iwloc=&output=embed`} frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                                </div>
                             </div>
-                        </div>
                         </div>
                         <div className={eventStyles.eventContainer_info_poster}>
                             <img src={`./eventImages/${event.event_type}.jpg`} alt={event.event_type} />
