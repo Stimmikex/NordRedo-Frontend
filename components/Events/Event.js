@@ -6,21 +6,24 @@ const Event = ({ event }) => {
     const formatDate = (eventDate) => {
         return dateFormat(eventDate, "mmmm dS, yyyy");
     }
+    function truncate(str, n){
+        return (str.length > n) ? str.substr(0, n-1) : str;
+    };
     return (
         <div className={eventStyles.eventContainer}>
             <Link href='/events/[eventId]' as={`/events/${event.id}`}>
             <a>
                 <ul>
                     <div className={eventStyles.eventContainer_image}>
-                        {/* <img src={`./eventImages/${event.event_type}.jpg`} alt={event.event_type} /> */}
+                        <img src={`./eventImages/${event.event_type}.jpg`} alt={event.event_type} />
                     </div>
                     <div className={eventStyles.eventContainer_info}>
                         <div className={eventStyles.eventContainer_info_date}>
                             <p>{formatDate(event.date)}</p>
                         </div>
                         <div className={eventStyles.eventContainer_info_text}>
-                            <p>Title: {event.title}</p>
-                            <p>Description: {event.text}</p>
+                            <h2>{event.title}</h2>
+                            <p>Description: {truncate(event.text, 40)}...</p>
                             <p>Seats: {event.seats}</p>
                         </div>
                         <div className={eventStyles.eventContainer_info_location}>

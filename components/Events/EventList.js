@@ -1,12 +1,28 @@
 import React from 'react'
 import Event from './Event';
+import eventStyles from '../../styles/EventList.module.scss';
 
-const EventList = ({ events }) => {
+const EventList = ({ events, get }) => {
+    function getEvents(event) {
+        let curr = new Date();
+        if(get === "Active") {
+            const eventDate = Date.parse(event.date);
+            curr = Date.parse(curr);
+            console.log(eventDate)
+            console.log(curr)
+            console.log(eventDate - curr)
+            if(eventDate - curr > 0) {
+                return <Event event={event} key={event.id}></Event>
+            }
+        } else {
+            return <Event event={event} key={event.id}></Event>
+        }
+    }
     return (
-        <div>
+        <div className={eventStyles.eventList}>
             {events.map((event) => {
             return (
-                <Event event={event} key={event.id}></Event>
+                getEvents(event)
             )
             })}
         </div>

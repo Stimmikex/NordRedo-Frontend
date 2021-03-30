@@ -5,7 +5,7 @@ export default function index({ events }) {
     return (
         <div>
             <h1>Upcoming Events</h1>
-            <EventList events={events}></EventList>
+            <EventList events={events} get={"Active"}></EventList>
         </div>
     )
 }
