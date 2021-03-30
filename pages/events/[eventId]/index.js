@@ -1,5 +1,6 @@
 import SignupList from '../../../components/Signups/SignupList.js';
 import eventStyles from '../../../styles/Event.module.scss';
+import dateFormat from 'dateFormat';
 
 const {
     REACT_APP_API_URL: apiUrl,
@@ -43,17 +44,23 @@ const Event = ({ event, signups, signCount }) => {
         console.log(result);
     }
     console.log(signCount);
+
+    const formatDate = (eventDate) => {
+        return dateFormat(eventDate, "dddd, mmmm dS, yyyy");
+    }
     return (
         <div className={eventStyles.event_container}>
             <div>
-                <h1>Title: {event.title}</h1>
+                <p>{formatDate(event.date)}</p>
+            </div>
+            <div>
+                <h1>{event.title}</h1>
                 <p>Description: {event.text}</p>
             </div>
             <div>
                 <p>Seats: {signCount.count +"/"+event.seats}</p>
             </div>
             <div>
-                <p>Date: {event.date}</p>
                 <p>Start: {event.startDate}</p>
                 <p>End: {event.endDate}</p>
             </div>

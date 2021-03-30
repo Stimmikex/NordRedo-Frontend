@@ -4,7 +4,7 @@ import EventList from '../components/Events/EventList.js';
 export default function index({ events }) {
     return (
         <div>
-            <h1>God is dead</h1>
+            <h1>Upcoming Events</h1>
             <EventList events={events}></EventList>
         </div>
     )
