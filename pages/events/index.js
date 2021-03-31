@@ -3,7 +3,7 @@ import EventList from '../../components/Events/EventList.js';
 export default function Events({ events }) {
   return (
     <div>
-      <EventList events={events}></EventList>
+      <EventList events={events} get={"All"}></EventList>
     </div>
   )
 }

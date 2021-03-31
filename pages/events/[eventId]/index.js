@@ -1,13 +1,16 @@
 import SignupList from '../../../components/Signups/SignupList.js';
+import Countdown from '../../../components/Countdown.js';
 import eventStyles from '../../../styles/Event.module.scss';
+import dateFormat from 'dateFormat';
 
 const {
     REACT_APP_API_URL: apiUrl,
   } = process.env;
 
-const Event = ({ event, signups }) => {
+const Event = ({ event, signups, signCount }) => {
     const SigninUser = async signin => {
         signin.preventDefault();
+
 
         const options = {
             method: 'POST',
@@ -41,33 +44,56 @@ const Event = ({ event, signups }) => {
         const result = await res.json()
         console.log(result);
     }
+    console.log(signCount);
+
+    const formatDate = (eventDate) => {
+        return dateFormat(eventDate, "dddd, mmmm dS, yyyy");
+    }
     return (
         <div className={eventStyles.event_container}>
             <div>
-                <h1>Title: {event.title}</h1>
+                <p>{formatDate(event.date)}</p>
+            </div>
+            <div>
+                <h1>{event.title}</h1>
                 <p>Description: {event.text}</p>
             </div>
+            { event.signup ?
+                <div>
+                    <p>Seats: {signCount.count +"/"+event.seats}</p>
+                </div>
+                :
+                <p></p>
+            }
             <div>
-                <p>Seats: {event.seats}</p>
+                <Countdown start={event.startdate}></Countdown>
+                <p>End: {event.enddate}</p>
             </div>
             <div>
-                <p>Date: {event.date}</p>
-                <p>Start: {event.startDate}</p>
-                <p>End: {event.endDate}</p>
+                <div className={eventStyles.event_container_iframe}>
+                    <iframe src={`https://maps.google.com/maps?q=${event.location}&t=&z=13&ie=UTF8&iwloc=&output=embed`} frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                </div>
             </div>
-            <div>
-                <p>Location: {event.location}</p>
-            </div>
-            <div className={eventStyles.event_container_sign}>
-                <form onSubmit={SigninUser}>
-                    <button type='submit'>Signup</button>
-                </form>
-                <form onSubmit={SignoutUser}>
-                    <button type='submit'>SignOut</button>
-                </form>
-            </div>
-            <h1>Signup List: </h1>
-            <SignupList signups={signups}></SignupList>
+            { event.signup ? 
+                <div className={eventStyles.event_container_sign}>
+                    <form onSubmit={SigninUser}>
+                        <button type='submit'>Signup</button>
+                    </form>
+                    <form onSubmit={SignoutUser}>
+                        <button type='submit'>SignOut</button>
+                    </form>
+                </div>
+                : 
+                <p></p>
+            }
+            { event.signup ? 
+                <div>
+                    <h1>Signup List: </h1>
+                    <SignupList signups={signups} signed={event.seats}></SignupList>
+                </div>
+                :
+                <p></p>
+            }
         </div>
     )
 }
@@ -77,10 +103,13 @@ export async function getStaticProps({ params }) {
     const event = await res.json();
     const resSign = await fetch(`https://nordredo-backend.herokuapp.com/event/registered/${params.eventId}`);
     const signups = await resSign.json();
+    const resCount = await fetch(`https://nordredo-backend.herokuapp.com/event/count/${params.eventId}`);
+    const signCount= await resCount.json();
     return {
         props: {
             event,
             signups,
+            signCount,
         },
     }
 }

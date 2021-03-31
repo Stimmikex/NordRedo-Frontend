@@ -2,12 +2,12 @@ import React from 'react'
 import Signup from './Signup';
 import signupList from '../../styles/SignupList.module.scss';
 
-const SignupList = ({ signups }) => {
+const SignupList = ({ signups, signed }) => {
     return (
         <ul className={signupList.list}>
-            {signups.map((signup) => {
+            {signups.map((signup, i) => {
                 return (
-                    <Signup signup={signup} key={signup.id}></Signup>
+                    i < signed ? <Signup signup={signup} style="inn" key={signup.id}></Signup> : <Signup signup={signup} style="waiting" key={signup.id}></Signup>
                 )
             })}
         </ul>

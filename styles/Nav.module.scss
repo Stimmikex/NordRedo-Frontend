@@ -1,12 +1,15 @@
 .nav_container {
     height: auto;
     flex-direction: column;
-    display: flex;
+    display: none;
+    position: absolute;
+    width: 100%;
     @media screen and (min-width: 600px) {
         height: auto;
         display: flex;
         flex-direction: row;
         height: 10em;
+        position: relative;
     }
     &_bar {
         display: flex;

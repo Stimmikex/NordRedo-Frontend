@@ -1,8 +1,9 @@
 import React from 'react'
+import signupList from '../../styles/SignupList.module.scss';
 
-const SignupList = ({ signup }) => {
+const SignupList = ({ signup, style}) => {
     return (
-        <li>{signup.username}</li>
+        style == "inn" ? <li className={signupList.inn}>{signup.username}</li> : <li className={signupList.waiting}>{signup.username}</li>
     )
 }
 
