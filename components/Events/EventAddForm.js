@@ -33,6 +33,16 @@ const EventAddForm = () => {
         const result = await res.json()
         console.log(result);
     }
+    const showSignup = () => {
+        const signupCheck = document.getElementById('signup');
+        const timeDiv = document.getElementById('timeDiv')
+        if(signupCheck.checked) {
+            timeDiv.style.display = 'flex';
+            timeDiv.style.flexDirection = 'column'
+        } else {
+            timeDiv.style.display = 'none';
+        }
+    }
     return (
         <div className={addForm.add_container}>
             <h1>Add Event</h1>
@@ -47,30 +57,38 @@ const EventAddForm = () => {
                 <label>Info: </label>
                 <textarea name='text'></textarea>
                 <hr></hr>
-                <label>Seats: </label>
-                <input type='number'
-                    name='seats'
-                    required
-                />
-                <hr></hr>
                 <label>location: </label>
                 <input type='text'
                     name='location'
                     required
                 />
                 <hr></hr>
-                <label>startDate: </label>
-                <input type='datetime-local'
-                    name='startDate'
-                    required
-                />
-                <hr></hr>
-                <label>endDate: </label>
-                <input type='datetime-local'
-                    name='endDate'
-                    required
-                />
-                <hr></hr>
+                <label>Signup from: </label>
+                <input type='checkbox'
+                    name='signup'
+                    id='signup'
+                    onClick={showSignup}
+                /> 
+                <div id='timeDiv' className={addForm.add_container_time}>
+                    <label>Seats: </label>
+                    <input type='number'
+                        name='seats'
+                        required
+                    />
+                    <hr></hr>
+                    <label>startDate: </label>
+                    <input type='datetime-local'
+                        name='startDate'
+                        required
+                    />
+                    <hr></hr>
+                    <label>endDate: </label>
+                    <input type='datetime-local'
+                        name='endDate'
+                        required
+                    />
+                    <hr></hr>
+                </div>
                 <label>Event Type</label>
                 <select>
                     <options>Test</options>
