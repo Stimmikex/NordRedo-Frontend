@@ -12,7 +12,7 @@ const Item = ({ item }) => {
     }
     return (
         <div className={itemStyles.item}>
-            <Link href='/items/[itemId]' as={`/items/${item.id}`}>
+            <Link href='/store/[itemId]' as={`/store/${item.id}`}>
             <a>
                 <div className={itemStyles.item_container}>
                     <div className={itemStyles.item_container_image}>
