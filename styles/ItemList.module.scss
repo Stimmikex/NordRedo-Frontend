@@ -1,0 +1,32 @@
+.item_list {
+    width: 100%;
+    display: flex;
+}
+.item {
+    display: flex;
+    width: 100%;
+    margin: 1em;
+    a {
+        width: 100%;
+    }
+    &_container {
+        border: solid 1px;
+        height: 25em;
+        color: black;
+        &_image {
+            height: 60%;
+            border-bottom: solid 1px;
+        }
+        &_info {
+            padding: 1em;
+            height: 30%;
+            h1, p {
+               margin: 0; 
+            }
+            &_discount {
+                background: brown;
+                text-align: center;
+            }
+        }
+    }
+}
