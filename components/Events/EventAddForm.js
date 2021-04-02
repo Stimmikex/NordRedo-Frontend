@@ -5,7 +5,7 @@ const {
     REACT_APP_API_URL: apiUrl,
   } = process.env;
 
-const EventAddForm = () => {
+const EventAddForm = ({ types }) => {
     const EventAdd = async event => {
         event.preventDefault();
 
@@ -91,8 +91,12 @@ const EventAddForm = () => {
                 </div>
                 <label>Event Type</label>
                 <select>
-                    <options>Test</options>
-                </select>
+                        {types.map((type) => {
+                        return (
+                            <option value={type.id}>{type.name}</option>
+                        )
+                        })}
+                    </select>
                 <hr></hr>
             </div>
             <button type='submit'>Add Event</button>
