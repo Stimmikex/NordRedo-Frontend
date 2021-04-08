@@ -1,0 +1,23 @@
+import React from 'react'
+import UsersList from '../../components/Users/UsersList.js';
+
+const promote = ({ users }) => {
+    return (
+        <div>
+            <h1>Members</h1>
+            <UsersList users={users}></UsersList>
+        </div>
+    )
+}
+
+export async function getStaticProps() {
+    const res = await fetch(`https://nordredo-backend.herokuapp.com/users`);
+    const users = await res.json();
+    return {
+        props: {
+            users,
+        },
+    }
+}
+
+export default promote
