@@ -11,7 +11,7 @@ const promote = ({ users }) => {
 }
 
 export async function getStaticProps() {
-    const res = await fetch(`https://nordredo-backend.herokuapp.com/users`);
+    const res = await fetch(`https://nordredo-backend.herokuapp.com/admin/members`);
     const users = await res.json();
     return {
         props: {

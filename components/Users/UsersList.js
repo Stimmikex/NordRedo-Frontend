@@ -5,11 +5,11 @@ const UsersList = ({ users }) => {
     return (
         <div>
             {console.log(users)}
-            {/* {users.map((user) => {
+            {users.map((user) => {
             return (
                 <User user={user} key={user.id}></User>
             )
-            })} */}
+            })}
         </div>
     )
 }
