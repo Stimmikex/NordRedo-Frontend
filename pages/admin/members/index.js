@@ -1,7 +1,7 @@
 import React from 'react'
-import UsersList from '../../components/Users/UsersList.js';
+import UsersList from '../../../components/Users/UsersList.js';
 
-const promote = ({ users }) => {
+const memberList = ({ users }) => {
     return (
         <div>
             <h1>Members</h1>
@@ -20,4 +20,4 @@ export async function getStaticProps() {
     }
 }
 
-export default promote
+export default memberList

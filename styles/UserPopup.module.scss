@@ -1,0 +1,22 @@
+.changepop {
+    border: solid;
+    position: absolute;
+    margin: 0 auto;
+    text-align: center;
+    top: 25%;
+    right: 35%;
+    width: 30%;
+    height: 11em;
+    background: antiquewhite;
+    &_header {
+        display: flex;
+        justify-content: space-between;
+        margin: 0em 1em;
+        border-bottom: solid 1px;
+        button {
+            width: 5em;
+            border: none;
+            background: transparent;
+        }
+    }
+}

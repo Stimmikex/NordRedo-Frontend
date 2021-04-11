@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/Link';
 
 const ads = ({ getAds }) => {
     return (
@@ -9,7 +10,7 @@ const ads = ({ getAds }) => {
                 <div>
                     <img src={ad.link}></img>
                     <p>{ad.name}</p>
-                    <button>Change</button>
+                    <Link></Link><button>Change</button>
                     <button>Delete</button>
                 </div>
             )
