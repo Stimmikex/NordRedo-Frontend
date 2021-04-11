@@ -37,29 +37,35 @@ const Users = ({ user }) => {
                 <button>Shadow Ban</button>
             </div>
             {isOpenChange && (
-                <div className={userPop.changepop}>
-                    <div className={userPop.changepop_header}>
-                        <p>Update user role for {user.username}</p>
-                        <button onClick={ClosePopup}> X </button>
-                    </div>
-                    <div>
-                        <p>Roles</p>
-                        <select>
-                            <option>Test</option>
-                        </select>
+                <div className={userPop.containerpop}>
+                    <div className={userPop.changepop}>
+                        <div className={userPop.changepop_header}>
+                            <p>Update user role for {user.username}</p>
+                            <button onClick={ClosePopup}> X </button>
+                        </div>
+                        <div>
+                            <p>Roles</p>
+                            <select>
+                                <option>Test</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             )}
             {isOpenDelete && (
-                <div className={userPop.changepop}>
-                    <div className={userPop.changepop_header}>
-                        <p>Delete User [{user.username}]</p>
-                        <button onClick={ClosePopup}> X </button>
-                    </div>
-                    <div>
-                        <p> Are you sure?</p>
-                        <button>Yes</button>
-                        <button>No</button>
+                <div>
+                    <div className={userPop.containerpop}>
+                        <div className={userPop.changepop}>
+                            <div className={userPop.changepop_header}>
+                                <p>Delete User [{user.username}]</p>
+                                <button onClick={ClosePopup}> X </button>
+                            </div>
+                            <div>
+                                <p> Are you sure?</p>
+                                <button>Yes</button>
+                                <button>No</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             )}

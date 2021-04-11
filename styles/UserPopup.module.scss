@@ -1,3 +1,15 @@
+.containerpop {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: #0000004a;
+    top: 5.8em;
+    left: 0;
+    @media screen and (min-width: 600px) {
+        top: 10em;
+    }
+}
 .changepop {
     border: solid;
     position: absolute;
