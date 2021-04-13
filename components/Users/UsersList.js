@@ -5,7 +5,7 @@ import SearchUsers from './SearchUsers.js';
 const UsersList = ({ users, roles }) => {
     return (
         <div>
-            <SearchUsers roles={roles}></SearchUsers>
+            <SearchUsers users={users} roles={roles}></SearchUsers>
         </div>
     )
 }
