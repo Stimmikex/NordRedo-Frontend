@@ -4,7 +4,7 @@ import eventStyles from '../../../styles/Event.module.scss';
 import dateFormat from 'dateFormat';
 
 const {
-    REACT_APP_API_URL: apiUrl,
+    NEXT_PUBLIC_API_URL: apiUrl,
   } = process.env;
 
 const Event = ({ event, signups, signCount }) => {

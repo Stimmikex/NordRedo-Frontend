@@ -1,6 +1,8 @@
 import React from 'react'
 import Router from "next/router"
 import userPop from '../../styles/UserPopup.module.scss'
+import UpdateUser from './Popups/UpdateUser';
+import DeleteUser from './Popups/DeleteUser';
 
 const Users = ({ user, roles }) => {
     const [isOpenChange, setIsOpenChange] = React.useState(false)
@@ -51,6 +53,14 @@ const Users = ({ user, roles }) => {
         console.log(res)
 
         await res.json()
+        ;
+    }
+    const submitUpdate = (userId, roleId) => {
+        updateUserRole(userId, roleId);
+        ClosePopup();
+    }
+    const submitDelete = (id) => {
+        deleteUser(id);
         ClosePopup();
     }
     const getOption = () => {
@@ -90,7 +100,7 @@ const Users = ({ user, roles }) => {
                                 })
                                 }
                             </select>
-                            <button onClick={e => updateUserRole(user.id, getOption())}>Update</button>
+                            <button onClick={e => submitUpdate(user.id, getOption())}>Update</button>
                         </div>
                     </div>
                 </div>
@@ -105,7 +115,7 @@ const Users = ({ user, roles }) => {
                             </div>
                             <div>
                                 <p> Are you sure?</p>
-                                <button onClick={e => deleteUser(user.id)}>Yes</button>
+                                <button onClick={e => submitDelete(user.id)}>Yes</button>
                                 <button onClick={ClosePopup}>No</button>
                             </div>
                         </div>
