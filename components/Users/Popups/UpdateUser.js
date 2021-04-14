@@ -1,8 +1,11 @@
 import React from 'react'
 import userPop from '../../../styles/UserPopup.module.scss'
-import * as users from '../Users';
 
-const UpdateUser = () => {
+const UpdateUser = ({ user, roles }) => {
+    const [isOpenChange, setIsOpenChange] = React.useState()
+    const ClosePopup = () => {
+        setIsOpenChange(false)
+      }
     const updateUserRole = async (userId, roleId) => {
 
         const options = {
@@ -16,8 +19,7 @@ const UpdateUser = () => {
 
         console.log(res)
 
-        await res.json()
-        ;
+        await res.json();
     }
     const submitUpdate = (userId, roleId) => {
         updateUserRole(userId, roleId);

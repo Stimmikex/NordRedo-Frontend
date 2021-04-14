@@ -1,11 +1,11 @@
 import React from 'react'
-import UsersList from '../../../components/Users/UsersList.js';
+import SearchUsers from '../../../components/Users/SearchUsers';
 
 const memberList = ({ users, roles }) => {
     return (
         <div>
             <h1>Members</h1>
-            <UsersList users={users} roles={roles}></UsersList>
+            <SearchUsers users={users} roles={roles}></SearchUsers>
         </div>
     )
 }

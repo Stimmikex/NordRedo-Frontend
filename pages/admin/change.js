@@ -29,11 +29,11 @@ const change = ({ gov, users }) => {
                     <div className={userPop.containerpop}>
                         <div className={userPop.searchpop}>
                             <div className={userPop.searchpop_header}>
-                                <p>Update user role for {gover.username}</p>
+                                <p>Update user for {gover.title}</p>
                                 <button onClick={ClosePopup}> X </button>
                             </div>
                             <div>
-                                <SearchUsers users={users}></SearchUsers>
+                                <SearchUsers users={users} type={'select'}></SearchUsers>
                             </div>
                         </div>
                     </div>

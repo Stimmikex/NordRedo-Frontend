@@ -1,11 +1,15 @@
 import React from 'react'
 import User from './Users';
-import SearchUsers from './SearchUsers.js';
 
 const UsersList = ({ users, roles }) => {
     return (
         <div>
-            <SearchUsers users={users} roles={roles}></SearchUsers>
+            {console.log(users)}
+            {users.map((user) => {
+            return (
+                <User user={user} key={user.id} roles={roles}></User>
+            )
+            })}
         </div>
     )
 }
