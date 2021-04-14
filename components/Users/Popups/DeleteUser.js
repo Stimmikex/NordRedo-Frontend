@@ -27,7 +27,6 @@ const DeleteUser = ({ user }) => {
         const res = await fetch(`https://nordredo-backend.herokuapp.com/users/${id}`, options)
 
         await res.json()
-        ClosePopup();
     }
     const submitDelete = (id) => {
         deleteUser(id);

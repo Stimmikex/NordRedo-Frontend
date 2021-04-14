@@ -32,7 +32,7 @@ const change = ({ gov, users }) => {
                                 <p>Update user for {gover.title}</p>
                                 <button onClick={ClosePopup}> X </button>
                             </div>
-                            <div>
+                            <div className={userPop.searchpop_container}>
                                 <SearchUsers users={users} type={'select'}></SearchUsers>
                             </div>
                         </div>

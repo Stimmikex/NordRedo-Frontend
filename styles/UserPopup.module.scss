@@ -38,10 +38,14 @@
     margin: 0 auto;
     text-align: center;
     top: 10%;
-    right: 35%;
-    width: 30%;
+    right: 4%;
+    width: 90%;
     height: 70%;
     background: antiquewhite;
+    @media screen and (min-width: 600px) {
+        right: 35%;
+        width: 30%;
+    }
     &_header {
         display: flex;
         justify-content: space-between;
@@ -51,6 +55,13 @@
             width: 5em;
             border: none;
             background: transparent;
+        }
+    }
+    &_container {
+        height: 100%;
+        &_searchbar {
+            overflow-y: scroll;
+            height: 90%;
         }
     }
 }
