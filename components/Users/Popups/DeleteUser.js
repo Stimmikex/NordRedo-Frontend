@@ -1,8 +1,14 @@
 import React from 'react'
+import Router from "next/router"
 import userPop from '../../../styles/UserPopup.module.scss'
 
 const DeleteUser = ({ user }) => {
     const [isOpenDelete, setIsOpenDelete] = React.useState()
+
+    let OpenPopup = () => {
+        setIsOpenDelete(true)
+        Router.push({ shallow: true })
+      }
     
 
     const ClosePopup = () => {
@@ -29,19 +35,24 @@ const DeleteUser = ({ user }) => {
     }
     return (
         <div>
-            <div className={userPop.containerpop}>
-                <div className={userPop.changepop}>
-                    <div className={userPop.changepop_header}>
-                        <p>Delete User [{user.username}]</p>
-                        <button onClick={ClosePopup}> X </button>
-                    </div>
-                    <div>
-                        <p> Are you sure?</p>
-                        <button onClick={e => submitDelete(user.id)}>Yes</button>
-                        <button onClick={ClosePopup}>No</button>
+            <button onClick={e => OpenPopup()}>Delete User</button>
+            {isOpenDelete && (
+                <div>
+                <div className={userPop.containerpop}>
+                    <div className={userPop.changepop}>
+                        <div className={userPop.changepop_header}>
+                            <p>Delete User [{user.username}]</p>
+                            <button onClick={ClosePopup}> X </button>
+                        </div>
+                        <div>
+                            <p> Are you sure?</p>
+                            <button onClick={e => submitDelete(user.id)}>Yes</button>
+                            <button onClick={ClosePopup}>No</button>
+                        </div>
                     </div>
                 </div>
             </div>
+        )}
         </div>
     )
 }
