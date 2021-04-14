@@ -51,6 +51,9 @@ const Nav = () => {
                     <p><Link href='/members'>Members</Link></p>
                     <p><Link href='/about'>About</Link></p>
                 </div>
+                <div className={navStyles.nav_container_admin}>
+                    <p><Link href='/admin/menu'>Admin</Link></p>
+                </div>
                 <div className={navStyles.nav_container_login}>
                     <p><Link href='/users/login'>Login</Link></p>
                     <p><Link href='/users/register'>Register</Link></p>
