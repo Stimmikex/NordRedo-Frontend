@@ -1,8 +1,9 @@
 import React from 'react'
 import User from './Users';
 import userPop from '../../styles/UserPopup.module.scss'
+import userStyles from './Users.module.scss'
 
-const SearchUsers = ({ users, roles, type}) => {
+const SearchUsers = ({ users, roles, type, gover }) => {
     let [search, setSearch] = React.useState(users)
 
     const handleChange = async (e) => {
@@ -13,13 +14,13 @@ const SearchUsers = ({ users, roles, type}) => {
         setSearch(results);
       }
     return (
-        <div className={userPop.searchpop_container_searchbar}>
+        <div className={userStyles.search_container_searchbar}>
             <h2>Search Bar</h2>
             <input type="text" onChange={handleChange}/>
-            <div>
+            <div className={userStyles.userListContainer}>
                 {search.map((user) => {
                 return (
-                    <User user={user} key={user.id} roles={roles} type={type}></User>
+                    <User user={user} key={user.id} roles={roles} type={type} gover={gover}></User>
                 )
                 })}
             </div>

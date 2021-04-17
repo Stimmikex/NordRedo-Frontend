@@ -1,6 +1,7 @@
 import React from 'react'
 import Router from "next/router"
 import userPop from '../../../styles/UserPopup.module.scss'
+import userStyle from '../Users.module.scss'
 
 const DeleteUser = ({ user }) => {
     const [isOpenDelete, setIsOpenDelete] = React.useState()
@@ -33,8 +34,8 @@ const DeleteUser = ({ user }) => {
         ClosePopup();
     }
     return (
-        <div>
-            <button onClick={e => OpenPopup()}>Delete User</button>
+        <div className={userStyle.deleteTrigger}>
+            <button className={userStyle.deleteTrigger_button} onClick={e => OpenPopup()}>Delete User</button>
             {isOpenDelete && (
                 <div>
                 <div className={userPop.containerpop}>

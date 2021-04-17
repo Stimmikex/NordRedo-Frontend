@@ -1,6 +1,7 @@
 import React from 'react'
 import Router from "next/router"
 import userPop from '../../../styles/UserPopup.module.scss'
+import userStyle from '../Users.module.scss'
 
 const UpdateUser = ({ user, roles }) => {
     const [isOpenChange, setIsOpenChange] = React.useState()
@@ -36,8 +37,8 @@ const UpdateUser = ({ user, roles }) => {
         return selected;
     }
     return (
-        <div>
-            <button onClick={e => OpenPopup()}>Update Role</button>
+        <div className={userStyle.updateTrigger}>
+            <button className={userStyle.updateTrigger_button} onClick={e => OpenPopup()}>Update Role</button>
             {isOpenChange && (
                 <div className={userPop.containerpop}>
                     <div className={userPop.changepop}>
