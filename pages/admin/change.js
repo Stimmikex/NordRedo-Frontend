@@ -1,7 +1,5 @@
 import React from 'react'
-import Router from "next/router"
-import userPop from '../../styles/UserPopup.module.scss'
-import SearchUsers from '../../components/Users/SearchUsers.js';
+import govStyles from './Gov.module.scss'
 import UpdateGovernment from '../../components/Users/Popups/UpdateGovernment';
 
 const change = ({ gov, users }) => {
@@ -10,9 +8,9 @@ const change = ({ gov, users }) => {
             <h1>Change Government</h1>
             {gov.map((gover) => {
             return (
-                <div>
+                <div className={govStyles.govContainer}>
                     <h2>{gover.title}</h2>
-                    <img src alt={gover.username}></img>
+                    <img src={`../../govProfilImages/${gover.title}.jpg`} alt={gover.username}></img>
                     <p>{gover.username}</p>
                     <p>Year: {gover.year}</p>
                     <UpdateGovernment gover={gover} users={users}></UpdateGovernment>
