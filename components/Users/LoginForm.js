@@ -26,7 +26,7 @@ const LoginForm = () => {
 
         console.log(res);
         const result = await res.json()
-        console.log(result);
+        console.log(result.user);
     }
     return (
         <div className={form.form_container}>
