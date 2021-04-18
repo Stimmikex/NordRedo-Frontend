@@ -10,7 +10,11 @@ const Nav = () => {
         const x = document.getElementById("mylinks");
         console.log('testing click');
         if (x.style.display === "flex") {
-          x.style.display = "none";
+            if(document.body.clientWidth > 600) {
+                x.style.display = "flex";
+            } else {
+                x.style.display = "none";
+            }
         } else {
           x.style.display = "flex";
         }
