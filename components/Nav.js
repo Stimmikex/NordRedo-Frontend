@@ -40,6 +40,7 @@ const Nav = () => {
                     <div className={navStyles.nav_container_item_event}>
                         <p><Link href='/events'>Events</Link></p>
                         <p><Link href='/events/add'>Add events</Link></p>
+                        <p><Link href='/events/calendar'>Event calendar</Link></p>
                     </div>
                     <div className={navStyles.nav_container_item_store}>
                         <p><Link href='/store'>Store</Link></p>
