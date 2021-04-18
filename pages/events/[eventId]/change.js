@@ -21,25 +21,21 @@ const Event = ({ event, types }) => {
             <h1>Change Event</h1>
             <form>
                 <div>
-                    <label>Title: </label>
                     <input type='text'
                         name='title'
                         required
+                        placeholder={'Title'}
                         value={event.title}
                     />
-                    <hr></hr>
-                    <label>Info: </label>
-                        <textarea name='text' value={event.text}>
-                            
-                        </textarea>
-                    <hr></hr>
-                    <label>location: </label>
+                    <textarea name='text' value={event.text}>
+                        
+                    </textarea>
                     <input type='text'
                         name='location'
+                        placeholder={'Location'}
                         required
                         value={event.location}
                     />
-                    <hr></hr>
                     <label>Signup from: </label>
                     {
                         event.signup ? (
@@ -64,21 +60,18 @@ const Event = ({ event, types }) => {
                             required
                             value={event.seats}
                         />
-                        <hr></hr>
                         <label>startDate: </label>
                         <input type='datetime-local'
                             name='startDate'
                             required
                             value={new Date(event.startdate)}
                         />
-                        <hr></hr>
                         <label>endDate: </label>
                         <input type='datetime-local'
                             name='endDate'
                             required
                             value={event.enddate}
                         />
-                        <hr></hr>
                     </div>
                     <label>Event Type</label>
                     <select>
@@ -88,7 +81,6 @@ const Event = ({ event, types }) => {
                         )
                         })}
                     </select>
-                    <hr></hr>
                 </div>
                 <button type='submit'>Add Event</button>
             </form>
