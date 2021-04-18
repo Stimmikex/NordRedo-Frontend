@@ -2,7 +2,10 @@ import EventList from '../../components/Events/EventList.js';
 
 export default function Events({ events }) {
   return (
-      <EventList events={events} get={"All"}></EventList>
+      <div>
+        <h1>Event List</h1>
+        <EventList events={events} get={"All"}></EventList>
+      </div>
   )
 }
 

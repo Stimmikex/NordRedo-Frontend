@@ -48,21 +48,17 @@ const EventAddForm = ({ types }) => {
             <h1>Add Event</h1>
             <form onSubmit={EventAdd}>
             <div>
-                <label>Title: </label>
                 <input type='text'
                     name='title'
+                    placeholder={'Title'}
                     required
                 />
-                <hr></hr>
-                <label>Info: </label>
-                <textarea name='text'></textarea>
-                <hr></hr>
-                <label>location: </label>
+                <textarea name='text' placeholder={'Description'}></textarea>
                 <input type='text'
                     name='location'
+                    placeholder={'Location'}
                     required
                 />
-                <hr></hr>
                 <label>Signup from: </label>
                 <input type='checkbox'
                     name='signup'
@@ -70,24 +66,21 @@ const EventAddForm = ({ types }) => {
                     onClick={showSignup}
                 /> 
                 <div id='timeDiv' className={addForm.add_container_time}>
-                    <label>Seats: </label>
                     <input type='number'
                         name='seats'
+                        placeholder={'Seats'}
                         required
                     />
-                    <hr></hr>
                     <label>startDate: </label>
                     <input type='datetime-local'
                         name='startDate'
                         required
                     />
-                    <hr></hr>
                     <label>endDate: </label>
                     <input type='datetime-local'
                         name='endDate'
                         required
                     />
-                    <hr></hr>
                 </div>
                 <label>Event Type</label>
                 <select>
@@ -96,8 +89,7 @@ const EventAddForm = ({ types }) => {
                             <option value={type.id}>{type.name}</option>
                         )
                         })}
-                    </select>
-                <hr></hr>
+                </select>
             </div>
             <button type='submit'>Add Event</button>
         </form>
