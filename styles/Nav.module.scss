@@ -11,6 +11,14 @@
         height: 10em;
         position: relative;
     }
+    p {
+        margin: 0;
+        width: 100%;
+    }
+    a {
+        padding: 1em;
+        display: block;
+    }
     &_bar {
         display: flex;
         @media screen and (min-width: 600px) {
@@ -39,9 +47,6 @@
             flex-direction: column;
         }
         background-color: aqua;
-        p {
-            margin: 1em;
-        }
     }
     &_item {
         display: flex;
@@ -52,16 +57,10 @@
         &_event {
             width: 50%;
             background-color: aquamarine;
-            p {
-                margin: 1em;
-            }
         }
         &_store {
             width: 50%;
             background-color: chartreuse;
-            p {
-                margin: 1em;
-            }
         }
     }
     &_about {
@@ -72,9 +71,15 @@
             flex-direction: column;
         }
         background-color: rgb(79, 134, 134);
-        p {
-            margin: 1em;
+    }
+    &_admin {
+        display: flex;
+        width: 100%;
+        @media screen and (min-width: 600px) {
+            width: 25%;
+            flex-direction: column;
         }
+        background-color: rgb(34, 119, 119);
     }
     &_login {
         display: flex;
@@ -85,8 +90,5 @@
             flex-direction: column;
         }
         background-color: darkolivegreen;
-        p {
-            margin: 1em;
-        }
     }
 }
