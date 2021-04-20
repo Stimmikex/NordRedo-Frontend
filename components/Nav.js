@@ -31,7 +31,7 @@ const Nav = () => {
     return (
         <nav>
             <div className={navStyles.nav_container_bar}>
-                <div className={navStyles.nav_container_bar_split}>
+                <div className={navStyles.nav_container_bar_split} style={{background: `url('../../nordLogo/header.jpg')`}}>
                     <img src="../../nordLogo/nord-lit.svg"></img>
                     <i><FontAwesomeIcon icon={faHome} onClick={openNav} /></i>
                 </div>

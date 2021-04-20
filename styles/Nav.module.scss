@@ -15,9 +15,14 @@
         margin: 0;
         width: 100%;
     }
+    p:hover {
+        background-color: rgb(1, 51, 6);
+    }
     a {
         padding: 1em;
         display: block;
+        color: black;
+        text-decoration: none;
     }
     &_bar {
         display: flex;
@@ -38,7 +43,7 @@
             }
         }
     }
-    background-color:rgb(74, 190, 123);
+    background-color:#4abe7b;
     &_home {
         display: flex;
         width: 100%;
@@ -46,7 +51,7 @@
             width: 25%;
             flex-direction: column;
         }
-        background-color: aqua;
+        background-color: #28ca5a;
     }
     &_item {
         display: flex;
@@ -56,11 +61,11 @@
         }
         &_event {
             width: 50%;
-            background-color: aquamarine;
+            background-color: #28e863;
         }
         &_store {
             width: 50%;
-            background-color: chartreuse;
+            background-color: #0ebd44;
         }
     }
     &_about {
@@ -70,7 +75,7 @@
             width: 25%;
             flex-direction: column;
         }
-        background-color: rgb(79, 134, 134);
+        background-color: #28ca5a;
     }
     &_admin {
         display: flex;
@@ -79,7 +84,7 @@
             width: 25%;
             flex-direction: column;
         }
-        background-color: rgb(34, 119, 119);
+        background-color: #10a73e;
     }
     &_login {
         display: flex;
@@ -89,6 +94,6 @@
             width: 25%;
             flex-direction: column;
         }
-        background-color: darkolivegreen;
+        background-color: #0d752d;
     }
 }
