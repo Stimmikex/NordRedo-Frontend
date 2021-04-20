@@ -10,7 +10,11 @@ const Nav = () => {
         const x = document.getElementById("mylinks");
         console.log('testing click');
         if (x.style.display === "flex") {
-          x.style.display = "none";
+            if(document.body.clientWidth > 600) {
+                x.style.display = "flex";
+            } else {
+                x.style.display = "none";
+            }
         } else {
           x.style.display = "flex";
         }
@@ -27,7 +31,7 @@ const Nav = () => {
     return (
         <nav>
             <div className={navStyles.nav_container_bar}>
-                <div className={navStyles.nav_container_bar_split}>
+                <div className={navStyles.nav_container_bar_split} style={{background: `url('../../nordLogo/header.jpg')`}}>
                     <img src="../../nordLogo/nord-lit.svg"></img>
                     <i><FontAwesomeIcon icon={faHome} onClick={openNav} /></i>
                 </div>
