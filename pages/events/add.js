@@ -6,7 +6,7 @@ export default function AddEvent({ types }) {
     )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     const res = await fetch('https://nordredo-backend.herokuapp.com/event/types')
     const types = await res.json()
     return {
