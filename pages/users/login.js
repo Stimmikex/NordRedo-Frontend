@@ -1,4 +1,4 @@
-import LoginSession from '../../components/Users/IronSession/LoginSession.js'
+import LoginSession from '../../components/Users/LoginForm'
 
 export default function Login() {
     return (
