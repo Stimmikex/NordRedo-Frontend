@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import React from 'react'
 
-const Nav = () => {
+const Nav = ({ user }) => {
     function openNav() {
         const x = document.getElementById("mylinks");
         console.log('testing click');

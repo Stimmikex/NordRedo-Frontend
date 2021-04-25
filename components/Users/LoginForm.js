@@ -28,8 +28,8 @@ const LoginForm = () => {
         console.log(res);
         const result = await res.json()
 
-        // cookies.set('auth', result.user);
-        console.log(result.user);
+        cookies.set('auth', result.token);
+        console.log(result);
     }
     return (
         <div className={form.form_container}>

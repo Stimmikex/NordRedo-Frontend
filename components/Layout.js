@@ -3,10 +3,11 @@ import Nav from './Nav';
 import Footer from './Footer';
 import utils from '../styles/Utils.module.scss'
 
-const Layout = ({ children }) => {
+const Layout = ({ children, user }) => {
     return (
         <body className={utils.body_container}>
-            <Nav />
+            <Nav user={user}/>
+                {console.log(user)}
                 <main className={utils.content}>
                     {children}
                 </main>
