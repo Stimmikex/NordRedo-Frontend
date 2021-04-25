@@ -52,12 +52,28 @@ const Nav = ({ user }) => {
         openSubNav(id);
         openNav();
     }
+    function ifUserExists(temp) {
+        if (typeof temp !== 'undefined') {
+            return true;
+        }
+        return false;
+    }
+    function ifUserAdmin(temp) {
+        console.log(temp)
+        if (ifUserExists(temp)) {
+            if (temp.user.role_id === 3) {
+                return true;
+            }
+            return false;
+        }
+    }
     return (
-        <nav className={navStyles.nav}>
+        <nav className={navStyles.nav} id="nav">
             <div className={navStyles.nav_container_bar}>
                 <div className={navStyles.nav_container_bar_split} style={{background: `url('../../nordLogo/header.jpg')`}}>
                     <img src="../../nordLogo/nord-lit.svg"></img>
                     <i><FontAwesomeIcon icon={faHome} onClick={openNav} /></i>
+                    {console.log("user "+ user)}
                 </div>
             </div>
             <div className={navStyles.nav_container} id="mylinks">
@@ -70,7 +86,13 @@ const Nav = ({ user }) => {
                     </div>
                     <div className={navStyles.nav_container_item_event} id='eventSub'>
                         <p onClick={e => closeNav('eventSub')}><Link href='/events'><div className={navStyles.linkContainer}><p>Events</p><i><FontAwesomeIcon icon={faCalendarCheck} /></i></div></Link></p>
-                        <p onClick={e => closeNav('eventSub')}><Link href='/events/add'><div className={navStyles.linkContainer}><p>Add events</p><i><FontAwesomeIcon icon={faCalendarPlus} /></i></div></Link></p>
+                        {
+                            ifUserAdmin(user) ? (
+                                <p onClick={e => closeNav('eventSub')}><Link href='/events/add'><div className={navStyles.linkContainer}><p>Add events</p><i><FontAwesomeIcon icon={faCalendarPlus} /></i></div></Link></p>
+                            ) : (
+                                console.log("test")
+                            )
+                        }
                         <p onClick={e => closeNav('eventSub')}><Link href='/events/calendar'><div className={navStyles.linkContainer}><p>Event calendar</p><i><FontAwesomeIcon icon={faCalendarAlt} /></i></div></Link></p>
                     </div>
                     <div className={navStyles.nav_container_item_hidden}>
@@ -86,13 +108,29 @@ const Nav = ({ user }) => {
                     <p onClick={openNav}><Link href='/members'><div className={navStyles.linkContainer}><p>Members</p><i><FontAwesomeIcon icon={faUsers}/></i></div></Link></p>
                     <p onClick={openNav}><Link href='/about'><div className={navStyles.linkContainer}><p>About</p><i><FontAwesomeIcon icon={faInfo}/></i></div></Link></p>
                 </div>
-                <div className={navStyles.nav_container_admin}>
-                    <p onClick={openNav}><Link href='/admin/menu'><div className={navStyles.linkContainer}><p>Admin</p><i><FontAwesomeIcon icon={faUserShield}/></i></div></Link></p>
-                </div>
-                <div className={navStyles.nav_container_login}>
-                    <p onClick={openNav}><Link href='/users/login'><div className={navStyles.linkContainer}><p>Login</p><i><FontAwesomeIcon icon={faUser}/></i></div></Link></p>
-                    <p onClick={openNav}><Link href='/users/register'><div className={navStyles.linkContainer}><p>Register</p><i><FontAwesomeIcon icon={faUserPlus}/></i></div></Link></p>
-                </div>
+                {
+                    ifUserAdmin(user) ? (
+                        <div className={navStyles.nav_container_admin}>
+                            <p onClick={openNav}><Link href='/admin/menu'><div className={navStyles.linkContainer}><p>Admin</p><i><FontAwesomeIcon icon={faUserShield}/></i></div></Link></p>
+                        </div>
+                    ) : (
+                        <div className={navStyles.nav_container_admin}>
+                            
+                        </div>
+                    )
+                }
+                {
+                    ifUserExists(user) ? (
+                        <div className={navStyles.nav_container_login}>
+                            <p onClick={openNav}><Link href='/users/me'><div className={navStyles.linkContainer}><p>Account</p><i><FontAwesomeIcon icon={faUser}/></i></div></Link></p>
+                        </div>
+                    ) : (
+                        <div className={navStyles.nav_container_login}>
+                            <p onClick={openNav}><Link href='/users/login'><div className={navStyles.linkContainer}><p>Login</p><i><FontAwesomeIcon icon={faUser}/></i></div></Link></p>
+                            <p onClick={openNav}><Link href='/users/register'><div className={navStyles.linkContainer}><p>Register</p><i><FontAwesomeIcon icon={faUserPlus}/></i></div></Link></p>
+                        </div>
+                    )
+                }
             </div>
         </nav>
     )
