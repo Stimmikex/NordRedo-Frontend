@@ -1,21 +1,24 @@
 import navStyles from '../styles/Nav.module.scss';
 import Link from 'next/link';
-import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faCalendarAlt, faCalendarCheck, faCalendarPlus, faStore, faPlusSquare, faUniversity, faUsers, faUser, faUserShield, faInfo, faUserPlus, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import React from 'react'
 
-const Nav = () => {
+const Nav = ({ user }) => {
     function openNav() {
         const x = document.getElementById("mylinks");
         if (x.style.display === "flex") {
-          x.style.display = "none";
+            if(document.body.clientWidth > 600) {
+                x.style.display = "flex";
+            } else {
+                x.style.display = "none";
+            }
         } else {
           x.style.display = "flex";
         }
         if (typeof window !== "undefined") {
             window.addEventListener("resize", function(event) {
-                const x = document.getElementById("mylinks");
                 if(document.body.clientWidth > 600) {
                     x.style.display = "flex";
                 } else {
@@ -24,40 +27,71 @@ const Nav = () => {
             })
         }
     }
+    function openSubNav(id) {
+        const x = document.getElementById(id);
+        if (x.style.display === "flex") {
+            if(document.body.clientWidth < 600) {
+                x.style.display = "flex";
+            } else {
+                x.style.display = "none";
+            }
+        } else {
+          x.style.display = "flex";
+        }
+        if (typeof window !== "undefined") {
+            window.addEventListener("resize", function(event) {
+                if(document.body.clientWidth < 600) {
+                    x.style.display = "flex";
+                } else {
+                    x.style.display = "none";
+                }
+            })
+        }
+    }
+    function closeNav(id) {
+        openSubNav(id);
+        openNav();
+    }
     return (
-        <nav>
+        <nav className={navStyles.nav}>
             <div className={navStyles.nav_container_bar}>
-                <div className={navStyles.nav_container_bar_split}>
+                <div className={navStyles.nav_container_bar_split} style={{background: `url('../../nordLogo/header.jpg')`}}>
                     <img src="../../nordLogo/nord-lit.svg"></img>
                     <i><FontAwesomeIcon icon={faHome} onClick={openNav} /></i>
                 </div>
             </div>
             <div className={navStyles.nav_container} id="mylinks">
                 <div className={navStyles.nav_container_home}>
-                    <p><Link href='/'>Home</Link></p>
+                    <p onClick={openNav}><Link href='/'><div className={navStyles.linkContainer}><p>Home</p><i><FontAwesomeIcon icon={faHome} onClick={openNav} /></i></div></Link></p>
                 </div>
                 <div className={navStyles.nav_container_item}>
-                    <div className={navStyles.nav_container_item_event}>
-                        <p><Link href='/events'>Events</Link></p>
-                        <p><Link href='/events/add'>Add events</Link></p>
-                        <p><Link href='/events/calendar'>Event calendar</Link></p>
+                    <div className={navStyles.nav_container_item_hidden}>
+                        <p onClick={e => closeNav('eventSub')}>Events<i><FontAwesomeIcon icon={faArrowDown}/></i></p>
                     </div>
-                    <div className={navStyles.nav_container_item_store}>
-                        <p><Link href='/store'>Store</Link></p>
-                        <p><Link href='/store/add'>Add to Store</Link></p>
+                    <div className={navStyles.nav_container_item_event} id='eventSub'>
+                        <p onClick={e => closeNav('eventSub')}><Link href='/events'><div className={navStyles.linkContainer}><p>Events</p><i><FontAwesomeIcon icon={faCalendarCheck} /></i></div></Link></p>
+                        <p onClick={e => closeNav('eventSub')}><Link href='/events/add'><div className={navStyles.linkContainer}><p>Add events</p><i><FontAwesomeIcon icon={faCalendarPlus} /></i></div></Link></p>
+                        <p onClick={e => closeNav('eventSub')}><Link href='/events/calendar'><div className={navStyles.linkContainer}><p>Event calendar</p><i><FontAwesomeIcon icon={faCalendarAlt} /></i></div></Link></p>
+                    </div>
+                    <div className={navStyles.nav_container_item_hidden}>
+                        <p onClick={e => closeNav('storeSub')}>Store<i><FontAwesomeIcon icon={faArrowDown}/></i></p>
+                    </div>
+                    <div className={navStyles.nav_container_item_store} id='storeSub'>
+                        <p onClick={e => closeNav('storeSub')}><Link href='/store'><div className={navStyles.linkContainer}><p>Store</p><i><FontAwesomeIcon icon={faStore}/></i></div></Link></p>
+                        <p onClick={e => closeNav('storeSub')}><Link href='/store/add'><div className={navStyles.linkContainer}><p>Add to Store</p><i><FontAwesomeIcon icon={faPlusSquare}/></i></div></Link></p>
                     </div>
                 </div>
                 <div className={navStyles.nav_container_about}>
-                    <p><Link href='/study'>Study</Link></p>
-                    <p><Link href='/members'>Members</Link></p>
-                    <p><Link href='/about'>About</Link></p>
+                    <p onClick={openNav}><Link href='/study'><div className={navStyles.linkContainer}><p>Study</p><i><FontAwesomeIcon icon={faUniversity}/></i></div></Link></p>
+                    <p onClick={openNav}><Link href='/members'><div className={navStyles.linkContainer}><p>Members</p><i><FontAwesomeIcon icon={faUsers}/></i></div></Link></p>
+                    <p onClick={openNav}><Link href='/about'><div className={navStyles.linkContainer}><p>About</p><i><FontAwesomeIcon icon={faInfo}/></i></div></Link></p>
                 </div>
                 <div className={navStyles.nav_container_admin}>
-                    <p><Link href='/admin/menu'>Admin</Link></p>
+                    <p onClick={openNav}><Link href='/admin/menu'><div className={navStyles.linkContainer}><p>Admin</p><i><FontAwesomeIcon icon={faUserShield}/></i></div></Link></p>
                 </div>
                 <div className={navStyles.nav_container_login}>
-                    <p><Link href='/users/login'>Login</Link></p>
-                    <p><Link href='/users/register'>Register</Link></p>
+                    <p onClick={openNav}><Link href='/users/login'><div className={navStyles.linkContainer}><p>Login</p><i><FontAwesomeIcon icon={faUser}/></i></div></Link></p>
+                    <p onClick={openNav}><Link href='/users/register'><div className={navStyles.linkContainer}><p>Register</p><i><FontAwesomeIcon icon={faUserPlus}/></i></div></Link></p>
                 </div>
             </div>
         </nav>

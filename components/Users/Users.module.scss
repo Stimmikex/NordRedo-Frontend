@@ -1,0 +1,50 @@
+.search_container_searchbar {
+    h2 {
+        text-align: center;
+    }
+    input {
+        width: 98%;
+        height: 2em;
+    }
+}
+
+.userListContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    @media screen and (min-width: 800px) {
+        flex-direction: row;
+    }
+}
+
+.deleteTrigger, .updateTrigger {
+    &_button {
+        width: 100%;
+        height: 3em;
+    }
+}
+
+.userContainer {
+    margin: 1em 0em;
+    width: 100%;
+    @media screen and (min-width: 800px) {
+        width: 50%;
+        margin: 1em;
+    }
+    &_info {
+        display: flex;
+        width: 100%;
+        margin-bottom: 1em;
+        &_image {
+            width: 20%;
+            img {
+                height: 100%;
+                width: 100%;
+            }
+        }
+        &_user {
+            padding-left: 1em;
+            width: 80%;
+        }
+    }
+}

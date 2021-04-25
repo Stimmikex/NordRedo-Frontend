@@ -1,7 +1,7 @@
-import LoginForm from '../../components/Users/LoginForm.js'
+import LoginSession from '../../components/Users/LoginForm'
 
 export default function Login() {
     return (
-        <LoginForm /> 
+        <LoginSession /> 
     )
 }

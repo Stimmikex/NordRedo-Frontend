@@ -1,7 +1,88 @@
 .footer {
-    // height: 10em;
-    // position: absolute;
-    // background-color: brown;
-    // width: 100%;
-    // bottom: 0px;
+    display: flex;
+    flex-direction: column;
+    background: #28ca5a;
+    font-family: 'Roboto', sans-serif;
+    @media screen and (min-width: 600px) {
+        flex-direction: row;
+    }
+    &_about {
+        @media screen and (min-width: 800px) {
+            width: 50%;
+        }
+        padding: 1em;
+        h1 {
+            margin: 0;
+        }
+        p {
+            width: 100%;
+        }
+    }
+    &_right {
+        width: 100%;
+        @media screen and (min-width: 800px) {
+            width: 50%;
+        }
+        @media screen and (min-width: 600px) {
+            display: flex;
+            flex-direction: row;
+        }
+        &_links {
+            @media screen and (min-width: 800px) {
+                width: 50%;
+            }
+            display: flex;
+            flex-direction: column;
+            padding: 1em;
+            ul {
+                list-style: none;
+            }
+            a {
+                text-align: center;
+                height: 2em;
+                padding: 1em;
+                background: #f0f8ff38;
+                border-bottom: solid black 1px;
+                color: #000000;
+                text-decoration: none;
+            }
+            a:last-child {
+                border: none;
+            }
+            a:hover {
+                background: #f0f8ff73;
+            }
+        }
+        &_contact {
+            @media screen and (min-width: 800px) {
+                width: 50%;
+            }
+            padding: 1em;
+            h1 {
+                margin: 0;
+            }
+            ul {
+                list-style: none;
+                padding: 1em;
+                background: #f0f8ff38;
+            }
+        }
+    }
+    &_socials {
+        padding: 1em;
+        background: #106b2d;
+        h1 {
+            margin: 0;
+        }
+        div {
+            svg {
+                height: 2em;
+                width: 2em !important;
+                margin-right: 1em;
+            }
+            svg:hover {
+                cursor: pointer;
+            }
+        }
+    }
 }
