@@ -5,7 +5,7 @@ const {
     REACT_APP_API_URL: apiUrl,
   } = process.env;
 
-const EventAddForm = ({ types }) => {
+const EventAddForm = ({ types, cookie, user }) => {
     const EventAdd = async event => {
         event.preventDefault();
 
@@ -15,12 +15,14 @@ const EventAddForm = ({ types }) => {
             location: event.target.location.value,
             startDate: event.target.startDate.value,
             endDate: event.target.endDate.value,
+            user: user.id,
         };
 
         const options = {
             body: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json',
+                cookie: cookie,
             },
             method: 'POST'
         }

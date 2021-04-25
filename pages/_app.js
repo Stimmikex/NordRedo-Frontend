@@ -1,10 +1,9 @@
 import Layout from '../components/Layout.js';
 // import '../styles/Utils.module.scss'
 
-function MyApp({ Component, pageProps, user }) {
+function MyApp({ Component, pageProps }) {
     return (
         <Layout {...pageProps}>
-            {console.log(user)}
         <Component {...pageProps} />
         </Layout>
     )
@@ -17,7 +16,6 @@ export async function getServerSideProps ({ctx}) {
       }
     })
     const user = await res.json()
-    console.log(user);
     return {
       props: {
         user,
