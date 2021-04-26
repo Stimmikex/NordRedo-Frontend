@@ -98,7 +98,7 @@ const Event = ({ event, signups, signCount }) => {
     )
 }
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
     const res = await fetch(`https://nordredo-backend.herokuapp.com/event/${params.eventId}`);
     const event = await res.json();
     const resSign = await fetch(`https://nordredo-backend.herokuapp.com/event/registered/${params.eventId}`);
@@ -111,19 +111,6 @@ export async function getStaticProps({ params }) {
             signups,
             signCount,
         },
-    }
-}
-
-export async function getStaticPaths() {
-    const res = await fetch('https://nordredo-backend.herokuapp.com/');
-    const events = await res.json();
-    const ids = events.map((event) => event.id);
-    const paths = ids.map((id) => ({ 
-        params: { eventId: id.toString() },
-     }));
-    return {
-        paths,
-        fallback: true,
     }
 }
 

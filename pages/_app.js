@@ -1,7 +1,7 @@
 import Layout from '../components/Layout.js';
 // import '../styles/Utils.module.scss'
 
-function MyApp({ Component, pageProps, user }) {
+function MyApp({ Component, pageProps }) {
     return (
         <Layout {...pageProps} user={user}>
           {console.log(pageProps)}
