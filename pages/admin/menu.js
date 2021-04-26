@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/Link';
 import adminMenu from './AdminMenu.module.scss'
 
-const menu = () => {
+const menu = ({ user }) => {
     return (
         <div className={adminMenu.admin_menu_container}>
             <h1>Admin Menu</h1>
@@ -21,5 +21,21 @@ const menu = () => {
         </div>
     )
 }
+
+export async function getServerSideProps(ctx) {
+    const cookie = ctx.req.headers.cookie;
+    const resUser = await fetch('https://nordredo-backend.herokuapp.com/users/me', {
+    headers: { 
+        cookie: cookie,
+    }
+    })
+    const user = await resUser.json()
+    return {
+      props: {
+        user,
+      },
+    }
+  }
+
 
 export default menu

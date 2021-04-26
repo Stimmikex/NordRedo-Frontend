@@ -2,7 +2,7 @@ import React from 'react'
 import govStyles from './Gov.module.scss'
 import UpdateGovernment from '../../components/Users/Popups/UpdateGovernment';
 
-const change = ({ gov, users }) => {
+const change = ({ gov, users, user }) => {
     return (
         <div>
             <h1>Change Government</h1>
@@ -21,15 +21,23 @@ const change = ({ gov, users }) => {
     )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps(ctx) {
     const res = await fetch(`https://nordredo-backend.herokuapp.com/admin/gov`);
     const gov = await res.json();
     const resUsers = await fetch(`https://nordredo-backend.herokuapp.com/admin/members`);
     const users = await resUsers.json();
+    const cookie = ctx.req.headers.cookie;
+    const resUser = await fetch('https://nordredo-backend.herokuapp.com/users/me', {
+    headers: { 
+        cookie: cookie,
+    }
+    })
+    const user = await resUser.json()
     return {
         props: {
             gov,
             users,
+            user,
         },
     }
 }

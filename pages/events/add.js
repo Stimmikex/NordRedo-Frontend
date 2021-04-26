@@ -22,7 +22,6 @@ export async function getServerSideProps(ctx) {
       props: {
         user,
         types,
-        cookie,
       },
     }
   }

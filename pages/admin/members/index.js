@@ -15,10 +15,18 @@ export async function getStaticProps() {
     const users = await res.json();
     const res1 = await fetch(`https://nordredo-backend.herokuapp.com/admin/roles`);
     const roles = await res1.json();
+    const cookie = ctx.req.headers.cookie;
+    const resUser = await fetch('https://nordredo-backend.herokuapp.com/users/me', {
+    headers: { 
+        cookie: cookie,
+    }
+    })
+    const user = await resUser.json()
     return {
         props: {
             users,
             roles,
+            user,
         },
     }
 }
