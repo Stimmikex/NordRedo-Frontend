@@ -43,7 +43,10 @@ const Nav = ({ user }) => {
                         <p onClick={e => navF.closeNav('storeSub')}><Link href='/store/add'><div className={navStyles.linkContainer}><p>Add to Store</p><i><FontAwesomeIcon icon={faPlusSquare}/></i></div></Link></p>
                     </div>
                 </div>
-                <div className={navStyles.nav_container_about}>
+                <div className={navStyles.nav_container_about_hidden}>
+                        <p onClick={e => navF.closeNav('infoSub')}>Info<i><FontAwesomeIcon icon={faArrowDown}/></i></p>
+                </div>
+                <div className={navStyles.nav_container_about} id='infoSub'>
                     <p onClick={navF.openNav}><Link href='/study'><div className={navStyles.linkContainer}><p>Study</p><i><FontAwesomeIcon icon={faUniversity}/></i></div></Link></p>
                     <p onClick={navF.openNav}><Link href='/members'><div className={navStyles.linkContainer}><p>Members</p><i><FontAwesomeIcon icon={faUsers}/></i></div></Link></p>
                     <p onClick={navF.openNav}><Link href='/about'><div className={navStyles.linkContainer}><p>About</p><i><FontAwesomeIcon icon={faInfo}/></i></div></Link></p>
@@ -63,6 +66,7 @@ const Nav = ({ user }) => {
                     navF.ifUserExists(user) ? (
                         <div className={navStyles.nav_container_login}>
                             <p onClick={navF.openNav}><Link href='/users/me'><div className={navStyles.linkContainer}><p>Account</p><i><FontAwesomeIcon icon={faUser}/></i></div></Link></p>
+                            <p onClick={navF.openNav}><Link href='/users/logout'><div className={navStyles.linkContainer}><p>Logout</p><i><FontAwesomeIcon icon={faUser}/></i></div></Link></p>
                         </div>
                     ) : (
                         <div className={navStyles.nav_container_login}>
