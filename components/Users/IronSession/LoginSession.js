@@ -6,7 +6,7 @@ import fetchJson from "./lib/fetchJson";
 const Login = () => {
   // here we just check if user is already logged in and redirect to profile
   const { mutateUser } = useUser({
-    redirectTo: "/profile-sg",
+    redirectTo: "/users/me",
     redirectIfFound: true,
   });
 
@@ -20,14 +20,14 @@ const Login = () => {
       password: e.currentTarget.password.value,
     };
 
+    const data = fetchJson(`https://nordredo-backend.herokuapp.com/users/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+
     try {
-      await mutateUser(
-        fetchJson(`https://nordredo-backend.herokuapp.com/users/login`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body),
-        }),
-      );
+      await mutateUser(data)
     } catch (error) {
       console.error("An unexpected error happened:", error);
       setErrorMsg(error.data.message);

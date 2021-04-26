@@ -24,12 +24,8 @@ const LoginForm = () => {
         }
 
         const res = await fetch(`https://nordredo-backend.herokuapp.com/users/login`, options)
-
-        console.log(res);
         const result = await res.json()
-
         cookies.set('auth', result.token);
-        console.log(result);
     }
     return (
         <div className={form.form_container}>

@@ -7,7 +7,6 @@ const Layout = ({ children, user }) => {
     return (
         <body className={utils.body_container}>
             <Nav user={user}/>
-                {console.log(user)}
                 <main className={utils.content}>
                     {children}
                 </main>

@@ -46,6 +46,9 @@ export function closeNav(id) {
 }
 export function ifUserExists(temp) {
     if (typeof temp !== 'undefined') {
+        if(temp.error) {
+            return false;
+        }
         return true;
     }
     return false;
