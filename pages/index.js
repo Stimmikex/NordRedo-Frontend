@@ -1,6 +1,7 @@
 import React from 'react'
 import EventList from '../components/Events/EventList.js';
 import ItemList from '../components/Store/ItemList.js';
+import { getUserWithCookie } from '../components/fetchUserToken.js'
 
 
 export default function index({ events, items, user}) {
@@ -19,16 +20,17 @@ export default function index({ events, items, user}) {
     )
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(ctx) {
     const res = await fetch('https://nordredo-backend.herokuapp.com/')
     const events = await res.json()
     const itemRes = await fetch('https://nordredo-backend.herokuapp.com/store')
     const items = await itemRes.json()
-    console.log(events);
+    const user = await getUserWithCookie(ctx);
     return {
       props: {
         events,
         items,
+        user,
       },
     }
   }
