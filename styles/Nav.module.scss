@@ -144,15 +144,20 @@
             @media screen and (min-width: 600px) {
                 display: none;
                 position: absolute;
-                width: 28.6%;
+                width: 100%;
                 margin-top: $headerHight;
                 height: $headerHight+2;
+                left: 0;
                 background: rgb(171, 112, 23);
                 p {
                     display: flex;
                     flex-direction: row;
                     height: 100%;
                     width: 100%;
+                    border-bottom: solid black 1px;
+                    p  {
+                        border: none;
+                    }
                     a {
                         height: 100%;
                     }
@@ -181,15 +186,20 @@
             @media screen and (min-width: 600px) {
                 display: none;
                 position: absolute;
-                width: 28.6%;
+                width: 100%;
                 margin-top: $headerHight;
                 height: $headerHight+2;
+                left: 0;
                 background: rgb(171, 112, 23);
                 p {
                     display: flex;
                     flex-direction: row;
                     height: 100%;
                     width: 100%;
+                    border-bottom: solid black 1px;
+                    p  {
+                        border: none;
+                    }
                     a {
                         height: 100%;
                     }
@@ -208,9 +218,43 @@
             width: 100%;
         }
         @media screen and (min-width: 600px) {
-            width: 25%;
+            display: none;
+            position: absolute;
+            width: 100%;
+            margin-top: $headerHight;
+            height: $headerHight+2;
+            background: rgb(171, 112, 23);
+            p {
+                display: flex;
+                flex-direction: row;
+                height: 100%;
+                width: 100%;
+                border-bottom: solid black 1px;
+                p  {
+                    border: none;
+                }
+                a {
+                    height: 100%;
+                }
+            }
+        }
+        &_hidden {
             background-color: $headerTrans;
-            flex-direction: column;
+            display: none;
+            @media screen and (min-width: 600px) {
+                display: flex;
+                flex-direction: column;
+                width: 20%;
+                height: 100%;
+                p {
+                    height: 100%;
+                    width: 100%;
+                    justify-content: center;
+                }
+                i {
+                    margin-left: 1em;
+                }
+            }
         }
     }
     &_admin {
