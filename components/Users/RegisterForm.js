@@ -1,5 +1,6 @@
 import React from 'react'
 import form from '../../styles/Form.module.scss';
+import HttpRequest from '../Utils/HttpRequest.js';
 
 const {
     REACT_APP_API_URL: apiUrl,
@@ -27,6 +28,7 @@ const RegisterForm = () => {
         console.log(res);
         const result = await res.json()
         console.log(result);
+        // HttpRequest('POST', 'https://nordredo-backend.herokuapp.com/users/register', data)
     }
     return (
         <div className={form.form_container}>

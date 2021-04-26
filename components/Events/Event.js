@@ -10,8 +10,7 @@ const Event = ({ event }) => {
         return (str.length > n) ? str.substr(0, n-1) : str;
     };
     return (
-        <div className={eventStyles.eventContainer}>
-            <Link href='/events/[eventId]' as={`/events/${event.id}`}>
+        <Link href='/events/[eventId]' as={`/events/${event.id}`}>
             <a>
                 <ul>
                     <div className={eventStyles.eventContainer_image}>
@@ -44,8 +43,7 @@ const Event = ({ event }) => {
                     </div>
                 </ul>
             </a>
-            </Link>
-        </div>
+        </Link>
     )
 }
 

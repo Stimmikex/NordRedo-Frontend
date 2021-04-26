@@ -5,8 +5,10 @@
 .content {
     padding: 20px;
     min-height: 100%;
-    margin: 0 auto -50px;
+    margin: 0 auto;
     max-width: 1280px;
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
 }
 
 $headerTrans: #28ca5a14;
