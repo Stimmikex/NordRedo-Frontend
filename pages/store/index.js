@@ -1,7 +1,7 @@
 import React from 'react'
 import ItemList from '../../components/Store/ItemList.js';
 
-const index = ({ items, user }) => {
+const index = ({ items }) => {
     return (
         <div>
             <h1>[Nemendafélag BookStore]</h1>
@@ -10,7 +10,7 @@ const index = ({ items, user }) => {
     )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps(ctx) {
     const res = await fetch('https://nordredo-backend.herokuapp.com/store')
     const items = await res.json()
     const cookie = ctx.req.headers.cookie;
