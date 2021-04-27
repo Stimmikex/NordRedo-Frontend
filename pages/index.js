@@ -4,12 +4,11 @@ import ItemList from '../components/Store/ItemList.js';
 import { getUserWithCookie } from '../components/fetchUserToken.js'
 
 
-export default function index({ events, items, user}) {
+export default function index({ events, items }) {
     return (
         <div>
           <div>
             <h1>Upcoming Events</h1>
-            {console.log(user)}
             <EventList events={events} get={"Active"}></EventList>
           </div>
           <div>

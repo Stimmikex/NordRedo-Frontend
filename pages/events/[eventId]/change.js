@@ -88,14 +88,14 @@ const Event = ({ event, types }) => {
     )
 }
 
-export async function getServerSideProps(clt, { params }) {
-    console.log(params)
+export async function getServerSideProps({ req, params }) {
+    console.log(req.params)
     const res = await fetch(`https://nordredo-backend.herokuapp.com/event/${params.eventId}`);
     console.log(res);
     const event = await res.json();
     const resType = await fetch(`https://nordredo-backend.herokuapp.com/event/types`);
     const types = await resType.json();
-    const cookie = ctx.req.headers.cookie;
+    const cookie = req.headers.cookie;
     const resUser = await fetch('https://nordredo-backend.herokuapp.com/users/me', {
     headers: { 
         cookie: cookie,
