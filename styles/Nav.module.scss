@@ -209,6 +209,7 @@
     }
     &_about {
         display: flex;
+        flex-direction: column;
         width: 100%;
         background-color: #28ca5a;
         i {
