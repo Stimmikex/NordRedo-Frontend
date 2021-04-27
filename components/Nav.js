@@ -47,9 +47,9 @@ const Nav = ({ user }) => {
                         <p onClick={e => navF.closeNav('infoSub')}>Info<i><FontAwesomeIcon icon={faArrowDown}/></i></p>
                 </div>
                 <div className={navStyles.nav_container_about} id='infoSub'>
-                    <p onClick={navF.openNav}><Link href='/study'><div className={navStyles.linkContainer}><p>Study</p><i><FontAwesomeIcon icon={faUniversity}/></i></div></Link></p>
-                    <p onClick={navF.openNav}><Link href='/members'><div className={navStyles.linkContainer}><p>Members</p><i><FontAwesomeIcon icon={faUsers}/></i></div></Link></p>
-                    <p onClick={navF.openNav}><Link href='/about'><div className={navStyles.linkContainer}><p>About</p><i><FontAwesomeIcon icon={faInfo}/></i></div></Link></p>
+                    <p onClick={e => navF.closeNav('infoSub')}><Link href='/study'><div className={navStyles.linkContainer}><p>Study</p><i><FontAwesomeIcon icon={faUniversity}/></i></div></Link></p>
+                    <p onClick={e => navF.closeNav('infoSub')}><Link href='/members'><div className={navStyles.linkContainer}><p>Members</p><i><FontAwesomeIcon icon={faUsers}/></i></div></Link></p>
+                    <p onClick={e => navF.closeNav('infoSub')}><Link href='/about'><div className={navStyles.linkContainer}><p>About</p><i><FontAwesomeIcon icon={faInfo}/></i></div></Link></p>
                 </div>
                 {
                     navF.ifUserAdmin(user) ? (
