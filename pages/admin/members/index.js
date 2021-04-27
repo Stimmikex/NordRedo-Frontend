@@ -10,7 +10,7 @@ const memberList = ({ users, roles }) => {
     )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps(ctx) {
     const res = await fetch(`https://nordredo-backend.herokuapp.com/admin/members`);
     const users = await res.json();
     const res1 = await fetch(`https://nordredo-backend.herokuapp.com/admin/roles`);
