@@ -1,6 +1,7 @@
 import React from 'react'
 import addForm from '../../styles/AddForm.module.scss';
-import cookies from 'js-cookie';
+import { showSignup, toDateTime } from './EventAddFormFunctions.js'
+import Router from 'next/router'
 
 const {
     REACT_APP_API_URL: apiUrl,
@@ -12,46 +13,33 @@ const EventAddForm = ({ types, user, cookie }) => {
 
         const data = {
             title: event.target.title.value,
-            seats: event.target.seats.value,
+            text: event.target.text.value,
+            seats: event.target.seats.value === "" ? "0" : event.target.seats.value,
             location: event.target.location.value,
-            startDate: event.target.startDate.value,
-            endDate: event.target.endDate.value,
+            startDate: event.target.startDate.value === "" ? null : toDateTime(new Date(event.target.startDate.value)),
+            endDate: event.target.endDate.value === "" ? null : toDateTime(new Date(event.target.endDate.value)),
+            event_type_id: event.target.event_type_id.value,
+            signup: Boolean(event.target.signup.checked),
             user: user.user.id,
         };
 
         const options = {
             method: 'POST',
-            cookies: { cookie },
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                cookie: cookies.get('auth'),
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify(data),
         }
-
-        console.log(data);
-
         const res = await fetch(`https://nordredo-backend.herokuapp.com/event/add`, options)
-
-        console.log(res);
         const result = await res.json()
         console.log(result);
-    }
-    const showSignup = () => {
-        const signupCheck = document.getElementById('signup');
-        const timeDiv = document.getElementById('timeDiv')
-        if(signupCheck.checked) {
-            timeDiv.style.display = 'flex';
-            timeDiv.style.flexDirection = 'column'
-        } else {
-            timeDiv.style.display = 'none';
-        }
+        Router.push('/events')
+        alert(result.msg)
     }
     return (
         <div className={addForm.add_container}>
             <h1>Add Event</h1>
-            {console.log(cookie)}
-            <form onSubmit={EventAdd}>
+            <form onSubmit={EventAdd} enctype="application/x-www-form-urlencoded">
             <div>
                 <input type='text'
                     name='title'
@@ -74,21 +62,18 @@ const EventAddForm = ({ types, user, cookie }) => {
                     <input type='number'
                         name='seats'
                         placeholder={'Seats'}
-                        required
                     />
                     <label>startDate: </label>
                     <input type='datetime-local'
                         name='startDate'
-                        required
                     />
                     <label>endDate: </label>
                     <input type='datetime-local'
                         name='endDate'
-                        required
                     />
                 </div>
                 <label>Event Type</label>
-                <select>
+                <select name="event_type_id">
                         {types.map((type) => {
                         return (
                             <option value={type.id}>{type.name}</option>

@@ -18,6 +18,10 @@
             height: 3em;
             border: none;
             background-color: #8bca4d;
+            cursor: pointer;
+            &:hover {
+                background-color: #4e831a;
+            }
         }
         textarea {
             resize: none;
