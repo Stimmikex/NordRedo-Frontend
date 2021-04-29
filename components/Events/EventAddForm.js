@@ -31,7 +31,7 @@ const EventAddForm = ({ types, user, cookie }) => {
 
         console.log(data);
 
-        const res = await fetch(`http://localhost:8000/event/add`, options)
+        const res = await fetch(`https://nordredo-backend.herokuapp.com/event/add`, options)
 
         console.log(res);
         const result = await res.json()
