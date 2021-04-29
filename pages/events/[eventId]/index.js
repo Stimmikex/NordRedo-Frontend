@@ -98,18 +98,28 @@ const Event = ({ event, signups, signCount }) => {
     )
 }
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({ params, req }) {
     const res = await fetch(`https://nordredo-backend.herokuapp.com/event/${params.eventId}`);
     const event = await res.json();
     const resSign = await fetch(`https://nordredo-backend.herokuapp.com/event/registered/${params.eventId}`);
     const signups = await resSign.json();
     const resCount = await fetch(`https://nordredo-backend.herokuapp.com/event/count/${params.eventId}`);
     const signCount= await resCount.json();
+    const cookie = req.headers.cookie;
+    console.log(cookie);
+    const resUser = await fetch('https://nordredo-backend.herokuapp.com/users/me', {
+      headers: {
+        cookie: cookie,
+      }
+    })
+    const user = await resUser.json()
+    console.log(user);
     return {
         props: {
             event,
             signups,
             signCount,
+            user,
         },
     }
 }
