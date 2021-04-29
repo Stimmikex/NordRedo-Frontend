@@ -13,7 +13,7 @@ export async function getServerSideProps(ctx) {
     console.log(cookie);
     const resUser = await fetch('https://nordredo-backend.herokuapp.com/users/me', {
       headers: {
-        cookie: cookie,
+        cookie,
       }
     })
     const user = await resUser.json()
@@ -21,6 +21,7 @@ export async function getServerSideProps(ctx) {
     return {
       props: {
         user,
+        cookie,
         types,
       },
     }

@@ -1,11 +1,12 @@
 import React from 'react'
 import addForm from '../../styles/AddForm.module.scss';
+import cookies from 'js-cookie';
 
 const {
     REACT_APP_API_URL: apiUrl,
   } = process.env;
 
-const EventAddForm = ({ types, cookie, user }) => {
+const EventAddForm = ({ types, user, cookie }) => {
     const EventAdd = async event => {
         event.preventDefault();
 
@@ -15,21 +16,22 @@ const EventAddForm = ({ types, cookie, user }) => {
             location: event.target.location.value,
             startDate: event.target.startDate.value,
             endDate: event.target.endDate.value,
-            user: user.id,
+            user: user.user.id,
         };
 
         const options = {
-            body: JSON.stringify(data),
+            method: 'POST',
+            cookies: { cookie },
             headers: {
-                'Content-Type': 'application/json',
-                cookie: cookie,
+                'Content-Type': 'application/x-www-form-urlencoded',
+                cookie: cookies.get('auth'),
             },
-            method: 'POST'
+            body: JSON.stringify(data),
         }
 
         console.log(data);
 
-        const res = await fetch(`https://nordredo-backend.herokuapp.com/event/add`, options)
+        const res = await fetch(`http://localhost:8000/event/add`, options)
 
         console.log(res);
         const result = await res.json()
@@ -48,6 +50,7 @@ const EventAddForm = ({ types, cookie, user }) => {
     return (
         <div className={addForm.add_container}>
             <h1>Add Event</h1>
+            {console.log(cookie)}
             <form onSubmit={EventAdd}>
             <div>
                 <input type='text'

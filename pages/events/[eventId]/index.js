@@ -7,7 +7,7 @@ const {
     NEXT_PUBLIC_API_URL: apiUrl,
   } = process.env;
 
-const Event = ({ event, signups, signCount }) => {
+const Event = ({ event, signups, signCount, cookie }) => {
     const SigninUser = async signin => {
         signin.preventDefault();
 
@@ -16,6 +16,7 @@ const Event = ({ event, signups, signCount }) => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
+                cookie: cookie,
             },
         }
         try {
@@ -35,6 +36,7 @@ const Event = ({ event, signups, signCount }) => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
+                cookie: cookie,
             },
         }
 
