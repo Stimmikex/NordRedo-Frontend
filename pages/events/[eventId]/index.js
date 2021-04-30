@@ -7,21 +7,23 @@ const {
     NEXT_PUBLIC_API_URL: apiUrl,
   } = process.env;
 
-const Event = ({ event, signups, signCount, cookie }) => {
+const Event = ({ event, signups, signCount, user, cookie}) => {
     const SigninUser = async signin => {
         signin.preventDefault();
 
+        const data = {
+            user_id: user.user.id,
+        };
 
         const options = {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                cookie: cookie,
+                'Content-Type': 'application/json',
             },
+            body: JSON.stringify(data),
         }
         try {
-            const res = await fetch(`https://nordredo-backend.herokuapp.com/event/sign-in/${event.id}`, options)
-            console.log(res);
+            const res = await fetch(`${apiUrl}/event/sign-in/${event.id}`, options)
             const result = await res.json()
             console.log(result);
         } catch (e) {
@@ -32,21 +34,24 @@ const Event = ({ event, signups, signCount, cookie }) => {
     const SignoutUser = async signout => {
         signout.preventDefault();
 
+        const data = {
+            user_id: user.user.id,
+        };
+
         const options = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
-                cookie: cookie,
             },
+            body: JSON.stringify(data),
         }
 
-        const res = await fetch(`https://nordredo-backend.herokuapp.com/event/sign-out/${event.id}`, options)
+        const res = await fetch(`${apiUrl}/event/sign-out/${event.id}`, options)
 
         console.log(res);
         const result = await res.json()
         console.log(result);
     }
-    console.log(signCount);
 
     const formatDate = (eventDate) => {
         return dateFormat(eventDate, "dddd, mmmm dS, yyyy");
@@ -54,6 +59,7 @@ const Event = ({ event, signups, signCount, cookie }) => {
     return (
         <div className={eventStyles.event_container}>
             <div>
+                {console.log(user)}
                 <p>{formatDate(event.date)}</p>
             </div>
             <div>
@@ -76,14 +82,14 @@ const Event = ({ event, signups, signCount, cookie }) => {
                     <iframe src={`https://maps.google.com/maps?q=${event.location}&t=&z=13&ie=UTF8&iwloc=&output=embed`} frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
                 </div>
             </div>
-            { event.signup ? 
+            { event.signup && user ? 
                 <div className={eventStyles.event_container_sign}>
                     <form onSubmit={SigninUser}>
                         <button type='submit'>Signup</button>
                     </form>
-                    <form onSubmit={SignoutUser}>
+                    {/* <form onSubmit={SignoutUser}>
                         <button type='submit'>SignOut</button>
-                    </form>
+                    </form> */}
                 </div>
                 : 
                 <p></p>
@@ -101,15 +107,15 @@ const Event = ({ event, signups, signCount, cookie }) => {
 }
 
 export async function getServerSideProps({ params, req }) {
-    const res = await fetch(`https://nordredo-backend.herokuapp.com/event/${params.eventId}`);
+    const res = await fetch(`${apiUrl}/event/${params.eventId}`);
     const event = await res.json();
-    const resSign = await fetch(`https://nordredo-backend.herokuapp.com/event/registered/${params.eventId}`);
+    const resSign = await fetch(`${apiUrl}/event/registered/${params.eventId}`);
     const signups = await resSign.json();
-    const resCount = await fetch(`https://nordredo-backend.herokuapp.com/event/count/${params.eventId}`);
+    const resCount = await fetch(`${apiUrl}/event/count/${params.eventId}`);
     const signCount= await resCount.json();
     const cookie = req.headers.cookie;
     console.log(cookie);
-    const resUser = await fetch('https://nordredo-backend.herokuapp.com/users/me', {
+    const resUser = await fetch(`${apiUrl}/users/me`, {
       headers: {
         cookie: cookie,
       }

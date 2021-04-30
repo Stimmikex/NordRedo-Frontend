@@ -1,5 +1,9 @@
 import EventAddForm from '../../components/Events/EventAddForm.js'
 
+const {
+  NEXT_PUBLIC_API_URL: apiUrl,
+} = process.env;
+
 export default function AddEvent({ types, cookie, user }) {
     return (
         <EventAddForm types={types} cookie={cookie} user={user} /> 
@@ -7,11 +11,11 @@ export default function AddEvent({ types, cookie, user }) {
 }
 
 export async function getServerSideProps(ctx) {
-    const resTypes = await fetch('https://nordredo-backend.herokuapp.com/event/types')
+    const resTypes = await fetch(`${apiUrl}/event/types`)
     const types = await resTypes.json()
     const cookie = ctx.req.headers.cookie;
     console.log(cookie);
-    const resUser = await fetch('https://nordredo-backend.herokuapp.com/users/me', {
+    const resUser = await fetch(`${apiUrl}/users/me`, {
       headers: {
         cookie,
       }
