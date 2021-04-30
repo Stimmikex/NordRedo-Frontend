@@ -2,56 +2,15 @@ import SignupList from '../../../components/Signups/SignupList.js';
 import Countdown from '../../../components/Countdown.js';
 import eventStyles from '../../../styles/Event.module.scss';
 import dateFormat from 'dateFormat';
+import { useRouter } from 'next/router';
+import { SigninUser } from './SignFunctions.js'
 
 const {
     NEXT_PUBLIC_API_URL: apiUrl,
   } = process.env;
 
-const Event = ({ event, signups, signCount, user, cookie}) => {
-    const SigninUser = async signin => {
-        signin.preventDefault();
-
-        const data = {
-            user_id: user.user.id,
-        };
-
-        const options = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        }
-        try {
-            const res = await fetch(`${apiUrl}/event/sign-in/${event.id}`, options)
-            const result = await res.json()
-            console.log(result);
-        } catch (e) {
-            console.error(e);
-        }
-
-    }
-    const SignoutUser = async signout => {
-        signout.preventDefault();
-
-        const data = {
-            user_id: user.user.id,
-        };
-
-        const options = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: JSON.stringify(data),
-        }
-
-        const res = await fetch(`${apiUrl}/event/sign-out/${event.id}`, options)
-
-        console.log(res);
-        const result = await res.json()
-        console.log(result);
-    }
+const Event = ({ event, signups, signCount, user }) => {
+    const router = useRouter();
 
     const formatDate = (eventDate) => {
         return dateFormat(eventDate, "dddd, mmmm dS, yyyy");
@@ -82,14 +41,11 @@ const Event = ({ event, signups, signCount, user, cookie}) => {
                     <iframe src={`https://maps.google.com/maps?q=${event.location}&t=&z=13&ie=UTF8&iwloc=&output=embed`} frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
                 </div>
             </div>
-            { event.signup && user.id ? 
+            { event.signup && user ? 
                 <div className={eventStyles.event_container_sign}>
-                    <form onSubmit={SigninUser}>
+                    <form onSubmit={e => SigninUser(router, event, user)}>
                         <button type='submit'>Signup</button>
                     </form>
-                    {/* <form onSubmit={SignoutUser}>
-                        <button type='submit'>SignOut</button>
-                    </form> */}
                 </div>
                 : 
                 <p>Login to signup</p>
@@ -97,7 +53,7 @@ const Event = ({ event, signups, signCount, user, cookie}) => {
             { event.signup ? 
                 <div>
                     <h1>Signup List: </h1>
-                    <SignupList signups={signups} signed={event.seats} user={user}></SignupList>
+                    <SignupList signups={signups} signed={event.seats} user={user} event={event}></SignupList>
                 </div>
                 :
                 <p></p>
