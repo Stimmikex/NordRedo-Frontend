@@ -82,7 +82,7 @@ const Event = ({ event, signups, signCount, user, cookie}) => {
                     <iframe src={`https://maps.google.com/maps?q=${event.location}&t=&z=13&ie=UTF8&iwloc=&output=embed`} frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
                 </div>
             </div>
-            { event.signup && user ? 
+            { event.signup && user.id ? 
                 <div className={eventStyles.event_container_sign}>
                     <form onSubmit={SigninUser}>
                         <button type='submit'>Signup</button>
@@ -92,12 +92,12 @@ const Event = ({ event, signups, signCount, user, cookie}) => {
                     </form> */}
                 </div>
                 : 
-                <p></p>
+                <p>Login to signup</p>
             }
             { event.signup ? 
                 <div>
                     <h1>Signup List: </h1>
-                    <SignupList signups={signups} signed={event.seats}></SignupList>
+                    <SignupList signups={signups} signed={event.seats} user={user}></SignupList>
                 </div>
                 :
                 <p></p>
