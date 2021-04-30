@@ -43,5 +43,8 @@ export const SignoutUser = async (router, event, user) => {
     const res = await fetch(`${apiUrl}/event/sign-out/${event.id}`, options)
 
     const result = await res.json()
+    if (res.status < 300) {
+        router.replace(router.asPath);   
+    }
     return result;
 }

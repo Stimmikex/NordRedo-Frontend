@@ -4,6 +4,7 @@ import eventStyles from '../../../styles/Event.module.scss';
 import dateFormat from 'dateFormat';
 import { useRouter } from 'next/router';
 import { SigninUser } from './SignFunctions.js'
+import { ifUserExists } from '../../../components/NavFunctions'
 
 const {
     NEXT_PUBLIC_API_URL: apiUrl,
@@ -41,7 +42,8 @@ const Event = ({ event, signups, signCount, user }) => {
                     <iframe src={`https://maps.google.com/maps?q=${event.location}&t=&z=13&ie=UTF8&iwloc=&output=embed`} frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
                 </div>
             </div>
-            { event.signup && user ? 
+            {console.log(signups)}
+            { event.signup && ifUserExists(user.user) && signups.some(signup => signup.id !== user.user.id) ? 
                 <div className={eventStyles.event_container_sign}>
                     <form onSubmit={e => SigninUser(router, event, user)}>
                         <button type='submit'>Signup</button>
