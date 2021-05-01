@@ -7,7 +7,7 @@ const {
     NEXT_PUBLIC_API_URL: apiUrl,
   } = process.env;
 
-const EventAddForm = ({ types, user, cookie }) => {
+const EventAddForm = ({ types, user }) => {
     const EventAdd = async event => {
         event.preventDefault();
 
@@ -16,6 +16,7 @@ const EventAddForm = ({ types, user, cookie }) => {
             text: event.target.text.value,
             seats: event.target.seats.value === "" ? "0" : event.target.seats.value,
             location: event.target.location.value,
+            date: event.target.date.value === "" ? null : toDateTime(new Date(event.target.date.value)),
             startDate: event.target.startDate.value === "" ? null : toDateTime(new Date(event.target.startDate.value)),
             endDate: event.target.endDate.value === "" ? null : toDateTime(new Date(event.target.endDate.value)),
             event_type_id: event.target.event_type_id.value,
@@ -52,6 +53,9 @@ const EventAddForm = ({ types, user, cookie }) => {
                     name='location'
                     placeholder={'Location'}
                     required
+                />
+                <input type='date'
+                    name='date'
                 />
                 <label>Signup from: </label>
                 <input type='checkbox'

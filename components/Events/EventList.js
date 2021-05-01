@@ -26,7 +26,6 @@ const EventList = ({ events, get, user }) => {
         return (              
             <div className={eventStyles.eventContainer}>
                 <Event event={event} key={event.id}></Event>
-                
                  {
                     ifUserAdmin(user) ? (
                         <div className={eventStyles.modmenu}>

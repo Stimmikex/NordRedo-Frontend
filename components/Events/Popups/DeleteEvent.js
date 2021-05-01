@@ -1,7 +1,7 @@
 import React from 'react'
 import Router from "next/router"
 import userPop from '../../../styles/UserPopup.module.scss'
-import userStyle from '../../Users/Users.module.scss'
+import eventList from '../../../styles/EventList.module.scss'
 
 const {
     NEXT_PUBLIC_API_URL: apiUrl,
@@ -45,8 +45,8 @@ const DeleteEvent = ({ event, user }) => {
         Router.push('/events')
     }
     return (
-        <div className={userStyle.deleteTrigger}>
-            <button className={userStyle.deleteTrigger_button} onClick={e => OpenPopup()}>Delete Event</button>
+        <div className={eventList.modmenu_buttonContainer}>
+            <button onClick={e => OpenPopup()} className={eventList.modmenu_buttonContainer_button}>Delete Event</button>
             {isOpenDelete && (
                 <div>
                 <div className={userPop.containerpop}>
@@ -55,7 +55,7 @@ const DeleteEvent = ({ event, user }) => {
                             <p>Delete Event [{event.title}]</p>
                             <button onClick={ClosePopup}> X </button>
                         </div>
-                        <div>
+                        <div className={userPop.changepop_question}>
                             <p> Are you sure?</p>
                             <button onClick={e => submitDelete(event.id)}>Yes</button>
                             <button onClick={ClosePopup}>No</button>

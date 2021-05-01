@@ -7,7 +7,7 @@
     top: 5.8em;
     left: 0;
     @media screen and (min-width: 600px) {
-        top: 10em;
+        top: 8em;
     }
 }
 .changepop {
@@ -18,7 +18,7 @@
     top: 25%;
     right: 23%;
     width: 50%;
-    height: 11em;
+    height: auto;
     background: antiquewhite;
     &_header {
         display: flex;
@@ -30,6 +30,9 @@
             border: none;
             background: transparent;
         }
+    }
+    &_question {
+        padding: 1em;
     }
 }
 .searchpop {

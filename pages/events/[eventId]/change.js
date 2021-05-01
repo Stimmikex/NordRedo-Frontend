@@ -12,7 +12,8 @@ const Event = ({ event, types, user }) => {
         title: event.title,
         text: event.text,
         seats: event.seats,
-        location: event.location, 
+        location: event.location,
+        date: new Date(event.date).toISOString().split('T')[0],
         startdate: new Date(event.startdate).toISOString().replace('Z', ''),
         enddate: new Date(event.enddate).toISOString().replace('Z', ''),
         event_type_id: event.event_type_id
@@ -28,6 +29,7 @@ const Event = ({ event, types, user }) => {
             text: update.target.text.value,
             seats: update.target.seats.value === "" ? "0" : update.target.seats.value,
             location: update.target.location.value,
+            date: update.target.date.value === "" ? null : new Date(update.target.date.value),
             startDate: update.target.startDate.value === "" ? null : toDateTime(new Date(update.target.startDate.value)),
             endDate: update.target.endDate.value === "" ? null : toDateTime(new Date(update.target.endDate.value)),
             event_type_id: update.target.event_type_id.value,
@@ -72,6 +74,11 @@ const Event = ({ event, types, user }) => {
                         placeholder={'Location'}
                         required
                         value={query.location}
+                        onChange={handleParam(setQuery)}
+                    />
+                    <input type='date'
+                        name='date'
+                        value={query.date}
                         onChange={handleParam(setQuery)}
                     />
                     <label>Signup from: </label>
