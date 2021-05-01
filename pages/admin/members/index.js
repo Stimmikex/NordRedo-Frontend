@@ -1,5 +1,6 @@
 import React from 'react'
 import SearchUsers from '../../../components/Users/SearchUsers';
+import { ifUserAdmin } from '../../../components/NavFunctions';
 
 const memberList = ({ users, roles }) => {
     return (
@@ -22,6 +23,14 @@ export async function getServerSideProps(ctx) {
     }
     })
     const user = await resUser.json()
+    if (!ifUserAdmin(user)) {
+        return {
+          redirect: {
+            destination: '/',
+            permanent: false,
+          },
+        }
+      }
     return {
         props: {
             users,

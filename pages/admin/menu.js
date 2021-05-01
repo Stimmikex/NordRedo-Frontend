@@ -1,6 +1,11 @@
 import React from 'react'
 import Link from 'next/Link';
 import adminMenu from './AdminMenu.module.scss'
+import { ifUserAdmin } from '../../components/NavFunctions';
+
+const {
+    NEXT_PUBLIC_API_URL: apiUrl,
+  } = process.env;
 
 const menu = ({ user }) => {
     return (
@@ -24,12 +29,20 @@ const menu = ({ user }) => {
 
 export async function getServerSideProps(ctx) {
     const cookie = ctx.req.headers.cookie;
-    const resUser = await fetch('https://nordredo-backend.herokuapp.com/users/me', {
+    const resUser = await fetch(`${apiUrl}/users/me`, {
     headers: { 
         cookie: cookie,
     }
     })
     const user = await resUser.json()
+    if (!ifUserAdmin(user)) {
+        return {
+          redirect: {
+            destination: '/',
+            permanent: false,
+          },
+        }
+      }
     return {
       props: {
         user,
