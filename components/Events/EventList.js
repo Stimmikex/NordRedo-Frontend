@@ -3,6 +3,7 @@ import Event from './Event';
 import Link from 'next/Link';
 import eventStyles from '../../styles/EventList.module.scss';
 import { ifUserAdmin } from '../NavFunctions.js';
+import DeleteEvent from './Popups/DeleteEvent';
 
 const EventList = ({ events, get, user }) => {
     function filterEvents(event) {
@@ -29,9 +30,7 @@ const EventList = ({ events, get, user }) => {
                  {
                     ifUserAdmin(user) ? (
                         <div className={eventStyles.modmenu}>
-                            <Link href='/events/[eventId]/delete' as={`/events/${event.id}/delete`}>
-                                <button>Delete</button>
-                            </Link>
+                            <DeleteEvent event={event} user={user}></DeleteEvent>
                             <Link href='/events/[eventId]/change' as={`/events/${event.id}/change`}>
                                 <button>Change</button>
                             </Link>
