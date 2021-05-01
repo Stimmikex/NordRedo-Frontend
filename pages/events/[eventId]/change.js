@@ -2,6 +2,7 @@ import addForm from '../../../styles/AddForm.module.scss';
 import React, { useState } from "react";
 import { showSignup, toDateTime } from '../../../components/Events/EventAddFormFunctions'
 import Router from 'next/router'
+import { ifUserAdmin } from '../../../components/NavFunctions';
 
 const {
     NEXT_PUBLIC_API_URL: apiUrl,
@@ -21,9 +22,6 @@ const Event = ({ event, types, user }) => {
     const handleParam = setValue => e => setValue(e.target.value)
     const UpdateAdd = async update => {
         update.preventDefault();
-
-        console.log(update.target.event_type_id.value)
-
         const data = {
             title: update.target.title.value,
             text: update.target.text.value,
@@ -45,9 +43,7 @@ const Event = ({ event, types, user }) => {
             body: JSON.stringify(data),
         }
         const res = await fetch(`${apiUrl}/event/update/${event.id}`, options)
-        console.log(res)
         const result = await res.json()
-        console.log(result);
         Router.push('/events')
         alert(result.msg)
     }
@@ -129,6 +125,7 @@ const Event = ({ event, types, user }) => {
                         })}
                     </select>
                 </div>
+                {console.log("test: "+ifUserAdmin(user))}
                 <button type='submit'>Add Event</button>
             </form>
         </div>
@@ -136,9 +133,7 @@ const Event = ({ event, types, user }) => {
 }
 
 export async function getServerSideProps({ req, params }) {
-    console.log(req.params)
     const res = await fetch(`${apiUrl}/event/${params.eventId}`);
-    console.log(res);
     const event = await res.json();
     const resType = await fetch(`${apiUrl}/event/types`);
     const types = await resType.json();
@@ -149,6 +144,14 @@ export async function getServerSideProps({ req, params }) {
     }
     })
     const user = await resUser.json()
+    if (!ifUserAdmin(user)) {
+        return {
+          redirect: {
+            destination: '/',
+            permanent: false,
+          },
+        }
+      }
     return {
         props: {
             event,

@@ -54,7 +54,6 @@ export function ifUserExists(temp) {
     return false;
 }
 export function ifUserAdmin(temp) {
-    console.log(temp)
     if (ifUserExists(temp)) {
         if (temp.user.role_id === 3) {
             return true;

@@ -25,7 +25,7 @@ export default function index({ events, items, user }) {
 export async function getServerSideProps(ctx) {
     const res = await fetch(`${apiUrl}`)
     const events = await res.json()
-    const itemRes = await fetch(`${apiUrl}`)
+    const itemRes = await fetch(`${apiUrl}/store`)
     const items = await itemRes.json()
     const user = await getUserWithCookie(ctx);
     return {

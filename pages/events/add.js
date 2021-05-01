@@ -1,4 +1,5 @@
 import EventAddForm from '../../components/Events/EventAddForm.js'
+import { ifUserAdmin } from '../../components/NavFunctions';
 
 const {
   NEXT_PUBLIC_API_URL: apiUrl,
@@ -21,7 +22,14 @@ export async function getServerSideProps(ctx) {
       }
     })
     const user = await resUser.json()
-    console.log(user);
+    if (!ifUserAdmin(user)) {
+      return {
+        redirect: {
+          destination: '/',
+          permanent: false,
+        },
+      }
+    }
     return {
       props: {
         user,
