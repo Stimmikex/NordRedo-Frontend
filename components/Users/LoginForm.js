@@ -1,6 +1,7 @@
 import React from 'react'
 import form from '../../styles/Form.module.scss';
 import cookies from 'js-cookie';
+import Router from 'next/router'
 
 const {
     REACT_APP_API_URL: apiUrl,
@@ -26,6 +27,7 @@ const LoginForm = () => {
         const res = await fetch(`https://nordredo-backend.herokuapp.com/users/login`, options)
         const result = await res.json()
         cookies.set('auth', result.token);
+        Router.push('/events')
     }
     return (
         <div className={form.form_container}>

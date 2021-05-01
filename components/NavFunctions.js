@@ -1,3 +1,6 @@
+import cookies from 'js-cookie';
+import Router from 'next/router'
+
 export function openNav() {
     const x = document.getElementById("mylinks");
     if (x.style.display === "flex") {
@@ -44,6 +47,12 @@ export function closeNav(id) {
     openSubNav(id);
     openNav();
 }
+
+export function loggout() {
+    cookies.remove('auth');
+    Router.push('/');
+}
+
 export function ifUserExists(temp) {
     if (typeof temp !== 'undefined') {
         if(temp.error) {

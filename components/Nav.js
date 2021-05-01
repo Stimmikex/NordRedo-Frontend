@@ -66,7 +66,7 @@ const Nav = ({ user }) => {
                     navF.ifUserExists(user) ? (
                         <div className={navStyles.nav_container_login}>
                             <p onClick={navF.openNav}><Link href='/users/me'><div className={navStyles.linkContainer}><p>Account</p><i><FontAwesomeIcon icon={faUser}/></i></div></Link></p>
-                            <p onClick={navF.openNav}><Link href='/users/logout'><div className={navStyles.linkContainer}><p>Logout</p><i><FontAwesomeIcon icon={faUser}/></i></div></Link></p>
+                            <p onClick={navF.loggout}><div className={navStyles.linkContainer}><p>Logout</p><i><FontAwesomeIcon icon={faUser}/></i></div></p>
                         </div>
                     ) : (
                         <div className={navStyles.nav_container_login}>
