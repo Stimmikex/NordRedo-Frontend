@@ -48,3 +48,10 @@ export const SignoutUser = async (router, event, user) => {
     }
     return result;
 }
+
+export const validRegisterByTime = (event) => {
+    if (Date.parse(event.startdate) - Date.parse(new Date().toISOString()) <= 0 && (Date.parse(event.endDate) - Date.parse(new Date().toISOString()) >= 0)) {
+        return true;
+    }
+    return false;
+}

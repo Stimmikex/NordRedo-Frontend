@@ -3,7 +3,7 @@ import Countdown from '../../../components/Countdown.js';
 import eventStyles from '../../../styles/Event.module.scss';
 import dateFormat from 'dateFormat';
 import { useRouter } from 'next/router';
-import { SigninUser } from './SignFunctions.js'
+import { SigninUser, validRegisterByTime } from './SignFunctions.js'
 import { ifUserExists } from '../../../components/NavFunctions'
 
 const {
@@ -52,7 +52,7 @@ const Event = ({ event, signups, signCount, user }) => {
                     <iframe src={`https://maps.google.com/maps?q=${event.location}&t=&z=13&ie=UTF8&iwloc=&output=embed`} frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0"></iframe>
                 </div>
             </div>
-            { event.signup && ifUserExists(user.user) && checkIfRegistered() && (Date.parse(event.startdate) - Date.parse(new Date().toISOString()) <= 0) && (Date.parse(event.endDate) - Date.parse(new Date().toISOString()) >= 0)? 
+            { event.signup && ifUserExists(user.user) && checkIfRegistered() && validRegisterByTime(event) ? 
                 <div className={eventStyles.event_container_sign}>
                     <form onSubmit={e => SigninUser(router, event, user)}>
                         <button type='submit'>Signup</button>
