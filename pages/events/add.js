@@ -15,7 +15,6 @@ export async function getServerSideProps(ctx) {
     const resTypes = await fetch(`${apiUrl}/event/types`)
     const types = await resTypes.json()
     const cookie = ctx.req.headers.cookie;
-    console.log(cookie);
     const resUser = await fetch(`${apiUrl}/users/me`, {
       headers: {
         cookie,

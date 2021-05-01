@@ -7,7 +7,7 @@ const {
     NEXT_PUBLIC_API_URL: apiUrl,
   } = process.env;
 
-const EventAddForm = ({ types, user }) => {
+const EventAddForm = ({ types, user, cookie}) => {
     const EventAdd = async event => {
         event.preventDefault();
 
@@ -24,10 +24,12 @@ const EventAddForm = ({ types, user }) => {
             user: user.user.id,
         };
 
+
         const options = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                cookie,
             },
             body: JSON.stringify(data),
         }
