@@ -16,6 +16,15 @@ const Event = ({ event, signups, signCount, user }) => {
     const formatDate = (eventDate) => {
         return dateFormat(eventDate, "dddd, mmmm dS, yyyy");
     }
+
+    const checkIfRegistered = () => {
+        for (let i = 0; i < signups.length; i+=1) {
+            if(signups[i].id === user.user.id) {
+                return false;
+            }
+        }
+        return true;
+    }
     return (
         <div className={eventStyles.event_container}>
             <div>
@@ -39,11 +48,10 @@ const Event = ({ event, signups, signCount, user }) => {
             </div>
             <div>
                 <div className={eventStyles.event_container_iframe}>
-                    <iframe src={`https://maps.google.com/maps?q=${event.location}&t=&z=13&ie=UTF8&iwloc=&output=embed`} frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                    <iframe src={`https://maps.google.com/maps?q=${event.location}&t=&z=13&ie=UTF8&iwloc=&output=embed`} frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0"></iframe>
                 </div>
             </div>
-            {console.log(signups)}
-            { event.signup && ifUserExists(user.user) && signups.some(signup => signup.id !== user.user.id) ? 
+            { event.signup && ifUserExists(user.user) && checkIfRegistered() ? 
                 <div className={eventStyles.event_container_sign}>
                     <form onSubmit={e => SigninUser(router, event, user)}>
                         <button type='submit'>Signup</button>
