@@ -45,7 +45,6 @@ const Event = ({ event, signups, signCount, user }) => {
             <div>
                 <Countdown start={event.startdate}></Countdown>
                 <p>End: {event.enddate}</p>
-                {console.log(Date.parse(event.startdate) - Date.parse(new Date().toISOString()))}
             </div>
             <div>
                 <div className={eventStyles.event_container_iframe}>

@@ -50,7 +50,10 @@ export const SignoutUser = async (router, event, user) => {
 }
 
 export const validRegisterByTime = (event) => {
-    if (Date.parse(event.startdate) - Date.parse(new Date().toISOString()) <= 0 && (Date.parse(event.endDate) - Date.parse(new Date().toISOString()) >= 0)) {
+    const start = Date.parse(event.startdate) - Date.parse(new Date().toISOString()) <= 0
+    console.log(start)
+    const end = Date.parse(event.enddate) - Date.parse(new Date().toISOString()) >= 0
+    if ((start && end)) {
         return true;
     }
     return false;

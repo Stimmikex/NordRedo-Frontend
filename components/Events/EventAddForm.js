@@ -4,7 +4,7 @@ import { showSignup, toDateTime } from './EventAddFormFunctions.js'
 import Router from 'next/router'
 
 const {
-    REACT_APP_API_URL: apiUrl,
+    NEXT_PUBLIC_API_URL: apiUrl,
   } = process.env;
 
 const EventAddForm = ({ types, user, cookie }) => {
@@ -30,7 +30,8 @@ const EventAddForm = ({ types, user, cookie }) => {
             },
             body: JSON.stringify(data),
         }
-        const res = await fetch(`https://nordredo-backend.herokuapp.com/event/add`, options)
+        const res = await fetch(`${apiUrl}/event/add`, options)
+        console.log(res)
         const result = await res.json()
         console.log(result);
         Router.push('/events')

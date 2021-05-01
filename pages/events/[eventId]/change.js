@@ -1,7 +1,7 @@
 import addForm from '../../../styles/AddForm.module.scss';
 
 const {
-    REACT_APP_API_URL: apiUrl,
+    NEXT_PUBLIC_API_URL: apiUrl,
   } = process.env;
 
 const Event = ({ event, types }) => {
