@@ -45,13 +45,14 @@ const Event = ({ event, signups, signCount, user }) => {
             <div>
                 <Countdown start={event.startdate}></Countdown>
                 <p>End: {event.enddate}</p>
+                {console.log(Date.parse(event.startdate) - Date.parse(new Date().toISOString()))}
             </div>
             <div>
                 <div className={eventStyles.event_container_iframe}>
                     <iframe src={`https://maps.google.com/maps?q=${event.location}&t=&z=13&ie=UTF8&iwloc=&output=embed`} frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0"></iframe>
                 </div>
             </div>
-            { event.signup && ifUserExists(user.user) && checkIfRegistered() ? 
+            { event.signup && ifUserExists(user.user) && checkIfRegistered() && (Date.parse(event.startdate) - Date.parse(new Date().toISOString()) <= 0) && (Date.parse(event.endDate) - Date.parse(new Date().toISOString()) >= 0)? 
                 <div className={eventStyles.event_container_sign}>
                     <form onSubmit={e => SigninUser(router, event, user)}>
                         <button type='submit'>Signup</button>
