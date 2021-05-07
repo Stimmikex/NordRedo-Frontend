@@ -1,7 +1,7 @@
 import SignupList from '../../../components/Signups/SignupList.js';
 import Countdown from '../../../components/Countdown.js';
 import eventStyles from '../../../styles/Event.module.scss';
-import dateFormat from 'dateFormat';
+import dateFormat from 'dateformat';
 import { useRouter } from 'next/router';
 import { SigninUser, validRegisterByTime } from '../../../lib/Signup/SignFunctions'
 import { ifUserExists } from '../../../components/NavFunctions'
