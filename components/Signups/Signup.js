@@ -2,7 +2,7 @@ import React from 'react'
 import signupList from '../../styles/SignupList.module.scss';
 import { ifUserExists } from '../NavFunctions'
 import { useRouter } from 'next/router';
-import { SignoutUser, validRegisterByTime } from '../../pages/events/[eventId]/SignFunctions.js'
+import { SignoutUser, validRegisterByTime } from '../../lib/Signup/SignFunctions'
 
 const {
     NEXT_PUBLIC_API_URL: apiUrl,
