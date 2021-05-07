@@ -1,6 +1,6 @@
 import React from 'react'
 import Event from './Event';
-import Link from 'next/Link';
+import Link from 'next/link';
 import eventStyles from '../../styles/EventList.module.scss';
 import { ifUserAdmin } from '../NavFunctions.js';
 import DeleteEvent from './Popups/DeleteEvent';

@@ -1,4 +1,4 @@
-import Link from 'next/Link';
+import Link from 'next/link';
 import eventStyles from '../../styles/EventList.module.scss';
 import dateFormat from 'dateFormat';
 
