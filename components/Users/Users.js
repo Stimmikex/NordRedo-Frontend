@@ -4,9 +4,13 @@ import DeleteUser from './Popups/DeleteUser';
 import HttpRequest from '../Utils/HttpRequest.js';
 import userStyle from './Users.module.scss';
 
+const {
+    NEXT_PUBLIC_API_URL: apiUrl,
+  } = process.env;
+
 const Users = ({ user, roles, type, gover }) => {
     const changeGov = () => {
-        HttpRequest('PATCH', `https://nordredo-backend.herokuapp.com/admin/gov/change/${user.id}/${gover.id}`, null)
+        HttpRequest('PATCH', `${apiUrl}/admin/gov/change/${user.id}/${gover.id}`, null, 'change')
     }
     return (
         <div className={userStyle.userContainer}>
@@ -30,7 +34,6 @@ const Users = ({ user, roles, type, gover }) => {
                     <div>
                         <DeleteUser user={user}></DeleteUser>
                         <UpdateUser user={user} roles={roles}></UpdateUser>
-                        {/* <button>Shadow Ban</button> */}
                     </div>
                 )
             }

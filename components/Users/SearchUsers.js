@@ -3,12 +3,16 @@ import User from './Users';
 import userPop from '../../styles/UserPopup.module.scss'
 import userStyles from './Users.module.scss'
 
+const {
+    NEXT_PUBLIC_API_URL: apiUrl,
+  } = process.env;
+
 const SearchUsers = ({ users, roles, type, gover }) => {
     let [search, setSearch] = React.useState(users)
 
     const handleChange = async (e) => {
         const test = e.target.value;
-        const res = await fetch(`https://nordredo-backend.herokuapp.com/users/find/?name=${test}`);
+        const res = await fetch(`${apiUrl}/users/find/?name=${test}`);
         const results = await res.json();
         console.log(results)
         setSearch(results);

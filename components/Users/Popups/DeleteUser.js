@@ -3,6 +3,10 @@ import Router from "next/router"
 import userPop from '../../../styles/UserPopup.module.scss'
 import userStyle from '../Users.module.scss'
 
+const {
+    NEXT_PUBLIC_API_URL: apiUrl,
+  } = process.env;
+
 const DeleteUser = ({ user }) => {
     const [isOpenDelete, setIsOpenDelete] = React.useState()
 
@@ -25,7 +29,7 @@ const DeleteUser = ({ user }) => {
             },
         }
 
-        const res = await fetch(`https://nordredo-backend.herokuapp.com/users/${id}`, options)
+        const res = await fetch(`${apiUrl}/users/${id}`, options)
 
         await res.json()
     }
