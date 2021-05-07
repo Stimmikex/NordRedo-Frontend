@@ -1,5 +1,4 @@
 import React from 'react'
-import Link from 'next/Link';
 import AdsList from '../../components/Ads/AdsList.js'
 import AddAds from '../../components/Ads/AddAds.js'
 import { ifUserAdmin } from '../../components/NavFunctions';
