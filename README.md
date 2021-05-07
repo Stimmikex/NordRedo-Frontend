@@ -1,1 +1,6 @@
-This is a starter template for [Learn Next.js](https://nextjs.org/learn).
+NordRedo is a front end that uses NordRedo-Backend as it backend.
+
+Test users:
+
+Admin - username: Palli, password: testingtester
+User - username: tester, password: testingtester
