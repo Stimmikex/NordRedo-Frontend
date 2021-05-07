@@ -10,7 +10,7 @@ const AdsList = ({ getAds }) => {
                         <div>
                             <img src={ad.link}></img>
                             <p>{ad.name}</p>
-                            <Link></Link><button>Change</button>
+                            <button>Change</button>
                             <button>Delete</button>
                         </div>
                     </div>
