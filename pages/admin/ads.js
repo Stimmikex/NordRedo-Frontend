@@ -18,9 +18,13 @@ const ads = ({ getAds, user }) => {
 }
 
 export async function getServerSideProps(ctx) {
-    const res = await fetch(`${apiUrl}/admin/ads`);
-    const getAds = await res.json();
     const cookie = ctx.req.headers.cookie;
+    const res = await fetch(`${apiUrl}/admin/ads`, {
+      headers: { 
+        cookie: cookie,
+    }
+    });
+    const getAds = await res.json();
     const resUser = await fetch(`${apiUrl}/users/me`, {
     headers: { 
         cookie: cookie,

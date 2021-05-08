@@ -24,13 +24,13 @@ const EventAddForm = ({ types, user, cookie}) => {
             user: user.user.id,
         };
 
-
         const options = {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
                 cookie,
+                'Content-Type': 'application/json',
             },
+            credentials: 'include',
             body: JSON.stringify(data),
         }
         const res = await fetch(`${apiUrl}/event/add`, options)
@@ -43,6 +43,7 @@ const EventAddForm = ({ types, user, cookie}) => {
     return (
         <div className={addForm.add_container}>
             <h1>Add Event</h1>
+            {console.log("cookie: "+cookie)}
             <form onSubmit={EventAdd} enctype="application/x-www-form-urlencoded">
             <div>
                 <input type='text'
