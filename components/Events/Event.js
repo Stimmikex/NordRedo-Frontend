@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import eventStyles from '../../styles/EventList.module.scss';
-import dateFormat from 'dateFormat';
+import dateFormat from 'dateformat';
 
 const Event = ({ event }) => {
     const formatDate = (eventDate) => {
