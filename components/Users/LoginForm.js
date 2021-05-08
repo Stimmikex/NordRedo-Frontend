@@ -22,6 +22,7 @@ const LoginForm = () => {
             headers: {
                 'Content-Type': 'application/json',
             },
+            credentials: 'include',
         }
 
         const res = await fetch(`${apiUrl}/users/login`, options)
