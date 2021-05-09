@@ -4,6 +4,10 @@ import userPop from '../../../styles/UserPopup.module.scss'
 import userStyle from '../Users.module.scss'
 import HttpRequest from '../../Utils/HttpRequest'
 
+const {
+    NEXT_PUBLIC_API_URL: apiUrl,
+  } = process.env;
+
 const UpdateUser = ({ user, roles, cookie }) => {
     const [isOpenChange, setIsOpenChange] = React.useState()
     let OpenPopup = (type) => {
