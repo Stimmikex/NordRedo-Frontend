@@ -8,7 +8,7 @@ const {
     NEXT_PUBLIC_API_URL: apiUrl,
   } = process.env;
 
-const Event = ({ event, types, user }) => {
+const Event = ({ event, types, user, cookie}) => {
     const [query, setQuery] = useState({
         title: event.title,
         text: event.text,
@@ -38,6 +38,7 @@ const Event = ({ event, types, user }) => {
         const options = {
             method: 'PATCH',
             headers: {
+                cookie,
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(data),
@@ -157,6 +158,7 @@ export async function getServerSideProps({ req, params }) {
             event,
             types,
             user,
+            cookie,
         },
     }
 }

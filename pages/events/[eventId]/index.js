@@ -10,7 +10,7 @@ const {
     NEXT_PUBLIC_API_URL: apiUrl,
   } = process.env;
 
-const Event = ({ event, signups, signCount, user }) => {
+const Event = ({ event, signups, signCount, user, cookie }) => {
     const router = useRouter();
 
     const formatDate = (eventDate) => {
@@ -53,7 +53,7 @@ const Event = ({ event, signups, signCount, user }) => {
             </div>
             { event.signup && ifUserExists(user.user) && checkIfRegistered() && validRegisterByTime(event) ? 
                 <div className={eventStyles.event_container_sign}>
-                    <form onSubmit={e => SigninUser(router, event, user)}>
+                    <form onSubmit={e => SigninUser(router, event, user, cookie)}>
                         <button type='submit'>Signup</button>
                     </form>
                 </div>
@@ -63,7 +63,7 @@ const Event = ({ event, signups, signCount, user }) => {
             { event.signup ? 
                 <div>
                     <h1>Signup List: </h1>
-                    <SignupList signups={signups} signed={event.seats} user={user} event={event}></SignupList>
+                    <SignupList signups={signups} signed={event.seats} user={user} event={event} cookie={cookie}></SignupList>
                 </div>
                 :
                 <p></p>
@@ -94,6 +94,7 @@ export async function getServerSideProps({ params, req }) {
             signups,
             signCount,
             user,
+            cookie,
         },
     }
 }

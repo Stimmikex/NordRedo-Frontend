@@ -7,7 +7,7 @@ const {
     NEXT_PUBLIC_API_URL: apiUrl,
   } = process.env;
 
-const EventAddForm = ({ types, user, cookie}) => {
+const EventAddForm = ({ types, user, cookie }) => {
     const EventAdd = async event => {
         event.preventDefault();
 
@@ -30,8 +30,8 @@ const EventAddForm = ({ types, user, cookie}) => {
                 cookie,
                 'Content-Type': 'application/json',
             },
-            credentials: 'include',
             body: JSON.stringify(data),
+            credentials: 'include',
         }
         const res = await fetch(`${apiUrl}/event/add`, options)
         console.log(res)

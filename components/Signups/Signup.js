@@ -8,13 +8,13 @@ const {
     NEXT_PUBLIC_API_URL: apiUrl,
   } = process.env;
 
-const SignupList = ({ signup, style, user, event }) => {
+const SignupList = ({ signup, style, user, event, cookie }) => {
     const router = useRouter();
 
     return (
         style == "inn" ? 
             ifUserExists(user.user) && signup.id === user.user.id && validRegisterByTime(event) ? 
-                <li className={signupList.inn}>{signup.username} <button onClick={e => SignoutUser(router, event, user)}>Signout</button></li>
+                <li className={signupList.inn}>{signup.username} <button onClick={e => SignoutUser(router, event, user, cookie)}>Signout</button></li>
             :
                 <li className={signupList.inn}>{signup.username}</li>  
         :  ifUserExists(user.user) && signup.id === user.user.id ? 
