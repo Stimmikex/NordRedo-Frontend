@@ -1,5 +1,5 @@
 import React from 'react'
-import Router from "next/router"
+import Router, { useRouter } from "next/router"
 import userPop from '../../../styles/UserPopup.module.scss'
 import userStyle from '../Users.module.scss'
 import HttpRequest from '../../Utils/HttpRequest'
@@ -9,6 +9,7 @@ const {
   } = process.env;
 
 const UpdateUser = ({ user, roles, cookie }) => {
+    const router = useRouter();
     const [isOpenChange, setIsOpenChange] = React.useState()
     let OpenPopup = () => {
         setIsOpenChange(true)
@@ -18,10 +19,12 @@ const UpdateUser = ({ user, roles, cookie }) => {
         setIsOpenChange(false)
       }
     const updateUserRole = async (userId, roleId) => {
-        HttpRequest('PATCH', `${apiUrl}/users/${userId}/${roleId}`, null, 'members', cookie)
+       const res = await HttpRequest('PATCH', `${apiUrl}/users/${userId}/${roleId}`, null, cookie)
+       Router.reload('/admin/members')
     }
     const submitUpdate = (userId, roleId) => {
         updateUserRole(userId, roleId);
+        Router.push(router.asPath)
         ClosePopup();
     }
     const getOption = () => {

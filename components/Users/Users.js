@@ -9,7 +9,7 @@ const {
   } = process.env;
 
 const Users = ({ user, roles, type, gover, cookie }) => {
-    const changeGov = () => {
+    const changeGov = async () => {
         HttpRequest('PATCH', `${apiUrl}/admin/gov/change/${user.id}/${gover.id}`, null, 'change', cookie)
     }
     return (

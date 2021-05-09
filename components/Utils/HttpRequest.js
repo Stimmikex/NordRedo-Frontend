@@ -1,5 +1,3 @@
-import Router from 'next/router'
-
 /**
  * HttpRequest api requester
  * @param {(GET, POST, PATCH, DELETE)} method 
@@ -9,7 +7,7 @@ import Router from 'next/router'
  * @param {User auth cookie} cookie 
  * @returns 
  */
-const HttpRequest = async (method, link, data, router, cookie) => {
+const HttpRequest = async (method, link, data, cookie) => {
     const options = {
         method: method,
         headers: {
@@ -20,12 +18,7 @@ const HttpRequest = async (method, link, data, router, cookie) => {
     }
 
     const res = await fetch(link, options)
-
-    console.log(res)
-
     const result = await res.json();
-    console.log(result)
-    Router.push(router)
     return result;
 }
 
