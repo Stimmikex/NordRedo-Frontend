@@ -17,8 +17,10 @@ const UpdateUser = ({ user, roles }) => {
         const options = {
             method: 'PATCH',
             headers: {
+                cookie,
                 'Content-Type': 'application/json',
             },
+            credentials: 'include',
         }
 
         const res = await fetch(`https://nordredo-backend.herokuapp.com/users/${userId}/${roleId}`, options)

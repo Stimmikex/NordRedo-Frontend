@@ -25,8 +25,10 @@ const DeleteUser = ({ user }) => {
         const options = {
             method: 'DELETE',
             headers: {
+                cookie,
                 'Content-Type': 'application/json',
             },
+            credentials: 'include',
         }
 
         const res = await fetch(`${apiUrl}/users/${id}`, options)
