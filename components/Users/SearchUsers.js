@@ -12,7 +12,11 @@ const SearchUsers = ({ users, roles, type, gover, cookie }) => {
 
     const handleChange = async (e) => {
         const test = e.target.value;
-        const res = await fetch(`${apiUrl}/users/find/?name=${test}`);
+        const res = await fetch(`${apiUrl}/users/find/?name=${test}`, {
+            headers: { 
+                cookie: cookie,
+            }
+        });
         const results = await res.json();
         console.log(results)
         setSearch(results);
