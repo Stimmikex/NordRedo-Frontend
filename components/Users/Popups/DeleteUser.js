@@ -10,17 +10,13 @@ const {
 
 const DeleteUser = ({ user, cookie }) => {
     const [isOpenDelete, setIsOpenDelete] = React.useState()
-
     let OpenPopup = () => {
         setIsOpenDelete(true)
         Router.push({ shallow: true })
       }
-    
-
     const ClosePopup = () => {
         setIsOpenDelete(false)
       }
-
     const deleteUser = async (id) => {
         HttpRequest('DELETE', `${apiUrl}/users/${id}`, null, 'members', cookie)
     }

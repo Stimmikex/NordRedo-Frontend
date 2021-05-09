@@ -10,7 +10,7 @@ const {
 
 const UpdateUser = ({ user, roles, cookie }) => {
     const [isOpenChange, setIsOpenChange] = React.useState()
-    let OpenPopup = (type) => {
+    let OpenPopup = () => {
         setIsOpenChange(true)
         Router.push({ shallow: true })
       }

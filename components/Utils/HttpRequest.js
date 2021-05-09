@@ -1,9 +1,13 @@
 import Router from 'next/router'
+
 /**
- * HttpRequest
- * @param {http request method (get, post, patch, delete)} method 
- * @param {Api url link} link 
- * @param {data from the user} data 
+ * HttpRequest api requester
+ * @param {(GET, POST, PATCH, DELETE)} method 
+ * @param {API url link} link 
+ * @param {data send with POST, PATCH} data 
+ * @param {redirect to route} router 
+ * @param {User auth cookie} cookie 
+ * @returns 
  */
 const HttpRequest = async (method, link, data, router, cookie) => {
     const options = {
@@ -22,6 +26,7 @@ const HttpRequest = async (method, link, data, router, cookie) => {
     const result = await res.json();
     console.log(result)
     Router.push(router)
+    return result;
 }
 
 export default HttpRequest
