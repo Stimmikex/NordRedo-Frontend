@@ -2,6 +2,7 @@ import React from 'react'
 import Router from "next/router"
 import userPop from '../../../styles/UserPopup.module.scss'
 import userStyle from '../Users.module.scss'
+import HttpRequest from '../../Utils/HttpRequest'
 
 const {
     NEXT_PUBLIC_API_URL: apiUrl,
@@ -21,19 +22,7 @@ const DeleteUser = ({ user, cookie }) => {
       }
 
     const deleteUser = async (id) => {
-
-        const options = {
-            method: 'DELETE',
-            headers: {
-                cookie,
-                'Content-Type': 'application/json',
-            },
-            credentials: 'include',
-        }
-
-        const res = await fetch(`${apiUrl}/users/${id}`, options)
-
-        await res.json()
+        HttpRequest('DELETE', `${apiUrl}/users/${id}`, null, 'members', cookie)
     }
     const submitDelete = (id) => {
         deleteUser(id);

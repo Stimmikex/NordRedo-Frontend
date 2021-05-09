@@ -13,21 +13,7 @@ const UpdateUser = ({ user, roles, cookie }) => {
         setIsOpenChange(false)
       }
     const updateUserRole = async (userId, roleId) => {
-
-        const options = {
-            method: 'PATCH',
-            headers: {
-                cookie,
-                'Content-Type': 'application/json',
-            },
-            credentials: 'include',
-        }
-
-        const res = await fetch(`https://nordredo-backend.herokuapp.com/users/${userId}/${roleId}`, options)
-
-        console.log(res)
-
-        await res.json();
+        HttpRequest('PATCH', `${apiUrl}/users/${userId}/${roleId}`, null, 'members', cookie)
     }
     const submitUpdate = (userId, roleId) => {
         updateUserRole(userId, roleId);
