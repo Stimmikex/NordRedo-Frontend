@@ -41,6 +41,7 @@ const Event = ({ event, types, user, cookie}) => {
                 cookie,
                 'Content-Type': 'application/json',
             },
+            credentials: 'include',
             body: JSON.stringify(data),
         }
         const res = await fetch(`${apiUrl}/event/update/${event.id}`, options)
