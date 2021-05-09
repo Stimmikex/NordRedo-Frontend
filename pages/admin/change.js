@@ -28,7 +28,7 @@ const change = ({ gov, users, user }) => {
 
 export async function getServerSideProps(ctx) {
     const cookie = ctx.req.headers.cookie;
-    const res = await fetch(`${apiUrl}/admin/gov`, { 
+    const res = await fetch(`${apiUrl}/admin/gov`, {
         headers: { 
             cookie: cookie,
         }
