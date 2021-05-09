@@ -3,7 +3,7 @@ import Router from "next/router"
 import userPop from '../../../styles/UserPopup.module.scss'
 import userStyle from '../Users.module.scss'
 
-const UpdateUser = ({ user, roles }) => {
+const UpdateUser = ({ user, roles, cookie }) => {
     const [isOpenChange, setIsOpenChange] = React.useState()
     let OpenPopup = (type) => {
         setIsOpenChange(true)

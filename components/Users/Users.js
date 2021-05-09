@@ -32,8 +32,8 @@ const Users = ({ user, roles, type, gover, cookie }) => {
                     </div>
                 ) : (
                     <div>
-                        <DeleteUser user={user}></DeleteUser>
-                        <UpdateUser user={user} roles={roles}></UpdateUser>
+                        <DeleteUser user={user} cookie={}></DeleteUser>
+                        <UpdateUser user={user} roles={roles} cookie={cookie}></UpdateUser>
                     </div>
                 )
             }

@@ -7,7 +7,7 @@ const {
     NEXT_PUBLIC_API_URL: apiUrl,
   } = process.env;
 
-const DeleteUser = ({ user }) => {
+const DeleteUser = ({ user, cookie }) => {
     const [isOpenDelete, setIsOpenDelete] = React.useState()
 
     let OpenPopup = () => {
