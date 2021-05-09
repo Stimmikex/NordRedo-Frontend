@@ -5,12 +5,14 @@ import Router from 'next/router'
  * @param {Api url link} link 
  * @param {data from the user} data 
  */
-const HttpRequest = async (method, link, data, router) => {
+const HttpRequest = async (method, link, data, router, cookie) => {
     const options = {
         method: method,
         headers: {
+            cookie,
             'Content-Type': 'application/json',
         },
+        credentials: 'include',
     }
 
     const res = await fetch(link, options)

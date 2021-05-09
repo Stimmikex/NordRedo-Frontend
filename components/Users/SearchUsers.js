@@ -7,7 +7,7 @@ const {
     NEXT_PUBLIC_API_URL: apiUrl,
   } = process.env;
 
-const SearchUsers = ({ users, roles, type, gover }) => {
+const SearchUsers = ({ users, roles, type, gover, cookie }) => {
     let [search, setSearch] = React.useState(users)
 
     const handleChange = async (e) => {
@@ -24,7 +24,7 @@ const SearchUsers = ({ users, roles, type, gover }) => {
             <div className={userStyles.userListContainer}>
                 {search.map((user) => {
                 return (
-                    <User user={user} key={user.id} roles={roles} type={type} gover={gover}></User>
+                    <User user={user} key={user.id} roles={roles} type={type} gover={gover} cookie={cookie}></User>
                 )
                 })}
             </div>

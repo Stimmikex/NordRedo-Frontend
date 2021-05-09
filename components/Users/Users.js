@@ -8,9 +8,9 @@ const {
     NEXT_PUBLIC_API_URL: apiUrl,
   } = process.env;
 
-const Users = ({ user, roles, type, gover }) => {
+const Users = ({ user, roles, type, gover, cookie }) => {
     const changeGov = () => {
-        HttpRequest('PATCH', `${apiUrl}/admin/gov/change/${user.id}/${gover.id}`, null, 'change')
+        HttpRequest('PATCH', `${apiUrl}/admin/gov/change/${user.id}/${gover.id}`, null, 'change', cookie)
     }
     return (
         <div className={userStyle.userContainer}>

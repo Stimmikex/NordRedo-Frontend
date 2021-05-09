@@ -6,7 +6,7 @@ const memberList = ({ users, roles }) => {
     return (
         <div>
             <h1>Members</h1>
-            <SearchUsers users={users} roles={roles}></SearchUsers>
+            <SearchUsers users={users} roles={roles} cookie={cookie}></SearchUsers>
         </div>
     )
 }
@@ -36,6 +36,7 @@ export async function getServerSideProps(ctx) {
             users,
             roles,
             user,
+            cookie,
         },
     }
 }
