@@ -2,6 +2,7 @@ import React from 'react'
 import Router from "next/router"
 import userPop from '../../../styles/UserPopup.module.scss'
 import userStyle from '../Users.module.scss'
+import HttpRequest from '../../Utils/HttpRequest'
 
 const UpdateUser = ({ user, roles, cookie }) => {
     const [isOpenChange, setIsOpenChange] = React.useState()
