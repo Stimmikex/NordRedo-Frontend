@@ -15,7 +15,7 @@ const change = ({ gov, users, user }) => {
             return (
                 <div className={govStyles.govContainer}>
                     <h2>{gover.title}</h2>
-                    <img src={`../../govProfilImages/${gover.title}.jpg`} alt={gover.username}></img>
+                    <img src={`../../govProfilImages/${gover.username}.jpg`} alt={gover.username}></img>
                     <p>{gover.username}</p>
                     <p>Year: {gover.year}</p>
                     <UpdateGovernment gover={gover} users={users}></UpdateGovernment>

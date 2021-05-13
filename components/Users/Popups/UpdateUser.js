@@ -20,7 +20,7 @@ const UpdateUser = ({ user, roles, cookie }) => {
       }
     const updateUserRole = async (userId, roleId) => {
        const res = await HttpRequest('PATCH', `${apiUrl}/users/${userId}/${roleId}`, null, cookie)
-       Router.reload('/admin/members')
+       Router.reload()
     }
     const submitUpdate = (userId, roleId) => {
         updateUserRole(userId, roleId);

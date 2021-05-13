@@ -3,6 +3,7 @@ import UpdateUser from './Popups/UpdateUser';
 import DeleteUser from './Popups/DeleteUser';
 import HttpRequest from '../Utils/HttpRequest.js';
 import userStyle from './Users.module.scss';
+import Router from "next/router"
 
 const {
     NEXT_PUBLIC_API_URL: apiUrl,
@@ -11,6 +12,7 @@ const {
 const Users = ({ user, roles, type, gover, cookie }) => {
     const changeGov = async () => {
         HttpRequest('PATCH', `${apiUrl}/admin/gov/change/${user.id}/${gover.id}`, null, 'change', cookie)
+        Router.reload()
     }
     return (
         <div className={userStyle.userContainer}>

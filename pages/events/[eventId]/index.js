@@ -54,7 +54,7 @@ const Event = ({ event, signups, signCount, user, cookie }) => {
             { event.signup && ifUserExists(user.user) && checkIfRegistered() && validRegisterByTime(event) ? 
                 <div className={eventStyles.event_container_sign}>
                     <form onSubmit={e => SigninUser(router, event, user, cookie)}>
-                        <button type='submit'>Signup</button>
+                        <button type='submit' onclick={e => SigninUser(router, event, user, cookie)}>Signup</button>
                     </form>
                 </div>
                 : 
@@ -80,14 +80,12 @@ export async function getServerSideProps({ params, req }) {
     const resCount = await fetch(`${apiUrl}/event/count/${params.eventId}`);
     const signCount= await resCount.json();
     const cookie = req.headers.cookie;
-    console.log(cookie);
     const resUser = await fetch(`${apiUrl}/users/me`, {
       headers: {
         cookie: cookie,
       }
     })
     const user = await resUser.json()
-    console.log(user);
     return {
         props: {
             event,

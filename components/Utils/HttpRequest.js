@@ -18,7 +18,9 @@ const HttpRequest = async (method, link, data, cookie) => {
     }
 
     const res = await fetch(link, options)
+    console.log(res)
     const result = await res.json();
+    console.log(result)
     return result;
 }
 
