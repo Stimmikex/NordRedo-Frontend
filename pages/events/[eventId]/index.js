@@ -79,7 +79,7 @@ export async function getServerSideProps({ params, req }) {
     const signups = await resSign.json();
     const resCount = await fetch(`${apiUrl}/event/count/${params.eventId}`);
     const signCount= await resCount.json();
-    const cookie = req.headers.cookie;
+    const cookie = req.headers.cookie || null;
     const resUser = await fetch(`${apiUrl}/users/me`, {
       headers: {
         cookie: cookie,
