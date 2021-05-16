@@ -32,7 +32,7 @@ const Event = ({ event, types, user, cookie}) => {
             endDate: update.target.endDate.value === "" ? null : toDateTime(new Date(update.target.endDate.value)),
             event_type_id: update.target.event_type_id.value,
             signup: Boolean(update.target.signup.checked),
-            user: user.user.id,
+            user: user.id,
         };
 
         const options = {

@@ -21,7 +21,7 @@ const EventAddForm = ({ types, user, cookie }) => {
             endDate: event.target.endDate.value === "" ? null : toDateTime(new Date(event.target.endDate.value)),
             event_type_id: event.target.event_type_id.value,
             signup: Boolean(event.target.signup.checked),
-            user: user.user.id,
+            user: user.id,
         };
 
         const options = {
