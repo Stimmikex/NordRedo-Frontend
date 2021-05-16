@@ -17,8 +17,8 @@ const SignupList = ({ signup, style, user, event, cookie }) => {
                 <li className={signupList.inn}>{signup.username} <button onClick={e => SignoutUser(router, event, user, cookie)}>Signout</button></li>
             :
                 <li className={signupList.inn}>{signup.username}</li>  
-        :  ifUserExists(user.user) && signup.id === user.user.id ? 
-                <li className={signupList.waiting}>{signup.username} <button onClick={SignoutUser}>Signout</button></li>
+        :  ifUserExists(user.user) && signup.id === user.user.id && validRegisterByTime(event) ? 
+                <li className={signupList.waiting}>{signup.username} <button onClick={e => SignoutUser(router, event, user, cookie)}>Signout</button></li>
             :
                 <li className={signupList.waiting}>{signup.username}</li>
     )
