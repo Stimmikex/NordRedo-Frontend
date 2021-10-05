@@ -41,12 +41,17 @@ const EventList = ({ events, get, user }) => {
             </div>
             )
     }
+    if (typeof filterEvents(events[0]) === 'undefined') {
+        return (
+            <div><p>No active events</p></div>
+        )
+    }
     return (
         <div className={eventStyles.eventList}>
             {events.map((event) => {
-            return (
-                filterEvents(event)
-            )
+                return (
+                    filterEvents(event)
+                )
             })}
         </div>
     )
