@@ -47,8 +47,8 @@ export default function Events({ events, user, types }) {
                 }
               </select>
             </div>
-          </div> */}
-          <button className={eventSearch.eventSearch_searchBtn}>Search</button>
+          </div>
+          <button className={eventSearch.eventSearch_searchBtn}>Search</button> */}
         </div>
         <div>
            {

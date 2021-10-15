@@ -42,22 +42,39 @@ const EventList = ({ events, get, user }) => {
             )
     }
     /**
-     * Checks if there are no active events in the 
+     * checkIfFilterEmpty(events)
+     * @param {Events Object} events 
+     * @returns true or false depending on if events are active.
      */
-    if (typeof filterEvents(events[0]) === 'undefined') {
+    const checkIfFilterEmpty = (events) => {
+        let counter = 0;
+        events.map((event) => {
+            if (typeof filterEvents(event) !== 'undefined') {
+                counter += 1;
+            }
+        })
+        if (counter === 0) {
+            return false;
+        }
+        return true;
+    }
+    if (checkIfFilterEmpty(events)) {
         return (
-            <div><p>No active events</p></div>
+            <div className={eventStyles.eventList}>
+                {events.map((event) => {
+                    return (
+                        filterEvents(event)
+                    )
+                })}
+            </div>
+        )
+    } else {
+        return (
+            <div className={eventStyles.eventList}>
+                <p>No Events active</p>
+            </div>
         )
     }
-    return (
-        <div className={eventStyles.eventList}>
-            {events.map((event) => {
-                return (
-                    filterEvents(event)
-                )
-            })}
-        </div>
-    )
 }
 
 export default EventList
