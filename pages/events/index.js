@@ -12,7 +12,7 @@ export default function Events({ events, user, types }) {
 
   const handleChange = async (e) => {
       const test = e.target.value;
-      const res = await fetch(`${apiUrl}/events/find/?name=${test}`);
+      const res = await fetch(`${apiUrl}/event/search/?title=${test}&postdate=ASC&type=viso`);
       const results = await res.json();
       console.log(results)
       setSearch(results);
@@ -23,13 +23,9 @@ export default function Events({ events, user, types }) {
         <div className={eventSearch.eventSearch}>
           <h1>Event Search</h1>
           <div className={eventSearch.eventSearch_text}>
-            <input type="text" placeholder="Search Name" onChange={handleChange}></input>
+            <input type="text" placeholder="Search title" onChange={handleChange}></input>
           </div>
-          <div className={eventSearch.eventSearch_addons}>
-            <div className={eventSearch.eventSearch_addons_active}>
-              <label>Active: </label>
-              <input type="checkbox"></input>
-            </div>
+          {/* <div className={eventSearch.eventSearch_addons}>
             <div className={eventSearch.eventSearch_addons_post}>
               <label>Postdate: </label>
               <select>
@@ -42,7 +38,6 @@ export default function Events({ events, user, types }) {
               <label>Type: </label>
               <select>
                 <option selected>All</option>
-                {console.log(types)}
                 {
                   types.map((type) => {
                     return (
@@ -52,10 +47,18 @@ export default function Events({ events, user, types }) {
                 }
               </select>
             </div>
-          </div>
+          </div> */}
           <button className={eventSearch.eventSearch_searchBtn}>Search</button>
         </div>
-        <EventList events={events} get={"All"} user={user}></EventList>
+        <div>
+           {
+            search.length == 0 ? (
+              <p>No Events found</p>
+            ) : (
+              <EventList events={search} user={user}></EventList>
+            )
+           }
+        </div>
       </div>
   )
 }

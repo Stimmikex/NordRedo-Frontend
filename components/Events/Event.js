@@ -31,9 +31,9 @@ const Event = ({ event }) => {
                         </div>
                         <div className={eventStyles.eventContainer_info_location}>
                             <div className={eventStyles.eventContainer_info_location_mapouter}>
-                                <div class="gmap_canvas">
+                                {/* <div class="gmap_canvas">
                                     <iframe src={`https://maps.google.com/maps?q=${event.location}&t=&z=13&ie=UTF8&iwloc=&output=embed`} frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                         <div className={eventStyles.eventContainer_info_poster}>

@@ -41,6 +41,9 @@ const EventList = ({ events, get, user }) => {
             </div>
             )
     }
+    /**
+     * Checks if there are no active events in the 
+     */
     if (typeof filterEvents(events[0]) === 'undefined') {
         return (
             <div><p>No active events</p></div>
