@@ -1,6 +1,10 @@
 import React from 'react'
 import StoreAddForm from '../../components/Store/StoreAddForm.js'
 
+const {
+    NEXT_PUBLIC_API_URL: apiUrl,
+  } = process.env;
+
 const add = ({ user }) => {
     return (
         <StoreAddForm />
@@ -8,10 +12,10 @@ const add = ({ user }) => {
 }
 
 export async function getServerSideProps(ctx) {
-    const res = await fetch(`https://nordredo-backend.herokuapp.com/admin/ads`);
-    const getAds = await res.json();
+    const res = await fetch(`${apiUrl}/admin/ads`);
+    const ads = await res.json();
     const cookie = ctx.req.headers.cookie;
-    const resUser = await fetch('https://nordredo-backend.herokuapp.com/users/me', {
+    const resUser = await fetch(`${apiUrl}/users/me`, {
     headers: { 
         cookie: cookie,
     }
@@ -19,7 +23,7 @@ export async function getServerSideProps(ctx) {
     const user = await resUser.json()
     return {
         props: {
-            getAds,
+            ads,
             user,
         },
     }

@@ -1,0 +1,17 @@
+.adsContainer {
+    display: flex;
+    flex-direction: column;
+
+}
+.ads {
+    display: flex;
+    justify-content: center;
+    .ad {
+        display: flex;
+        width: 10em;
+        img {
+            height: 100%;
+            width: 100%;
+        }
+    }
+}
