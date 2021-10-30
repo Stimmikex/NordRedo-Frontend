@@ -13,11 +13,11 @@ const SignupList = ({ signup, style, user, event, cookie }) => {
 
     return (
         style == "inn" ? 
-            ifUserExists(user.user) && signup.id === user.user.id && validRegisterByTime(event) ? 
+            ifUserExists(user) && signup.id === user.id && validRegisterByTime(event) ? 
                 <li className={signupList.inn}>{signup.username} <button onClick={e => SignoutUser(router, event, user, cookie)}>Signout</button></li>
             :
                 <li className={signupList.inn}>{signup.username}</li>  
-        :  ifUserExists(user.user) && signup.id === user.user.id && validRegisterByTime(event) ? 
+        :  ifUserExists(user) && signup.id === user.id && validRegisterByTime(event) ? 
                 <li className={signupList.waiting}>{signup.username} <button onClick={e => SignoutUser(router, event, user, cookie)}>Signout</button></li>
             :
                 <li className={signupList.waiting}>{signup.username}</li>
