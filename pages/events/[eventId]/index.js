@@ -19,7 +19,7 @@ const Event = ({ event, signups, signCount, user, cookie }) => {
 
     const checkIfRegistered = () => {
         for (let i = 0; i < signups.length; i+=1) {
-            if(signups[i].id === user.user.id) {
+            if(signups[i].id === user.id) {
                 return false;
             }
         }
@@ -51,10 +51,10 @@ const Event = ({ event, signups, signCount, user, cookie }) => {
                     <iframe src={`https://maps.google.com/maps?q=${event.location}&t=&z=13&ie=UTF8&iwloc=&output=embed`} frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0"></iframe>
                 </div>
             </div>
-            { event.signup && ifUserExists(user.user) && checkIfRegistered() && validRegisterByTime(event) ? 
+            { event.signup && ifUserExists(user) && checkIfRegistered() && validRegisterByTime(event) ? 
                 <div className={eventStyles.event_container_sign}>
                     <form onSubmit={e => SigninUser(router, event, user, cookie)}>
-                        <button type='submit' onclick={e => SigninUser(router, event, user, cookie)}>Signup</button>
+                        <button type="submit">Signup</button>
                     </form>
                 </div>
                 : 
