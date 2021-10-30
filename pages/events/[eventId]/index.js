@@ -43,8 +43,12 @@ const Event = ({ event, signups, signCount, user, cookie }) => {
                 <p></p>
             }
             <div>
-                <Countdown start={event.startdate}></Countdown>
-                <p>End: {event.enddate}</p>
+                <div>
+                    <p><b>Signup Countdown:</b> <Countdown start={event.startdate}></Countdown> </p>
+                </div>
+                <div>
+                    <p><b>End of Signup:</b> <Countdown start={event.enddate}></Countdown> </p>
+                </div>
             </div>
             <div>
                 <div className={eventStyles.event_container_iframe}>
