@@ -42,7 +42,7 @@ function Countdown({ start }) {
   });
   return (
     <div>
-      <p>{timerComponents.length ? timerComponents : <span>Time's up!</span>}</p>
+      <p>{timerComponents.length ? timerComponents : <p></p>}</p>
     </div>
   );
 }

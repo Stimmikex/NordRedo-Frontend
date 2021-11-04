@@ -28,7 +28,6 @@ const Event = ({ event, signups, signCount, user, cookie }) => {
     return (
         <div className={eventStyles.event_container}>
             <div>
-                {console.log(user)}
                 <p>{formatDate(event.date)}</p>
             </div>
             <div>
@@ -42,14 +41,24 @@ const Event = ({ event, signups, signCount, user, cookie }) => {
                 :
                 <p></p>
             }
-            <div>
+            {
+                event.signup && ((new Date(event.startdate) - new Date() < 0) && (new Date(event.enddate) - new Date() > 0))? 
                 <div>
-                    <p><b>Signup Countdown:</b> <Countdown start={event.startdate}></Countdown> </p>
+                    <div>
+                        {
+                            (new Date(event.startdate) - new Date() < 0) ?
+                                <p><b>Signup!</b></p>
+                            :
+                                <p><b>Signup Countdown:</b> <Countdown start={event.startdate}></Countdown> </p>
+                        }
+                    </div>
+                    <div>
+                        <p><b>End of Signup:</b> <Countdown start={event.enddate}></Countdown> </p>
+                    </div>
                 </div>
-                <div>
-                    <p><b>End of Signup:</b> <Countdown start={event.enddate}></Countdown> </p>
-                </div>
-            </div>
+                :
+                <p></p>
+            }
             <div>
                 <div className={eventStyles.event_container_iframe}>
                     <iframe src={`https://maps.google.com/maps?q=${event.location}&t=&z=13&ie=UTF8&iwloc=&output=embed`} frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0"></iframe>
@@ -62,7 +71,10 @@ const Event = ({ event, signups, signCount, user, cookie }) => {
                     </form>
                 </div>
                 : 
-                <p>Login to signup</p>
+                    user ? 
+                        <p></p>
+                    :
+                        <p>Login to signup</p>
             }
             { event.signup ? 
                 <div>
