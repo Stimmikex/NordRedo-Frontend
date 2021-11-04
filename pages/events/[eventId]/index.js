@@ -1,5 +1,6 @@
 import SignupList from '../../../components/Signups/SignupList.js';
 import Countdown from '../../../components/Countdown.js';
+import { getUserWithCookie } from '../../../components/fetchUserToken.js'
 import eventStyles from '../../../styles/Event.module.scss';
 import dateFormat from 'dateformat';
 import { useRouter } from 'next/router';
@@ -28,6 +29,7 @@ const Event = ({ event, signups, signCount, user, cookie }) => {
     return (
         <div className={eventStyles.event_container}>
             <div>
+                {console.log(user)}
                 <p>{formatDate(event.date)}</p>
             </div>
             <div>
@@ -88,20 +90,15 @@ const Event = ({ event, signups, signCount, user, cookie }) => {
     )
 }
 
-export async function getServerSideProps({ params, req }) {
-    const res = await fetch(`${apiUrl}/event/${params.eventId}`);
+export async function getServerSideProps(ctx) {
+    const res = await fetch(`${apiUrl}/event/${ctx.query.eventId}`);
     const event = await res.json();
-    const resSign = await fetch(`${apiUrl}/event/registered/${params.eventId}`);
+    const resSign = await fetch(`${apiUrl}/event/registered/${ctx.query.eventId}`);
     const signups = await resSign.json();
-    const resCount = await fetch(`${apiUrl}/event/count/${params.eventId}`);
+    const resCount = await fetch(`${apiUrl}/event/count/${ctx.query.eventId}`);
     const signCount= await resCount.json();
-    const cookie = req.headers.cookie || null;
-    const resUser = await fetch(`${apiUrl}/users/me`, {
-      headers: {
-        cookie: cookie,
-      }
-    })
-    const user = await resUser.json()
+    const cookie = ctx.req.headers.cookie || null;
+    const user = await getUserWithCookie(ctx);
     return {
         props: {
             event,

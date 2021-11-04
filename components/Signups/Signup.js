@@ -10,7 +10,6 @@ const {
 
 const SignupList = ({ signup, style, user, event, cookie }) => {
     const router = useRouter();
-
     return (
         style == "inn" ? 
             ifUserExists(user) && signup.id === user.id && validRegisterByTime(event) ? 
