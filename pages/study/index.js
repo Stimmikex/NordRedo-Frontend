@@ -2,6 +2,7 @@ import { getUserWithCookie } from '../../components/fetchUserToken.js'
 import StudyList from '../../components/Study/StudyList.js'
 import Study from './Study.module.scss'
 import React from 'react'
+import Link from 'next/link';
 
 const {
   NEXT_PUBLIC_API_URL: apiUrl,
@@ -15,6 +16,9 @@ export default function Events({ user, classes }) {
           </div>
           <div className={Study.classContainer}>
             <h1>Study</h1>
+            <Link href='/study/add'>
+              <button>Add Class</button>
+            </Link>
             <StudyList classes={classes}></StudyList>
           </div>
       </div>
