@@ -15,6 +15,9 @@ export default function Events({ user, classes, year, notes }) {
           </div>
           <div className={Study.classContainer}>
             <h1>{year.name}</h1>
+            <div>
+              <button>Add Notes</button>
+            </div>
             <NoteList classer={classes} year={year} notes={notes} ></NoteList>
           </div>
       </div>

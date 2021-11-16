@@ -1,16 +1,17 @@
 import React from 'react';
 import Link from 'next/link';
-import Study from '../../pages/study/Study.module.scss'
+import YearStyle from './Year.module.scss'
 
 const StudyList = ({ years, classer }) => {
     return (
-        <div>
+        <div className={YearStyle.yearContainer}>
             {
                 years.map((year) => {
                     return (
                         <Link href='/study/[classId]/year/[yearId]' as={`/study/${classer.id}/year/${year.id}`}>
-                            <div>
+                            <div className={YearStyle.year}>
                                 <h1>{year.name}</h1>
+                                <p>Number of notes: </p>
                             </div>
                         </Link>
                     )

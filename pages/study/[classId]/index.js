@@ -14,6 +14,9 @@ export default function Events({ user, classer, years }) {
             </div>
             <h1>{classer.name}</h1>
             <h2>Here are some years that have notes</h2>
+            <div>
+              <button>Add Year</button>
+            </div>
             <YearList years={years} classer={classer}></YearList>
       </div>
   )
