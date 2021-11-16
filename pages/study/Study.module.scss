@@ -5,9 +5,7 @@
 .class {
     border: solid 1px black;
     width: 33%;
-    a {
-        display: flex;
-    }
+    display: flex;
     &__image {
         width: 30%;
     }

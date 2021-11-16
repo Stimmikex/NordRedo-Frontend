@@ -1,40 +1,41 @@
 import { getUserWithCookie } from '../../../components/fetchUserToken.js'
+import YearList from '../../../components/Study/YearList.js'
 import React from 'react'
 
 const {
   NEXT_PUBLIC_API_URL: apiUrl,
 } = process.env;
 
-export default function Events({ events, user, types }) {
+export default function Events({ user, classer, years }) {
   return (
       <div>
             <div>
                 <i>This area is all work in progress (visit Study branch to check on progress)</i>
             </div>
-            <h1>Class [Classname]</h1>
-            <div>
-                <h2>Name: [String name of notes]</h2>
-                <h3>Download documents</h3>
-                <p>Year: [String Year of class]</p>
-                <p>Link: [String Link]</p>
-                <p>Author: [String Username]</p>
-            </div>
+            <h1>{classer.name}</h1>
+            <h2>Here are some years that have notes</h2>
+            <YearList years={years} classer={classer}></YearList>
       </div>
   )
 }
 
-export async function getServerSideProps(ctx) {
-  const res = await fetch(`${apiUrl}`)
-  const events = await res.json()
-  const resType = await fetch(`${apiUrl}/event/types`);
-  const types = await resType.json();
-  const user = await getUserWithCookie(ctx);
-  console.log(events);
+export async function getServerSideProps({ params, req }) {
+  const resClass = await fetch(`${apiUrl}/study/class/${params.classId}`);
+  const classer = await resClass.json();
+  const resYear = await fetch(`${apiUrl}/study/class/${params.classId}/year`);
+  const years = await resYear.json();
+  const cookie = req.headers.cookie || null;
+  const resUser = await fetch(`${apiUrl}/users/me`, {
+    headers: {
+      cookie: cookie,
+    }
+  })
+  const user = await resUser.json()
   return {
     props: {
       user,
-      events,
-      types,
+      classer,
+      years,
     },
   }
 }
