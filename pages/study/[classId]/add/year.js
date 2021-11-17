@@ -1,5 +1,3 @@
-import NoteList from '../../../../../components/Study/NoteList.js'
-import Study from '../../../Study.module.scss'
 import React from 'react'
 
 const {
@@ -12,12 +10,8 @@ export default function Events({ user, classes, year, notes }) {
           <div>
               <i>This area is all work in progress (visit Study branch to check on progress)</i>
           </div>
-          <div className={Study.classContainer}>
-            <h1>{year.name}</h1>
-            <div>
-              <button>Add Notes</button>
-            </div>
-            <NoteList classer={classes} year={year} notes={notes} ></NoteList>
+          <div>
+            <h1>Add Note</h1>
           </div>
       </div>
   )

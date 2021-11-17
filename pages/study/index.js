@@ -8,7 +8,7 @@ const {
   NEXT_PUBLIC_API_URL: apiUrl,
 } = process.env;
 
-export default function Events({ user, classes }) {
+export default function Events({ user, classes, noteCount}) {
   return (
       <div>
           <div>
@@ -17,9 +17,9 @@ export default function Events({ user, classes }) {
           <div className={Study.classContainer}>
             <h1>Study</h1>
             <Link href='/study/add'>
-              <button>Add Class</button>
+              <button className={Study.classadd}>Add Class</button>
             </Link>
-            <StudyList classes={classes}></StudyList>
+            <StudyList classes={classes} noteCount={noteCount}></StudyList>
           </div>
       </div>
   )

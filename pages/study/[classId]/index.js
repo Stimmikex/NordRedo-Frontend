@@ -1,6 +1,7 @@
 import { getUserWithCookie } from '../../../components/fetchUserToken.js'
 import YearList from '../../../components/Study/YearList.js'
 import React from 'react'
+import Link from 'next/link';
 
 const {
   NEXT_PUBLIC_API_URL: apiUrl,
@@ -14,10 +15,10 @@ export default function Events({ user, classer, years }) {
             </div>
             <h1>{classer.name}</h1>
             <h2>Here are some years that have notes</h2>
-            <div>
-              <button>Add Year</button>
-            </div>
-            <YearList years={years} classer={classer}></YearList>
+            <Link href='/study/[classId]/year/add' as={`/study/${classer.id}/year/add`}>
+              <button>Add Class</button>
+            </Link>
+            <YearList years={years} classer={classer} ></YearList>
       </div>
   )
 }

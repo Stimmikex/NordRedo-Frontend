@@ -1,17 +1,22 @@
-.noteContainer {
+.classContainer {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
-.note {
+
+.classadd {
+    padding: 1em;
+}
+
+.class {
     margin: 1em;
     padding: 1em;
     width: 100%;
     border: solid black 1px;
     @media screen and (min-width: 800px) {
-        width: 50%;
+        width: 45%;
     }
     @media screen and (min-width: 1200px) {
-        width: 30%;
+        width: 28%;
     }
 }
