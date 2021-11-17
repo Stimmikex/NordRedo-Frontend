@@ -18,7 +18,16 @@ export default function Events({ user, classer, years }) {
             <Link href='/study/[classId]/year/add' as={`/study/${classer.id}/year/add`}>
               <button>Add Class</button>
             </Link>
-            <YearList years={years} classer={classer} ></YearList>
+            {console.log(years)}
+            {
+              years.length != 0 ?
+                <YearList years={years} classer={classer} ></YearList>
+              :
+                <div>
+                  <p>There are no years/notes for this class</p>
+                  <p>Contect your admin to add years/notes</p>
+                </div>
+            }
       </div>
   )
 }
