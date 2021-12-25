@@ -23,6 +23,10 @@ const menu = ({ user }) => {
             <Link href='/admin/ads'>
                 <button>Ads</button>
             </Link>
+            <p>Invite users</p>
+            <Link href='/admin/invite'>
+                <button>invite</button>
+            </Link>
         </div>
     )
 }
