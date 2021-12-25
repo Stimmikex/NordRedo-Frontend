@@ -1,4 +1,4 @@
-import Link from 'next/Link';
+import Link from 'next/link';
 import itemStyles from '../../styles/ItemList.module.scss';
 
 const Item = ({ item }) => {

@@ -1,15 +1,64 @@
+@import 'Utils.module.scss';
+
+.linkContainer {
+    height: 3em;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+} 
+.nav {
+    height: auto;
+    @media screen and (min-width: 600px) {
+        // height: 100vh;
+        background-color: rgb(69, 139, 69); 
+        background-size: cover;
+        background-position: center;
+    }
+}
 .nav_container {
     height: auto;
     flex-direction: column;
     display: none;
     position: absolute;
     width: 100%;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
     @media screen and (min-width: 600px) {
         height: auto;
         display: flex;
         flex-direction: row;
-        height: 10em;
+        height: $headerHight;
         position: relative;
+        color: white;
+    }
+    p {
+        display: flex;
+        flex-direction: row;
+        margin: 0;
+        align-items: center;
+        &:hover {
+            cursor: pointer;
+            background-color: rgb(1, 51, 6);
+            @media screen and (min-width: 600px) {
+                background-color: rgb(11, 185, 28);
+            }
+        }
+        .linkContainer {
+            p {
+                width: auto;
+                margin: 0;
+            }
+            i {
+                margin-left: 1em;
+            }
+        }
+    }
+    a {
+        padding: 1em;
+        display: block;
+        color: black;
+        text-decoration: none;
     }
     &_bar {
         display: flex;
@@ -24,69 +73,222 @@
             background-color: brown;
             i {
                 align-self: center;
+                cursor: pointer;
             }
             img {
                 width: 20%;
             }
         }
     }
-    background-color:rgb(74, 190, 123);
     &_home {
         display: flex;
         width: 100%;
+        p {
+            width: 100%;
+        }
         @media screen and (min-width: 600px) {
+            background-color: $headerTrans;
+            background: url('../public/nordLogo/nord-lit.svg');
+            background-position: center;
+            background-repeat: no-repeat;
+            svg {
+                display: none;
+            }
+        }
+        background-color: #28ca5a;
+        @media screen and (min-width: 600px) {
+            background-color: $headerTrans;
+            width: 25%;
+            flex-direction: column;
+            p {
+                display: flex;
+                flex-direction: row;
+                height: 100%;
+                a {
+                    height: 100%;
+                }
+            }
+        }
+        @media screen and (min-width: 800px) {
             width: 25%;
             flex-direction: column;
         }
-        background-color: aqua;
-        p {
-            margin: 1em;
+        i {
+            align-self: center;
         }
+        .linkContainer {
+            @media screen and (min-width: 600px) {
+                color: rgba(245, 222, 179, 0);
+            }
+        }
+        background-color: #28ca5a;
     }
     &_item {
         display: flex;
+        flex-direction: row;
+        background-color: $headerTrans;
         width: 100%;
         @media screen and (min-width: 600px) {
-            width: 25%;
+            width: 40%;
+            flex-direction: row;
+        }
+        i {
+            margin-left: 1em;
+            align-self: center;
         }
         &_event {
+            display: flex;
+            flex-direction: column;
             width: 50%;
-            background-color: aquamarine;
-            p {
-                margin: 1em;
+            background-color: #28e863;
+            @media screen and (min-width: 600px) {
+                display: none;
+                position: absolute;
+                width: 100%;
+                margin-top: $headerHight;
+                height: $headerHight+2;
+                left: 0;
+                background: rgb(171, 112, 23);
+                p {
+                    display: flex;
+                    flex-direction: row;
+                    height: 100%;
+                    width: 100%;
+                    border-bottom: solid black 1px;
+                    p  {
+                        border: none;
+                    }
+                    a {
+                        height: 100%;
+                    }
+                }
+            }
+        }
+        &_hidden {
+            display: none;
+            @media screen and (min-width: 600px) {
+                display: flex;
+                flex-direction: column;
+                width: 50%;
+                height: 100%;
+                p {
+                    height: 100%;
+                    width: 100%;
+                    justify-content: center;
+                }
             }
         }
         &_store {
+            display: flex;
+            flex-direction: column;
             width: 50%;
-            background-color: chartreuse;
-            p {
-                margin: 1em;
+            background-color: #0ebd44;
+            @media screen and (min-width: 600px) {
+                display: none;
+                position: absolute;
+                width: 100%;
+                margin-top: $headerHight;
+                height: $headerHight+2;
+                left: 0;
+                background: rgb(171, 112, 23);
+                p {
+                    display: flex;
+                    flex-direction: row;
+                    height: 100%;
+                    width: 100%;
+                    border-bottom: solid black 1px;
+                    p  {
+                        border: none;
+                    }
+                    a {
+                        height: 100%;
+                    }
+                }
             }
         }
     }
     &_about {
         display: flex;
+        flex-direction: column;
         width: 100%;
+        background-color: #28ca5a;
+        i {
+            align-self: center;
+        }
+        p {
+            width: 100%;
+        }
+        @media screen and (min-width: 600px) {
+            display: none;
+            position: absolute;
+            width: 100%;
+            margin-top: $headerHight;
+            height: $headerHight+2;
+            background: rgb(171, 112, 23);
+            p {
+                display: flex;
+                flex-direction: row;
+                height: 100%;
+                width: 100%;
+                border-bottom: solid black 1px;
+                p  {
+                    border: none;
+                }
+                a {
+                    height: 100%;
+                }
+            }
+        }
+        &_hidden {
+            background-color: $headerTrans;
+            display: none;
+            @media screen and (min-width: 600px) {
+                display: flex;
+                flex-direction: column;
+                width: 20%;
+                height: 100%;
+                p {
+                    height: 100%;
+                    width: 100%;
+                    justify-content: center;
+                }
+                i {
+                    margin-left: 1em;
+                }
+            }
+        }
+    }
+    &_admin {
+        display: flex;
+        width: 100%;
+        background-color: #10a73e;
+        i {
+            align-self: center;
+        }
+        p {
+            width: 100%;
+        }
         @media screen and (min-width: 600px) {
             width: 25%;
+            background-color: $headerTrans;
             flex-direction: column;
-        }
-        background-color: rgb(79, 134, 134);
-        p {
-            margin: 1em;
         }
     }
     &_login {
         display: flex;
         flex-direction: row;
         width: 100%;
+        background-color: #0d752d;
+        i {
+            align-self: center;
+        }
+        p {
+            width: 100%;
+        }
         @media screen and (min-width: 600px) {
             width: 25%;
+            background-color: $headerTrans;
             flex-direction: column;
-        }
-        background-color: darkolivegreen;
-        p {
-            margin: 1em;
         }
     }
 }

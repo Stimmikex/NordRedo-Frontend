@@ -1,0 +1,44 @@
+.eventSearch {
+    padding: 1em;
+    background-color: rgba(167, 207, 194, 0.308);
+    display: flex;
+    flex-direction: column;
+    &_text {
+        display: flex;
+        align-items: center;
+        input {
+            width: 100%;
+            height: 3em;
+        }
+    }
+    &_addons {
+        margin-bottom: 1em;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        &_active {
+            width: 100%;
+            input {
+                height: 3em;
+                width: 100%;
+            }
+        }
+        &_post {
+            width: 100%;
+            select {
+                height: 3em;
+                width: 100%;
+            }
+        }
+        &_type {
+            width: 100%;
+            select {
+                height: 3em;
+                width: 100%;
+            }
+        }
+    }
+    &_searchBtn {
+        height: 3em;
+    }
+}

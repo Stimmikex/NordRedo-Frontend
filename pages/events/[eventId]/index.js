@@ -1,57 +1,34 @@
 import SignupList from '../../../components/Signups/SignupList.js';
 import Countdown from '../../../components/Countdown.js';
 import eventStyles from '../../../styles/Event.module.scss';
-import dateFormat from 'dateFormat';
+import dateFormat from 'dateformat';
+import { useRouter } from 'next/router';
+import { SigninUser, validRegisterByTime } from '../../../lib/Signup/SignFunctions'
+import { ifUserExists } from '../../../components/NavFunctions'
 
 const {
-    REACT_APP_API_URL: apiUrl,
+    NEXT_PUBLIC_API_URL: apiUrl,
   } = process.env;
 
-const Event = ({ event, signups, signCount }) => {
-    const SigninUser = async signin => {
-        signin.preventDefault();
-
-
-        const options = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-        }
-        try {
-            const res = await fetch(`https://nordredo-backend.herokuapp.com/event/sign-in/${event.id}`, options)
-            console.log(res);
-            const result = await res.json()
-            console.log(result);
-        } catch (e) {
-            console.error(e);
-        }
-
-    }
-    const SignoutUser = async signout => {
-        signout.preventDefault();
-
-        const options = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-        }
-
-        const res = await fetch(`https://nordredo-backend.herokuapp.com/event/sign-out/${event.id}`, options)
-
-        console.log(res);
-        const result = await res.json()
-        console.log(result);
-    }
-    console.log(signCount);
+const Event = ({ event, signups, signCount, user, cookie }) => {
+    const router = useRouter();
 
     const formatDate = (eventDate) => {
         return dateFormat(eventDate, "dddd, mmmm dS, yyyy");
     }
+
+    const checkIfRegistered = () => {
+        for (let i = 0; i < signups.length; i+=1) {
+            if(signups[i].id === user.id) {
+                return false;
+            }
+        }
+        return true;
+    }
     return (
         <div className={eventStyles.event_container}>
             <div>
+                {console.log(user)}
                 <p>{formatDate(event.date)}</p>
             </div>
             <div>
@@ -71,25 +48,22 @@ const Event = ({ event, signups, signCount }) => {
             </div>
             <div>
                 <div className={eventStyles.event_container_iframe}>
-                    <iframe src={`https://maps.google.com/maps?q=${event.location}&t=&z=13&ie=UTF8&iwloc=&output=embed`} frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                    <iframe src={`https://maps.google.com/maps?q=${event.location}&t=&z=13&ie=UTF8&iwloc=&output=embed`} frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0"></iframe>
                 </div>
             </div>
-            { event.signup ? 
+            { event.signup && ifUserExists(user) && checkIfRegistered() && validRegisterByTime(event) ? 
                 <div className={eventStyles.event_container_sign}>
-                    <form onSubmit={SigninUser}>
-                        <button type='submit'>Signup</button>
-                    </form>
-                    <form onSubmit={SignoutUser}>
-                        <button type='submit'>SignOut</button>
+                    <form onSubmit={e => SigninUser(router, event, user, cookie)}>
+                        <button type="submit">Signup</button>
                     </form>
                 </div>
                 : 
-                <p></p>
+                <p>Login to signup</p>
             }
             { event.signup ? 
                 <div>
                     <h1>Signup List: </h1>
-                    <SignupList signups={signups} signed={event.seats}></SignupList>
+                    <SignupList signups={signups} signed={event.seats} user={user} event={event} cookie={cookie}></SignupList>
                 </div>
                 :
                 <p></p>
@@ -98,32 +72,28 @@ const Event = ({ event, signups, signCount }) => {
     )
 }
 
-export async function getStaticProps({ params }) {
-    const res = await fetch(`https://nordredo-backend.herokuapp.com/event/${params.eventId}`);
+export async function getServerSideProps({ params, req }) {
+    const res = await fetch(`${apiUrl}/event/${params.eventId}`);
     const event = await res.json();
-    const resSign = await fetch(`https://nordredo-backend.herokuapp.com/event/registered/${params.eventId}`);
+    const resSign = await fetch(`${apiUrl}/event/registered/${params.eventId}`);
     const signups = await resSign.json();
-    const resCount = await fetch(`https://nordredo-backend.herokuapp.com/event/count/${params.eventId}`);
+    const resCount = await fetch(`${apiUrl}/event/count/${params.eventId}`);
     const signCount= await resCount.json();
+    const cookie = req.headers.cookie || null;
+    const resUser = await fetch(`${apiUrl}/users/me`, {
+      headers: {
+        cookie: cookie,
+      }
+    })
+    const user = await resUser.json()
     return {
         props: {
             event,
             signups,
             signCount,
+            user,
+            cookie,
         },
-    }
-}
-
-export async function getStaticPaths() {
-    const res = await fetch('https://nordredo-backend.herokuapp.com/');
-    const events = await res.json();
-    const ids = events.map((event) => event.id);
-    const paths = ids.map((id) => ({ 
-        params: { eventId: id.toString() },
-     }));
-    return {
-        paths,
-        fallback: true,
     }
 }
 

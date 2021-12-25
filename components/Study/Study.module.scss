@@ -1,0 +1,22 @@
+.classContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.classadd {
+    padding: 1em;
+}
+
+.class {
+    margin: 1em;
+    padding: 1em;
+    width: 100%;
+    border: solid black 1px;
+    @media screen and (min-width: 800px) {
+        width: 45%;
+    }
+    @media screen and (min-width: 1200px) {
+        width: 28%;
+    }
+}

@@ -1,0 +1,17 @@
+.classContainer {
+    display: flex;
+    flex-direction: column;
+}
+.class {
+    border: solid 1px black;
+    width: 33%;
+    display: flex;
+    &__image {
+        width: 30%;
+    }
+    &__info {
+        width: 70%;
+        border-left: solid 1px black;
+        padding-left: 1em;
+    }
+}

@@ -1,6 +1,6 @@
-import Link from 'next/Link';
+import Link from 'next/link';
 import eventStyles from '../../styles/EventList.module.scss';
-import dateFormat from 'dateFormat';
+import dateFormat from 'dateformat';
 
 const Event = ({ event }) => {
     const formatDate = (eventDate) => {
@@ -10,8 +10,7 @@ const Event = ({ event }) => {
         return (str.length > n) ? str.substr(0, n-1) : str;
     };
     return (
-        <div className={eventStyles.eventContainer}>
-            <Link href='/events/[eventId]' as={`/events/${event.id}`}>
+        <Link href='/events/[eventId]' as={`/events/${event.id}`}>
             <a>
                 <ul>
                     <div className={eventStyles.eventContainer_image}>
@@ -32,9 +31,9 @@ const Event = ({ event }) => {
                         </div>
                         <div className={eventStyles.eventContainer_info_location}>
                             <div className={eventStyles.eventContainer_info_location_mapouter}>
-                                <div class="gmap_canvas">
+                                {/* <div class="gmap_canvas">
                                     <iframe src={`https://maps.google.com/maps?q=${event.location}&t=&z=13&ie=UTF8&iwloc=&output=embed`} frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                         <div className={eventStyles.eventContainer_info_poster}>
@@ -44,8 +43,7 @@ const Event = ({ event }) => {
                     </div>
                 </ul>
             </a>
-            </Link>
-        </div>
+        </Link>
     )
 }
 
