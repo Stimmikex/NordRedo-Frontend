@@ -1,4 +1,5 @@
 import SignupList from '../../../components/Signups/SignupList.js';
+import CarpoolList from '../../../components/Events/CarpoolList.js';
 import Countdown from '../../../components/Countdown.js';
 import { getUserWithCookie } from '../../../components/fetchUserToken.js'
 import eventStyles from '../../../styles/Event.module.scss';
@@ -83,6 +84,11 @@ const Event = ({ event, signups, signCount, user, cookie }) => {
                     <h1>Signup List: </h1>
                     <SignupList signups={signups} signed={event.seats} user={user} event={event} cookie={cookie}></SignupList>
                 </div>
+                :
+                <p></p>
+            }
+            { event.event_type === "viso" ?
+                <CarpoolList></CarpoolList>
                 :
                 <p></p>
             }
