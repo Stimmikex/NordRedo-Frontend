@@ -1,4 +1,5 @@
 import React from 'react'
+import AddCarpool from '../Users/Popups/AddCarpool'
 
 function Carpool({carpool, poolers}) {
     return (
@@ -6,11 +7,8 @@ function Carpool({carpool, poolers}) {
             <ul>
                 <li>Seats: {poolers.length}/{carpool.seats}</li>
                 <li>User: {carpool.username}</li>
-                {console.log(Array(Number(carpool.seats)))}
                 {
-                    [...Array(carpool.seats - poolers.length)].map((e, i) => 
-                        <button><img src={`../carpooling/carpool.png`} alt="image of a carpooling" /></button>
-                    )
+                    <AddCarpool carpool={carpool} poolers={poolers}></AddCarpool>
                 }
                 {
                     [...Array(poolers.length)].map((e, i) => 
