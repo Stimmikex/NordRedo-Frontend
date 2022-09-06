@@ -10,14 +10,16 @@ function Carpool({carpool, poolers, user, cookie}) {
                 {
                     <AddCarpool carpool={carpool} poolers={poolers} user={user} cookie={cookie}></AddCarpool>
                 }
-                {
-                    [...Array(poolers.length)].map((e, i) => 
-                        <div>
-                            <p>{poolers[0].username}</p>
-                            <img src={`../carpooling/carpoolred.png`} alt="image of a carpooling" />
-                        </div>
-                    )
-                }
+                <div>
+                    {
+                        [...Array(poolers.length)].map((e, i) => 
+                            <div>
+                                <p>{poolers[i].username}</p>
+                                <img src={`../carpooling/carpoolred.png`} alt="image of a carpooling" />
+                            </div>
+                        )
+                    }
+                </div>
             </ul>
         </div>
     )

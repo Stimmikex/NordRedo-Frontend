@@ -30,7 +30,6 @@ const Event = ({ event, signups, signCount, carpool, pooler, user, cookie }) => 
     return (
         <div className={eventStyles.event_container}>
             <div>
-                {console.log(user)}
                 <p>{formatDate(event.date)}</p>
             </div>
             <div>
@@ -74,22 +73,29 @@ const Event = ({ event, signups, signCount, carpool, pooler, user, cookie }) => 
                     </form>
                 </div>
                 : 
-                    user ? 
+                <div>
+                    {user ? 
                         <p></p>
                     :
                         <p>Login to signup</p>
+                    }
+                </div>
             }
             { event.signup ? 
                 <div>
                     <h1>Signup List: </h1>
-                    <SignupList signups={signups} signed={event.seats} user={user} event={event} cookie={cookie}></SignupList>
+                    <SignupList signups={signups} signed={event.seats} user={user} event={event} cookie={cookie} key={signups.id}></SignupList>
                 </div>
                 :
                 <p></p>
             }
-            { event.event_type === "viso" ?
-                <CarpoolList carpools={carpool} poolers={pooler} user={user} cookie={cookie}></CarpoolList>
+            {console.log(user.error)}
+            {!user.error ? 
+                event.event_type === "viso" ?
+                    <CarpoolList carpools={carpool} poolers={pooler} user={user} cookie={cookie} key={carpool.id}></CarpoolList>
                 :
+                    <p></p>
+            :
                 <p></p>
             }
         </div>

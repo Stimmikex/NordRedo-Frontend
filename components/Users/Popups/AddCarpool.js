@@ -1,7 +1,7 @@
 import React from 'react'
 import { useRouter } from "next/router"
 import userPop from '../../../styles/UserPopup.module.scss'
-import Carpool from '../../Events/Carpool';
+import HttpRequest from '../../Utils/HttpRequest'
 
 const {
     NEXT_PUBLIC_API_URL: apiUrl,
@@ -21,17 +21,19 @@ const AddCarpool = ({ carpool, poolers, user, cookie }) => {
       }
 
     const addCarpoolFunction = async (user, carpool) => {
+        console.log("Add:" + user)
+        console.log("CarpoolId: " + carpool)
         const data = {
             user_id: user,
             carpool_id: carpool
         }
         const res = await HttpRequest('POST', `${apiUrl}/event/join/carpool/${carpool}`, data, cookie)
-        Router.reload()
+        router.reload()
     }
     
-    const addCarpool = (userId) => {
-        addCarpoolFunction(userId);
-        Router.push(router.asPath)
+    const addCarpool = (userId, carpool) => {
+        addCarpoolFunction(userId, carpool);
+        router.push(router.asPath)
         ClosePopup();
     }
     
