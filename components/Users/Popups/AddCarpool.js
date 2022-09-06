@@ -1,10 +1,13 @@
 import React from 'react'
 import { useRouter } from "next/router"
 import userPop from '../../../styles/UserPopup.module.scss'
-import SearchUsers from '../SearchUsers.js';
 import Carpool from '../../Events/Carpool';
 
-const AddCarpool = ({ carpool, poolers }) => {
+const {
+    NEXT_PUBLIC_API_URL: apiUrl,
+  } = process.env;
+
+const AddCarpool = ({ carpool, poolers, user, cookie }) => {
     const [isOpenChange, setIsOpenChange] = React.useState(false)
     const router = useRouter()
 
@@ -16,6 +19,21 @@ const AddCarpool = ({ carpool, poolers }) => {
         setIsOpenChange(true)
         router.push(router.asPath)
       }
+
+    const addCarpoolFunction = async (user, carpool) => {
+        const data = {
+            user_id: user,
+            carpool_id: carpool
+        }
+        const res = await HttpRequest('POST', `${apiUrl}/event/join/carpool/${carpool}`, data, cookie)
+        Router.reload()
+    }
+    
+    const addCarpool = (userId) => {
+        addCarpoolFunction(userId);
+        Router.push(router.asPath)
+        ClosePopup();
+    }
     
     return (
         <div>
@@ -33,8 +51,8 @@ const AddCarpool = ({ carpool, poolers }) => {
                         <button onClick={ClosePopup}> X </button>
                     </div>
                     <div>
-                        <button>Yes</button>
-                        <button>No</button>
+                        <button onClick={e => addCarpool(user.id, carpool.id)}>Yes</button>
+                        <button onClick={ClosePopup}>No</button>
                     </div>
                 </div>
             </div>

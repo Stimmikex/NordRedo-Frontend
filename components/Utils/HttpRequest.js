@@ -14,6 +14,7 @@ const HttpRequest = async (method, link, data, cookie) => {
             cookie,
             'Content-Type': 'application/json',
         },
+        body: JSON.stringify(data), 
         credentials: 'include',
     }
 

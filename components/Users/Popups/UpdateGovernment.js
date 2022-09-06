@@ -14,8 +14,8 @@ const UpdateGovernment = ({ gover, users }) => {
         setIsOpenChange(true)
         Router.push({ shallow: true })
       }
-    
-      const submitUpdate = (userId, roleId) => {
+
+    const submitUpdate = (userId, roleId) => {
         updateUserRole(userId, roleId);
         ClosePopup();
     }
