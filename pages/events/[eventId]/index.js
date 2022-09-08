@@ -91,7 +91,7 @@ const Event = ({ event, signups, signCount, carpool, pooler, user, cookie }) => 
             }
             {!user.error ? 
                 event.event_type === "viso" ?
-                    <CarpoolList carpools={carpool} poolers={pooler} user={user} cookie={cookie} key={carpool.id}></CarpoolList>
+                    <CarpoolList event={event} carpools={carpool} poolers={pooler} user={user} cookie={cookie} key={carpool.id}></CarpoolList>
                 :
                     <p></p>
             :

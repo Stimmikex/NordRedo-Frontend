@@ -1,7 +1,8 @@
 import React from 'react'
+import AddCarpool from '../Users/Popups/Carpool/AddCarpool';
 import Carpool from './Carpool';
 
-function CarpoolList({carpools, poolers, user, cookie}) {
+function CarpoolList({event, carpools, poolers, user, cookie}) {
     return (
         <div>
             <h1>Carpool</h1>
@@ -10,7 +11,7 @@ function CarpoolList({carpools, poolers, user, cookie}) {
                     <Carpool carpool={carpool} key={carpool.id} poolers={poolers} user={user} cookie={cookie}></Carpool>
                 )
             })}
-            <button>Register as a carpooler</button>
+            <AddCarpool event={event} cookie={cookie} user={user}></AddCarpool>
         </div>
     )
 }

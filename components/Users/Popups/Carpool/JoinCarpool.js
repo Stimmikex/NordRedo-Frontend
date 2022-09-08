@@ -1,13 +1,13 @@
 import React from 'react'
 import { useRouter } from "next/router"
-import userPop from '../../../styles/UserPopup.module.scss'
-import HttpRequest from '../../Utils/HttpRequest'
+import userPop from '../../../../styles/UserPopup.module.scss'
+import HttpRequest from '../../../Utils/HttpRequest'
 
 const {
     NEXT_PUBLIC_API_URL: apiUrl,
   } = process.env;
 
-const AddCarpool = ({ carpool, poolers, user, cookie }) => {
+const JoinCarpool = ({ carpool, poolers, user, cookie }) => {
     const [isOpenChange, setIsOpenChange] = React.useState(false)
     const router = useRouter()
 
@@ -20,9 +20,7 @@ const AddCarpool = ({ carpool, poolers, user, cookie }) => {
         router.push(router.asPath)
       }
 
-    const addCarpoolFunction = async (user, carpool) => {
-        console.log("Add:" + user)
-        console.log("CarpoolId: " + carpool)
+    const addPoolerFunction = async (user, carpool) => {
         const data = {
             user_id: user,
             carpool_id: carpool
@@ -31,8 +29,8 @@ const AddCarpool = ({ carpool, poolers, user, cookie }) => {
         router.reload()
     }
     
-    const addCarpool = (userId, carpool) => {
-        addCarpoolFunction(userId, carpool);
+    const addPooler = (userId, carpool) => {
+        addPoolerFunction(userId, carpool);
         router.push(router.asPath)
         ClosePopup();
     }
@@ -53,7 +51,7 @@ const AddCarpool = ({ carpool, poolers, user, cookie }) => {
                         <button onClick={ClosePopup}> X </button>
                     </div>
                     <div>
-                        <button onClick={e => addCarpool(user.id, carpool.id)}>Yes</button>
+                        <button onClick={e => addPooler(user.id, carpool.id)}>Yes</button>
                         <button onClick={ClosePopup}>No</button>
                     </div>
                 </div>
@@ -63,4 +61,4 @@ const AddCarpool = ({ carpool, poolers, user, cookie }) => {
     )
 }
 
-export default AddCarpool
+export default JoinCarpool

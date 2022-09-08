@@ -1,5 +1,5 @@
 import React from 'react'
-import AddCarpool from '../Users/Popups/AddCarpool'
+import JoinCarpool from '../Users/Popups/Carpool/JoinCarpool'
 
 function Carpool({carpool, poolers, user, cookie}) {
     return (
@@ -9,7 +9,7 @@ function Carpool({carpool, poolers, user, cookie}) {
                 <li>User: {carpool.username}</li>
                 <div>
                 {
-                    <AddCarpool carpool={carpool} poolers={poolers} user={user} cookie={cookie}></AddCarpool>
+                    <JoinCarpool carpool={carpool} poolers={poolers} user={user} cookie={cookie}></JoinCarpool>
                 }
                     <div>
                     {
