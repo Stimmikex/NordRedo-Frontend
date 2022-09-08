@@ -1,7 +1,7 @@
 import React from 'react'
 import { useRouter } from "next/router"
-import userPop from '../../../../styles/UserPopup.module.scss'
-import HttpRequest from '../../../Utils/HttpRequest'
+import carpoolPop from './CarpoolStyle.module.scss'
+import HttpRequest from '../../Utils/HttpRequest'
 
 const {
     NEXT_PUBLIC_API_URL: apiUrl,
@@ -22,16 +22,13 @@ const AddCarpool = ({ event, cookie, user }) => {
       }
 
     const carpoolAddFunction = async (user, event) => {
-        console.log("seats: " + isSeats)
-        console.log("user: " + user.id)
-        console.log("event: " + event.id)
         const data = {
             seats: isSeats,
             user_id: user.id,
             event_id: event.id
         }
         const res = await HttpRequest('POST', `${apiUrl}/event/add/carpool/${event.id}`, data, cookie)
-        //router.reload()
+        router.reload()
     }
     
     const carpoolAdd = (user, event) => {
@@ -44,9 +41,9 @@ const AddCarpool = ({ event, cookie, user }) => {
         <div>
             <button onClick={OpenPopup}>Register a Carpool</button>
             {isOpenChange && (
-            <div className={userPop.containerpop}>
-                <div className={userPop.searchpop}>
-                    <div className={userPop.searchpop_header}>
+            <div className={carpoolPop.containerpop}>
+                <div className={carpoolPop.searchpop}>
+                    <div className={carpoolPop.searchpop_header}>
                         <p>Register a carpool</p>
                         <button onClick={ClosePopup}> X </button>
                     </div>

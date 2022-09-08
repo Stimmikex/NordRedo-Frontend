@@ -1,5 +1,6 @@
 import React from 'react'
-import JoinCarpool from '../Users/Popups/Carpool/JoinCarpool'
+import JoinCarpool from './Popups//JoinCarpool'
+import carpoolPop from './Popups/CarpoolStyle.module.scss'
 
 const {
     NEXT_PUBLIC_API_URL: apiUrl,
@@ -18,15 +19,15 @@ function Carpool({carpool, user, cookie}) {
         setPoolers(results);
       }
     return (
-        <div onLoad={e => getPoolers()}>
-            <ul>
-                <li>Seats: {poolers.length}/{carpool.seats}</li>
-                <li>User: {carpool.username}</li>
-                <div onLoad={getPoolers}>
-                {
-                    <JoinCarpool carpool={carpool} poolers={poolers} user={user} cookie={cookie}></JoinCarpool>
-                }
-                    <div>
+        <div onLoad={e => getPoolers()} className={carpoolPop.carpoolList}>
+            <div className={carpoolPop.carpoolListContainer}>
+                <p>Seats: {poolers.length}/{carpool.seats}</p>
+                <p>User: {carpool.username}</p>
+                <div className={carpoolPop.carpoolListContainer__main}>
+                    {
+                        <JoinCarpool carpool={carpool} poolers={poolers} user={user} cookie={cookie}></JoinCarpool>
+                    }
+                    <div className={carpoolPop.carpoolListContainer__taken}>
                     {
                         [...Array(poolers.length)].map((e, i) => 
                                 <p>{poolers[i].username}<img src={`../carpooling/carpoolred.png`} alt="image of a carpooling" /></p>
@@ -34,7 +35,7 @@ function Carpool({carpool, user, cookie}) {
                     }
                     </div>
                 </div>
-            </ul>
+            </div>
         </div>
     )
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import AddCarpool from '../Users/Popups/Carpool/AddCarpool';
+import AddCarpool from './Popups/AddCarpool';
 import Carpool from './Carpool';
 
 function CarpoolList({event, carpools, pooler, user, cookie}) {

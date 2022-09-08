@@ -1,7 +1,7 @@
 import React from 'react'
 import { useRouter } from "next/router"
-import userPop from '../../../../styles/UserPopup.module.scss'
-import HttpRequest from '../../../Utils/HttpRequest'
+import carpoolPop from './CarpoolStyle.module.scss'
+import HttpRequest from '../../Utils/HttpRequest'
 
 const {
     NEXT_PUBLIC_API_URL: apiUrl,
@@ -44,9 +44,9 @@ const JoinCarpool = ({ carpool, user, poolers, cookie }) => {
                     </button>)
             }
             {isOpenChange && (
-                <div className={userPop.containerpop}>
-                <div className={userPop.searchpop}>
-                    <div className={userPop.searchpop_header}>
+                <div className={carpoolPop.containerpop}>
+                <div className={carpoolPop.searchpop}>
+                    <div className={carpoolPop.searchpop_header}>
                         <p>Wanna join this Carpool?</p>
                         <button onClick={ClosePopup}> X </button>
                     </div>
