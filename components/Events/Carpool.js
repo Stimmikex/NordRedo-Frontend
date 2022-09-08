@@ -1,13 +1,28 @@
 import React from 'react'
 import JoinCarpool from '../Users/Popups/Carpool/JoinCarpool'
 
-function Carpool({carpool, poolers, user, cookie}) {
+const {
+    NEXT_PUBLIC_API_URL: apiUrl,
+  } = process.env;
+
+function Carpool({carpool, user, cookie}) {
+    let [poolers, setPoolers] = React.useState('')
+    const getPoolers = async (e) => {
+        const res = await fetch(`${apiUrl}/event/pooler/${carpool.id}`, {
+            headers: { 
+                cookie: cookie,
+            }
+        });
+        const results = await res.json();
+        console.log("res:" + results)
+        setPoolers(results);
+      }
     return (
-        <div>
+        <div onLoad={e => getPoolers()}>
             <ul>
                 <li>Seats: {poolers.length}/{carpool.seats}</li>
                 <li>User: {carpool.username}</li>
-                <div>
+                <div onLoad={getPoolers}>
                 {
                     <JoinCarpool carpool={carpool} poolers={poolers} user={user} cookie={cookie}></JoinCarpool>
                 }

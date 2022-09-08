@@ -9,6 +9,7 @@ const {
 
 const AddCarpool = ({ event, cookie, user }) => {
     const [isOpenChange, setIsOpenChange] = React.useState(false)
+    const [isSeats, setSeats] = React.useState('')
     const router = useRouter()
 
     const ClosePopup = () => {
@@ -21,12 +22,16 @@ const AddCarpool = ({ event, cookie, user }) => {
       }
 
     const carpoolAddFunction = async (user, event) => {
+        console.log("seats: " + isSeats)
+        console.log("user: " + user.id)
+        console.log("event: " + event.id)
         const data = {
-            user_id: user,
-            event_id: event
+            seats: isSeats,
+            user_id: user.id,
+            event_id: event.id
         }
-        const res = await HttpRequest('POST', `${apiUrl}/event/add/carpool/${event}`, data, cookie)
-        router.reload()
+        const res = await HttpRequest('POST', `${apiUrl}/event/add/carpool/${event.id}`, data, cookie)
+        //router.reload()
     }
     
     const carpoolAdd = (user, event) => {
@@ -47,8 +52,8 @@ const AddCarpool = ({ event, cookie, user }) => {
                     </div>
                     <div> 
                         <label>Seats: </label>
-                        <input type="number" max="16" min="1" required></input>
-                        <button onClick={e => carpoolAdd(user.id, event.id)}>Add Carpool</button>
+                        <input type="number" max="16" min="1" name='seats' required onChange={e => setSeats(e.target.value)}></input>
+                        <button onClick={e => carpoolAdd(user, event)}>Add Carpool</button>
                     </div>
                 </div>
             </div>

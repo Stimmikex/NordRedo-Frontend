@@ -7,7 +7,7 @@ const {
     NEXT_PUBLIC_API_URL: apiUrl,
   } = process.env;
 
-const JoinCarpool = ({ carpool, poolers, user, cookie }) => {
+const JoinCarpool = ({ carpool, user, poolers, cookie }) => {
     const [isOpenChange, setIsOpenChange] = React.useState(false)
     const router = useRouter()
 

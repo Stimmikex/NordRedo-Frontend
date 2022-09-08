@@ -12,7 +12,7 @@ const {
     NEXT_PUBLIC_API_URL: apiUrl,
   } = process.env;
 
-const Event = ({ event, signups, signCount, carpool, pooler, user, cookie }) => {
+const Event = ({ event, signups, signCount, carpool, user, cookie }) => {
     const router = useRouter();
 
     const formatDate = (eventDate) => {
@@ -91,7 +91,7 @@ const Event = ({ event, signups, signCount, carpool, pooler, user, cookie }) => 
             }
             {!user.error ? 
                 event.event_type === "viso" ?
-                    <CarpoolList event={event} carpools={carpool} poolers={pooler} user={user} cookie={cookie} key={carpool.id}></CarpoolList>
+                    <CarpoolList event={event} carpools={carpool} user={user} cookie={cookie} key={carpool.id}></CarpoolList>
                 :
                     <p></p>
             :
@@ -110,8 +110,6 @@ export async function getServerSideProps(ctx) {
     const signCount= await resCount.json();
     const resCarpool = await fetch(`${apiUrl}/event/carpool/${ctx.query.eventId}`);
     const carpool= await resCarpool.json();
-    const resPooler = await fetch(`${apiUrl}/event/pooler/${ctx.query.eventId}`);
-    const pooler= await resPooler.json();
     const cookie = ctx.req.headers.cookie || null;
     const user = await getUserWithCookie(ctx);
     return {
@@ -120,7 +118,6 @@ export async function getServerSideProps(ctx) {
             signups,
             signCount,
             carpool,
-            pooler,
             user,
             cookie,
         },
