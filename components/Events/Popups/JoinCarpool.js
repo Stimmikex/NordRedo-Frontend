@@ -28,6 +28,16 @@ const JoinCarpool = ({ carpool, user, poolers, cookie }) => {
         const res = await HttpRequest('POST', `${apiUrl}/event/join/carpool/${carpool}`, data, cookie)
         router.reload()
     }
+
+    // const checkIfUserIsPooler = async (user, poolers) => {
+    //     poolers.forEach(pooler => {
+    //         console.log(pooler)
+    //         if (user.id === pooler.user_id) {
+    //             return true
+    //         }
+    //     });
+    //     return false;
+    // }
     
     const addPooler = (userId, carpool) => {
         addPoolerFunction(userId, carpool);

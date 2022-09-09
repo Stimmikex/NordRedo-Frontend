@@ -15,9 +15,9 @@ function Carpool({carpool, user, cookie}) {
             }
         });
         const results = await res.json();
-        console.log("res:" + results)
         setPoolers(results);
       }
+
     return (
         <div onLoad={e => getPoolers()} className={carpoolPop.carpoolList}>
             <div className={carpoolPop.carpoolListContainer}>

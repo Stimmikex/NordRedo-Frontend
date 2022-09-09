@@ -71,11 +71,6 @@
 .carpoolListContainer {
     display: flex;
     flex-direction: column;
-    ul {
-        li {
-            list-style: none;
-        }
-    }
     &__taken {
         display: flex;
         p {
@@ -96,3 +91,8 @@
         }
     }
 }
+
+.registerbutton {
+    margin-top: 1em;
+    padding: 1em;
+} 

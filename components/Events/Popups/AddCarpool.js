@@ -27,7 +27,7 @@ const AddCarpool = ({ event, cookie, user }) => {
             user_id: user.id,
             event_id: event.id
         }
-        const res = await HttpRequest('POST', `${apiUrl}/event/add/carpool/${event.id}`, data, cookie)
+        await HttpRequest('POST', `${apiUrl}/event/add/carpool/${event.id}`, data, cookie)
         router.reload()
     }
     
@@ -39,7 +39,7 @@ const AddCarpool = ({ event, cookie, user }) => {
     
     return (
         <div>
-            <button onClick={OpenPopup}>Register a Carpool</button>
+            <button onClick={OpenPopup} className={carpoolPop.registerbutton}>Register a Carpool</button>
             {isOpenChange && (
             <div className={carpoolPop.containerpop}>
                 <div className={carpoolPop.searchpop}>
