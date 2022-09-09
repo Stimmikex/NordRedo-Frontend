@@ -1,5 +1,7 @@
 import SignupList from '../../../components/Signups/SignupList.js';
+import CarpoolList from '../../../components/Events/CarpoolList.js';
 import Countdown from '../../../components/Countdown.js';
+import { getUserWithCookie } from '../../../components/fetchUserToken.js'
 import eventStyles from '../../../styles/Event.module.scss';
 import dateFormat from 'dateformat';
 import { useRouter } from 'next/router';
@@ -10,7 +12,7 @@ const {
     NEXT_PUBLIC_API_URL: apiUrl,
   } = process.env;
 
-const Event = ({ event, signups, signCount, user, cookie }) => {
+const Event = ({ event, signups, signCount, carpool, user, cookie }) => {
     const router = useRouter();
 
     const formatDate = (eventDate) => {
@@ -28,7 +30,6 @@ const Event = ({ event, signups, signCount, user, cookie }) => {
     return (
         <div className={eventStyles.event_container}>
             <div>
-                {console.log(user)}
                 <p>{formatDate(event.date)}</p>
             </div>
             <div>
@@ -42,10 +43,24 @@ const Event = ({ event, signups, signCount, user, cookie }) => {
                 :
                 <p></p>
             }
-            <div>
-                <Countdown start={event.startdate}></Countdown>
-                <p>End: {event.enddate}</p>
-            </div>
+            {
+                event.signup && ((new Date(event.startdate) - new Date() < 0) && (new Date(event.enddate) - new Date() > 0))? 
+                <div>
+                    <div>
+                        {
+                            (new Date(event.startdate) - new Date() < 0) ?
+                                <p><b>Signup!</b></p>
+                            :
+                                <p><b>Signup Countdown:</b> <Countdown start={event.startdate}></Countdown> </p>
+                        }
+                    </div>
+                    <div>
+                        <p><b>End of Signup:</b> <Countdown start={event.enddate}></Countdown> </p>
+                    </div>
+                </div>
+                :
+                <p></p>
+            }
             <div>
                 <div className={eventStyles.event_container_iframe}>
                     <iframe src={`https://maps.google.com/maps?q=${event.location}&t=&z=13&ie=UTF8&iwloc=&output=embed`} frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0"></iframe>
@@ -58,39 +73,51 @@ const Event = ({ event, signups, signCount, user, cookie }) => {
                     </form>
                 </div>
                 : 
-                <p>Login to signup</p>
+                <div>
+                    {user ? 
+                        <p></p>
+                    :
+                        <p>Login to signup</p>
+                    }
+                </div>
             }
             { event.signup ? 
                 <div>
                     <h1>Signup List: </h1>
-                    <SignupList signups={signups} signed={event.seats} user={user} event={event} cookie={cookie}></SignupList>
+                    <SignupList signups={signups} signed={event.seats} user={user} event={event} cookie={cookie} key={signups.id}></SignupList>
                 </div>
                 :
+                <p></p>
+            }
+            {!user.error ? 
+                event.event_type === "viso" || checkIfRegistered() ?
+                    <CarpoolList event={event} carpools={carpool} user={user} cookie={cookie} key={carpool.id}></CarpoolList>
+                :
+                    <p></p>
+            :
                 <p></p>
             }
         </div>
     )
 }
 
-export async function getServerSideProps({ params, req }) {
-    const res = await fetch(`${apiUrl}/event/${params.eventId}`);
+export async function getServerSideProps(ctx) {
+    const res = await fetch(`${apiUrl}/event/${ctx.query.eventId}`);
     const event = await res.json();
-    const resSign = await fetch(`${apiUrl}/event/registered/${params.eventId}`);
+    const resSign = await fetch(`${apiUrl}/event/registered/${ctx.query.eventId}`);
     const signups = await resSign.json();
-    const resCount = await fetch(`${apiUrl}/event/count/${params.eventId}`);
+    const resCount = await fetch(`${apiUrl}/event/count/${ctx.query.eventId}`);
     const signCount= await resCount.json();
-    const cookie = req.headers.cookie || null;
-    const resUser = await fetch(`${apiUrl}/users/me`, {
-      headers: {
-        cookie: cookie,
-      }
-    })
-    const user = await resUser.json()
+    const resCarpool = await fetch(`${apiUrl}/event/carpool/${ctx.query.eventId}`);
+    const carpool= await resCarpool.json();
+    const cookie = ctx.req.headers.cookie || null;
+    const user = await getUserWithCookie(ctx);
     return {
         props: {
             event,
             signups,
             signCount,
+            carpool,
             user,
             cookie,
         },
