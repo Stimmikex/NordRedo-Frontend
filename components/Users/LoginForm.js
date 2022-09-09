@@ -28,7 +28,10 @@ const LoginForm = () => {
         const res = await fetch(`${apiUrl}/users/login`, options)
         const result = await res.json()
         cookies.set('auth', result.token);
-        Router.push('/events')
+        if (result.token) {
+            Router.push('/events')
+        }
+        Router.push(Router.asPath)
     }
     return (
         <div className={form.form_container}>
@@ -40,15 +43,13 @@ const LoginForm = () => {
                     placeholder='Username'
                     required
                 />
-            </div>
-            <div>
                 <input type='password'
                     name='password'
                     placeholder='password'
                     required
                 />
+                <button type='submit'>Login</button>
             </div>
-            <button type='submit'>Login</button>
         </form>
         </div>
     )
