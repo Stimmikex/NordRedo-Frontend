@@ -25,19 +25,19 @@ const JoinCarpool = ({ carpool, user, poolers, cookie }) => {
             user_id: user,
             carpool_id: carpool
         }
-        const res = await HttpRequest('POST', `${apiUrl}/event/join/carpool/${carpool}`, data, cookie)
+        await HttpRequest('POST', `${apiUrl}/event/join/carpool/${carpool}`, data, cookie)
         router.reload()
     }
 
-    // const checkIfUserIsPooler = async (user, poolers) => {
-    //     poolers.forEach(pooler => {
-    //         console.log(pooler)
-    //         if (user.id === pooler.user_id) {
-    //             return true
-    //         }
-    //     });
-    //     return false;
-    // }
+    const checkIfUserIsPooler = (user, poolers) => {
+        let count = 0
+        poolers.forEach(pooler => {
+            if (user.id === pooler.user_id) {
+                count += 1 
+            }
+        });
+        return count
+    }
     
     const addPooler = (userId, carpool) => {
         addPoolerFunction(userId, carpool);
@@ -67,6 +67,15 @@ const JoinCarpool = ({ carpool, user, poolers, cookie }) => {
                 </div>
             </div>
             )}
+            {
+                console.log(e => checkIfUserIsPooler(user, poolers))
+            }
+            {/* {
+                (checkIfUserIsPooler(user, poolers)) == 0 ?
+                    <p></p>
+                :
+                    <p>You are registered to this carpool</p>
+            } */}
         </div>
     )
 }

@@ -90,7 +90,7 @@ const Event = ({ event, signups, signCount, carpool, user, cookie }) => {
                 <p></p>
             }
             {!user.error ? 
-                event.event_type === "viso" ?
+                event.event_type === "viso" || checkIfRegistered() ?
                     <CarpoolList event={event} carpools={carpool} user={user} cookie={cookie} key={carpool.id}></CarpoolList>
                 :
                     <p></p>

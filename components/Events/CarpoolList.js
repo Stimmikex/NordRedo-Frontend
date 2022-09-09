@@ -2,7 +2,7 @@ import React from 'react'
 import { useRouter } from "next/router"
 import AddCarpool from './Popups/AddCarpool';
 import Carpool from './Carpool';
-import HttpRequest from '../Utils/HttpRequest'
+import carpoolStyle from './Popups/CarpoolStyle.module.scss'
 
 function CarpoolList({event, carpools, pooler, user, cookie }) {
     const router = useRouter()
@@ -54,7 +54,7 @@ function CarpoolList({event, carpools, pooler, user, cookie }) {
                         <div>
                             {
                                 user.role_id === 3 || user.id === carpool.user_id?
-                                    <button onClick={e => carpoolDeleteFunction(carpool.id)}>Delete Carpool</button>
+                                    <button onClick={e => carpoolDeleteFunction(carpool.id)} className={carpoolStyle.removeCarpool}>Delete Carpool</button>
                                 :
                                     <p></p> 
                             }
